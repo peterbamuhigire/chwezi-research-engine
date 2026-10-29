@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-29 - October 2026 Kaizen
+
+- Added a claim-linked source-currentness register for reviewed research standards and dispositioned overdue historical records.
+- Added a portable-reference scan to the engine validator and replaced workstation-specific paths in active router and skill Markdown.
+- Added an automated entry-count gate for both the complete checkout and package-oriented tree, with an exact-limit boundary fixture.
+- Added product-boundary guidance and sourced evidence for commercial school-administration software sizing, with positive and owned-negative routing fixtures.
+- Recorded the cycle baseline, experiments, validation evidence, residual gaps, and next review under `docs/kaizen/2026-10-engine-kaizen/`.
+
 ## 2026-07-08 - Engine Upgrade July 2026
 
 - Added root `SKILL.md` router for digital-research-engine routing and release sequence.

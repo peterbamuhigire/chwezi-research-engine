@@ -126,14 +126,14 @@ prove complete operation.
 | Major | `docs/source-registers/research-standards-register.md:3–5` | Register says last verified 2026-07-08 and next review 2026-10-08; as-of 2026-10-29 it is overdue. |
 | Major | `docs/source-registers/research-standards-register.md:11–13`; `skills/academic-reporting-standards/SKILL.md:90` | Register omits GRADE, Cochrane edition, ICD 206 and RFC 9309. `academic-reporting-standards/SKILL.md:90` still says TOP has “8 modular standards × 3 implementation levels”; current COS claim requires direct refresh before retaining it. |
 | Minor | `skills/academic-reporting-standards/SKILL.md:142–148` | Several “Tier 1” references are canonical homepages, not a claim-level source record with publication/version date, access date, review date, scope, and support state. |
-| Minor | `skills/market-sizing/SKILL.md` (route not opened for full audit) | Baseline market task exposed a need for a clear guard against treating national education MIS coverage, school counts, or adjacent EdTech TAM as paid administrative-software market size. Exact skill-line assessment remains **NOT_ASSESSED** in this preflight. |
+| Minor | `skills/quantitative-modelling/SKILL.md:43–53` at pre-change HEAD `444b7ce` | Baseline market task exposed a need for a clear guard against treating national education MIS coverage, school counts, or adjacent EdTech TAM as paid administrative-software market size. The baseline file required explicit units, time periods, and populations and warned about mixing populations or periods, but had no product/buyer boundary example. |
 
 ## Repository preconditions
 
-- `git status --short`: clean at observation start; no local policy edits were
-  visible in this checkout.
-- `git log --oneline -20`: HEAD is `444b7ce`.
-- Branch creation and all repository edits are held until the root agent
-  signals the accounting cycle is complete.
-- Full task output is retained in this scratch preparation file; it is not
-  yet the cycle's in-repository evidence record.
+- At observation start, `git status --short` was clean and `git log --oneline
+  -20` showed pre-change HEAD `444b7ce`.
+- Repository edits began after the root agent released the accounting-cycle
+  hold; implementation commits and experiment evidence are in
+  `03-experiment-log.md`.
+- The full outputs for all three task observations are retained above in this
+  in-repository evidence record.
