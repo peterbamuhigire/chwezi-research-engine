@@ -28,7 +28,7 @@ For the preferred option, state:
 
 ## Local Source Register
 
-- `C:\Users\Peter\Downloads\Documents\res_markdown\The Minto Pyramid Principle Logic In Writing, Thinking And Problem Solving (Barbara Minto) .md`
-- `C:\Users\Peter\Downloads\Documents\res_markdown\The Great Mental Models, Volume 1 - General Thinking Concepts.md`
-- `C:\Users\Peter\Downloads\Documents\res_markdown\The Art of Reasoning An Introduction to Logic and Critical Thinking.md`
-- `C:\Users\Peter\Downloads\Documents\res_markdown\Practical Intelligence_ How to Think Critically, Deconstruct Situations, Analyze Deeply, and Never Be Fooled (Clear Thinking and Fast Action Book 4).md`
+- `local excerpt filename: The Minto Pyramid Principle Logic In Writing, Thinking And Problem Solving (Barbara Minto) .md`
+- `local excerpt filename: The Great Mental Models, Volume 1 - General Thinking Concepts.md`
+- `local excerpt filename: The Art of Reasoning An Introduction to Logic and Critical Thinking.md`
+- `local excerpt filename: Practical Intelligence_ How to Think Critically, Deconstruct Situations, Analyze Deeply, and Never Be Fooled (Clear Thinking and Fast Action Book 4).md`

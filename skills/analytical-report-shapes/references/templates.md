@@ -56,6 +56,6 @@
 
 ## Local Source Register
 
-- `C:\Users\Peter\Downloads\Documents\res_markdown\The Minto Pyramid Principle Logic In Writing, Thinking And Problem Solving (Barbara Minto) .md`
+- `local excerpt filename: The Minto Pyramid Principle Logic In Writing, Thinking And Problem Solving (Barbara Minto) .md`
 - `skills/executive-communication/references/pyramid-principle.md`
 - `skills/analytic-tradecraft/references/icd-203-and-tradecraft-standards.md`

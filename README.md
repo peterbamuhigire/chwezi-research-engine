@@ -117,8 +117,8 @@ Skills are stored flat as `skills/<skill-name>/SKILL.md`, so the table groups th
 ## Operating rules and quality gates
 
 - Load [`rules/common/core.md`](rules/common/core.md) with any routed skill. Current, legal, regulatory and platform claims need an authoritative source and a dated currentness check. Unexecuted checks are reported as `NOT_ASSESSED`.
-- Release gates live in [`docs/quality-gates/`](docs/quality-gates/). The standards register is [`docs/source-registers/research-standards-register.md`](docs/source-registers/research-standards-register.md). Kaizen evidence is under [`docs/continuous-improvement/`](docs/continuous-improvement/).
-- Checks: `python -X utf8 scripts/validate_engine.py`, `python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json`, `python -X utf8 scripts/routing_smoke_test.py --min-rank1 84 --lint-fixtures` and `python -m pytest -q tests engine/tests`.
+- Release gates live in [`docs/quality-gates/`](docs/quality-gates/). The standards register is [`docs/source-registers/research-standards-register.md`](docs/source-registers/research-standards-register.md). Kaizen guidance is under [`docs/continuous-improvement/`](docs/continuous-improvement/); the October 2026 cycle report and validation record are [here](docs/kaizen/2026-10-engine-kaizen/05-final-report.md).
+- Checks: `python -X utf8 scripts/validate_engine.py` (including the portable-reference gate), `python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json`, `python -X utf8 scripts/routing_smoke_test.py --min-rank1 84 --lint-fixtures` and `python -m pytest -q tests engine/tests`.
 - Book-derived knowledge enters only as paraphrased, task-oriented references. `scripts/check_no_book_extractions.py` blocks book extractions from the repository.
 
 ## References

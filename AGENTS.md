@@ -37,7 +37,7 @@ The package may read the router, discover skills, inspect Git, and run only decl
 
 The shared agent, command, hook, evidence, and handoff contract is adapted to
 research in [`docs/control-plane-adoption.md`](docs/control-plane-adoption.md);
-the central registry lives in `C:\wamp64\www\chwezi-dev-engine\docs\engine-control-plane.json`.
+the central registry lives in `chwezi-dev-engine/docs/engine-control-plane.json`; resolve that repository through the active engine-routing table rather than assuming a checkout path.
 
 Project context: if the working project root holds a `PROJECT.md` with `project_schema: 1`, read it before planning. It points to this engine's own context sources and never replaces them.
 
@@ -51,11 +51,14 @@ operates within.
 ## Mandatory Digital Research currentness gate for Kaizen
 
 Every Kaizen audit, skill edit, reference update, validator change, and
-standardisation decision MUST begin with this Digital Research Engine at
-`C:\wamp64\www\digital-research-engine`. Read the `source-evaluation` and
-`source-verification` skills and
+standardisation decision MUST begin in this checkout. Read the local
+`source-evaluation` and `source-verification` skills and
 `docs/continuous-improvement/kaizen-currentness-gate.md` before admitting a
 current claim.
+
+For the October 2026 cycle, use the frozen baseline and complete evidence set
+in `docs/kaizen/2026-10-engine-kaizen/`; the final report links its validation
+record and next-cycle actions.
 
 Record source scope, publication/version date, access date, freshness class,
 review date, support status, and uncertainty for every standard, policy, law,
@@ -101,7 +104,7 @@ provenance, completeness, limitations, and whether the material is current befor
 4. After each wave: run `source-verification` and gap analysis via `analytic-tradecraft`
 5. Before synthesis or final drafting: run `skills/critical-reasoning-and-argument/SKILL.md` so claims, warrants, assumptions, countercases, implications, and business-sense checks are visible
 6. After all waves: run cross-cohort synthesis via `mind-mapping-and-synthesis` (orchestrator only)
-7. If the final output is a **proposal** (donor investment case, policy memo, bid, EoI, pitch deck, Cabinet memo, Parliamentary briefing, white paper): route the drafting stage through the standalone proposal engine at `C:\wamp64\www\proposal-skills\skills\SKILL.md`, then follow its section and cross-cutting routes. Load exactly one profile from `C:\wamp64\www\proposal-skills\skills\profiles-sectors\profiles\SKILL.md` before drafting.
+7. If the final output is a **proposal** (donor investment case, policy memo, bid, EoI, pitch deck, Cabinet memo, Parliamentary briefing, white paper): route the drafting stage through the standalone `proposal-skills` engine resolved via the active engine-routing table. Read its `skills/SKILL.md`, follow its section and cross-cutting routes, then load exactly one profile from its `skills/profiles-sectors/profiles/SKILL.md` before drafting.
 8. Generate Word doc via `research-output-formats` → `python-document-generation`
 9. Apply `skills/anti-ai-slop/SKILL.md` in real time on every output, and run `skills/ai-slop-audit/SKILL.md` after each major iteration and as the final ship gate. Outputs must read as if a professional human researcher wrote them; grade F (fabricated stat/citation, viewpoint-free section, template uniformity, banned vocabulary) blocks delivery.
 
@@ -203,7 +206,7 @@ Use these commands for project-managed work. After step 2, run `00-meta-initiali
 
 ## Skill authoring and release gates
 
-Run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
+Run `python -X utf8 scripts/check_portable_references.py` after changing router, README, or skill references, and run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
 for the deterministic currentness gate. Time-sensitive source records require
 verification and review dates; overdue records block release.
 
@@ -216,15 +219,15 @@ verification and review dates; overdue records block release.
 
 ## Proposal-output trigger
 
-When a research project's output is a **proposal** — donor investment case, policy memorandum, bid response, expression of interest, pitch deck, Cabinet memo, Parliamentary briefing, white paper, or other persuasive document for an external audience — route the final-drafting stage through the standalone proposal engine at `C:\wamp64\www\proposal-skills`.
+When a research project's output is a **proposal** — donor investment case, policy memorandum, bid response, expression of interest, pitch deck, Cabinet memo, Parliamentary briefing, white paper, or other persuasive document for an external audience — route the final-drafting stage through the standalone `proposal-skills` engine resolved via the active engine-routing table.
 
-- Parent router: `C:\wamp64\www\proposal-skills\skills\SKILL.md`
-- Section sub-skills: `C:\wamp64\www\proposal-skills\skills\pipeline\01-cover-letter\` through `10-financial-proposal\`
+- Parent router: `proposal-skills/skills/SKILL.md` (inside the resolved repository)
+- Section sub-skills: `proposal-skills/skills/pipeline/01-cover-letter/` through `10-financial-proposal/` (inside that repository)
 - Cross-cutting skills: follow the parent router into `domain-delivery`, `strategy-positioning`, `writing-content`, and other applicable families.
-- Profiles: load `C:\wamp64\www\proposal-skills\skills\profiles-sectors\profiles\SKILL.md` before drafting.
+- Profiles: load `proposal-skills/skills/profiles-sectors/profiles/SKILL.md` before drafting.
 - Language standards: British English; East African professional tone; day-month-year dates; apply the proposal engine's anti-slop and language gates.
 
-The proposal engine evolves in its own repository and is updated independently from `C:\wamp64\www\proposal-skills`.
+The proposal engine evolves in its own repository and is updated independently from this repository.
 
 The research evidence corpus produced by the engine (under `projects/<project-id>/02-research/`, `04-synthesis/`) is the input to the proposal-skills drafting pipeline; the proposal document is written into `projects/<project-id>/05-output/` and exported via the standard `research-output-formats` → `python-document-generation` chain.
 
@@ -265,4 +268,4 @@ For a prompt handoff, read the local [domain prompt contract](docs/ai-prompting/
 
 ## PORTFOLIO CRAFT CONTRACT
 
-Load `C:\wamp64\www\chwezi-engine-agents\docs\operations\portfolio-craft-standard-2026-09-04.md` when available. Research in small claim-bearing waves: frame the decision and evidence boundary, select one cohort or claim set, inspect provenance and contradictions, collect and evaluate sources, verify support, write the smallest useful synthesis, challenge it, refine, and record the result. No report, bibliography, or recommendation is complete because it is long; every load-bearing claim needs a source, support state, uncertainty, and verification trail. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing source, locator, currentness, reviewer, or product evidence is `NOT ASSESSED`, never a pass.
+Resolve `chwezi-engine-agents` via the active engine-routing table and load `docs/operations/portfolio-craft-standard-2026-09-04.md` when available. Research in small claim-bearing waves: frame the decision and evidence boundary, select one cohort or claim set, inspect provenance and contradictions, collect and evaluate sources, verify support, write the smallest useful synthesis, challenge it, refine, and record the result. No report, bibliography, or recommendation is complete because it is long; every load-bearing claim needs a source, support state, uncertainty, and verification trail. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing source, locator, currentness, reviewer, or product evidence is `NOT ASSESSED`, never a pass.

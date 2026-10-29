@@ -28,6 +28,6 @@ Use before any claim becomes a finding, recommendation, key judgment, or executi
 
 ## Local Source Register
 
-- `C:\Users\Peter\Downloads\Documents\res_markdown\Smart Thinking Skills for Critical Understanding and Writing.md`
-- `C:\Users\Peter\Downloads\Documents\res_markdown\The Art of Reasoning An Introduction to Logic and Critical Thinking.md`
+- `local excerpt filename: Smart Thinking Skills for Critical Understanding and Writing.md`
+- `local excerpt filename: The Art of Reasoning An Introduction to Logic and Critical Thinking.md`
 - `skills/source-evaluation/references/evidence-discipline.md`

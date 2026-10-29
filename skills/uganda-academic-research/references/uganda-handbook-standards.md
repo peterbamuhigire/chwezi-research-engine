@@ -2,7 +2,7 @@
 
 **Scope:** Ugandan university research-format and examination rules mined from local EPUB handbooks supplied by the user.
 
-**Accessed:** 2026-04-26 from local files in `C:\Users\Peter\Downloads`.
+**Accessed:** 2026-04-26 from local files in `local source directory omitted for portability`.
 
 ## Source Register
 
