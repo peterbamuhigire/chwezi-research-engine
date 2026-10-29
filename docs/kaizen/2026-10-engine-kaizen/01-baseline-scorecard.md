@@ -1,6 +1,6 @@
 # Digital Research Engine — frozen October 2026 baseline
 
-As of: 2026-10-29 (Africa/Kampala)  
+As of: 2026-10-29 (Africa/Kampala)
 Repository: `digital-research-engine`, pre-change HEAD `444b7ce`
 
 Assessment date: 2026-10-29

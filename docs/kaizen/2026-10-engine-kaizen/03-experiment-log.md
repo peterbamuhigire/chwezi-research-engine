@@ -1,7 +1,7 @@
 # Experiment log
 
-Cycle: `2026-10-engine-kaizen`  
-Baseline frozen in `01-baseline-scorecard.md` before these experiments.  
+Cycle: `2026-10-engine-kaizen`
+Baseline frozen in `01-baseline-scorecard.md` before these experiments.
 No Tier-3 model calls, external archive writes, plugin submissions, or public
 publication were performed.
 

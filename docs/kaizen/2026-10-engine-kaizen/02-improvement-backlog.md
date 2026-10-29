@@ -1,8 +1,8 @@
 # Improvement backlog
 
-Cycle: `2026-10-engine-kaizen`  
-Owner: Peter Bamuhigire  
-Date selected: 2026-10-29  
+Cycle: `2026-10-engine-kaizen`
+Owner: Peter Bamuhigire
+Date selected: 2026-10-29
 Overall audit target: 95/100; published score remains capped at 65.
 
 Items are limited to defects found in the frozen baseline and observed tasks.
