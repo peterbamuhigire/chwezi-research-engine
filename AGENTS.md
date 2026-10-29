@@ -206,7 +206,7 @@ Use these commands for project-managed work. After step 2, run `00-meta-initiali
 
 ## Skill authoring and release gates
 
-Run `python -X utf8 scripts/check_portable_references.py` after changing router, README, or skill references, and run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
+Run `python -X utf8 scripts/check_portable_references.py` after changing router, README, or skill references. Before release, run `python -X utf8 scripts/check_file_count_cap.py` to enforce the checkout/package-oriented entry limit, and run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
 for the deterministic currentness gate. Time-sensitive source records require
 verification and review dates; overdue records block release.
 

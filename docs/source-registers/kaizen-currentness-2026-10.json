@@ -189,6 +189,23 @@
       "uncertainty": "The page does not establish local runtime entitlement, comparative task quality, latency or observed cost.",
       "archive_status": "NOT_ASSESSED",
       "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-OPENAI-ARCHIVE-ENTRY-LIMIT-2026-10-29",
+      "title": "OpenAI plugin submission error reference",
+      "url": "https://developers.openai.com/plugins/deploy/submission-errors",
+      "publisher": "OpenAI",
+      "tier": 1,
+      "scope": "ZIP submission archive entry-count limit only; not a source-checkout size requirement.",
+      "as_of": "2026-10-29",
+      "accessed": "2026-10-29",
+      "verified_at": "2026-10-29",
+      "review_after": "2026-11-29",
+      "freshness_class": "platform",
+      "support_state": "verified",
+      "uncertainty": "A repository-tree count is a preflight proxy; a built archive may add or remove entries.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
     }
   ],
   "claims": [
@@ -202,7 +219,8 @@
     {"id": "CLM-TOP2025-2026-10-29", "text": "The official TOP page says TOP 2025 contains seven Research Practices, two Verification Practices, four Verification Study types, and three levels for Research Practices.", "requires_currentness": true, "source_ids": ["SRC-COS-TOP-2026-10-29"], "support_state": "verified", "limitation": "Publisher describes TOP as evolving."},
     {"id": "CLM-OAI-RELEASES-2026-10-29", "text": "OpenAI's official changelog records GPT-6.1 Terra as released on 26 October 2026; this release notice is not comparative task-quality evidence.", "requires_currentness": true, "source_ids": ["SRC-OPENAI-CHANGELOG-2026-10-29"], "support_state": "verified", "limitation": "Provider positioning only."},
     {"id": "CLM-OAI-CATALOGUE-2026-10-29", "text": "The provider catalogue snapshot includes GPT-6 Astra, GPT-6.1 Sol, GPT-6.1 Terra, and GPT-6 Luna.", "requires_currentness": true, "source_ids": ["SRC-OPENAI-MODELS-2026-10-29"], "support_state": "verified", "limitation": "Does not prove local account entitlement or session model."},
-    {"id": "CLM-OAI-LUNA-POLICY-2026-10-29", "text": "The official GPT-6 Luna page is the primary provider source for the pinned model ID; the authorised Luna/high policy remains unchanged, while comparative quality, latency, cost and active-session availability remain NOT_ASSESSED.", "requires_currentness": true, "source_ids": ["SRC-OPENAI-LUNA-2026-10-29"], "support_state": "verified", "limitation": "The model-policy review is not a claim of measured superiority."}
+    {"id": "CLM-OAI-LUNA-POLICY-2026-10-29", "text": "The official GPT-6 Luna page is the primary provider source for the pinned model ID; the authorised Luna/high policy remains unchanged, while comparative quality, latency, cost and active-session availability remain NOT_ASSESSED.", "requires_currentness": true, "source_ids": ["SRC-OPENAI-LUNA-2026-10-29"], "support_state": "verified", "limitation": "The model-policy review is not a claim of measured superiority."},
+    {"id": "CLM-OPENAI-ARCHIVE-LIMIT-2026-10-29", "text": "The OpenAI plugin submission error reference states that an archive must not contain more than 5,000 entries.", "requires_currentness": true, "source_ids": ["SRC-OPENAI-ARCHIVE-ENTRY-LIMIT-2026-10-29"], "support_state": "verified", "limitation": "This repository's full-checkout/package-oriented gate is a conservative preflight proxy, not a built-ZIP inspection."}
   ],
   "dispositions": [
     {"old_source_id": "SRC-OAI-MODEL-CATALOGUE-2026-09-26", "state": "superseded", "replacement_claim_id": "CLM-OAI-CATALOGUE-2026-10-29"},
