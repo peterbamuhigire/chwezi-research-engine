@@ -117,10 +117,12 @@ publication were performed.
   5,000 entries. The portfolio's full-checkout/package-oriented ceiling is an
   explicit task constraint; the latter remains a preflight inventory rather
   than a built ZIP count. `python -X utf8 engine/tests/test_file_count_cap.py`
-  passes 4 tests: equality at the configured limit passes, one-over fails for
-  both the full and package-oriented count, package exclusions work, and a
-  symlinked directory is counted without traversal. The integrated
-  `python -X utf8 scripts/validate_engine.py` exits 0 with 47 tests. Current
+  passes 6 tests: equality at the configured limit passes, one-over fails for
+  both the full and package-oriented count, caller-supplied limits above 5,000
+  or below zero are rejected, package exclusions work, and a symlinked
+  directory is counted without traversal. The integrated
+  `python -X utf8 scripts/validate_engine.py` exits 0 with 50 tests on the
+  acceptance-review rerun. Current
   tree report: `python -X utf8 scripts/check_file_count_cap.py` exits 0; final
   committed-tree counts are recorded in `04-validation-record.md`.
 - **Act:** Keep. Both inventories are measured by the registered validator;

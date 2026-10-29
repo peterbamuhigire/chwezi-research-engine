@@ -25,6 +25,14 @@ class FileCountCapTests(unittest.TestCase):
         self.assertEqual(len(MODULE.count_violations(fixture["one_over"], fixture["at_limit"], limit)), 1)
         self.assertEqual(len(MODULE.count_violations(fixture["at_limit"], fixture["one_over"], limit)), 1)
 
+    def test_caller_cannot_raise_the_hard_ceiling(self) -> None:
+        with self.assertRaisesRegex(ValueError, "hard ceiling 5000"):
+            MODULE.count_violations(5001, 0, limit=6000)
+
+    def test_caller_cannot_set_a_negative_limit(self) -> None:
+        with self.assertRaisesRegex(ValueError, "between 0 and the hard ceiling"):
+            MODULE.count_violations(0, 0, limit=-1)
+
     def test_package_count_excludes_named_cache_directories_only(self) -> None:
         with tempfile.TemporaryDirectory(prefix="file-count-cap-") as temp:
             root = Path(temp)

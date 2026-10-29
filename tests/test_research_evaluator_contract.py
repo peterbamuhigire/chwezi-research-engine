@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 import unittest
@@ -50,7 +51,14 @@ class ResearchEvaluatorContractTests(unittest.TestCase):
         case["currentness_required"] = False
         case["mandatory_guards"]["currentness_when_required"] = "not_applicable"
         case["diagnostic_expected_criteria"] = []
-        result = evaluate(case, BANK, ROOT)
+        # Keep this contract test independent of unrelated guidance edits. The
+        # evaluator must still enforce each hash; this fixture pins hashes to
+        # the exact guidance files present in the test checkout.
+        bank = json.loads((ROOT / "skills/ai-evaluation-and-data-flywheel/references/criterion-bank.json").read_text(encoding="utf-8"))
+        for item in [*bank["criteria"], *bank["mandatory_guards"]]:
+            path = (ROOT / item["guidance_path"]).resolve()
+            item["guidance_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest().upper()
+        result = evaluate(case, bank, ROOT)
         self.assertEqual("ready", result["status"])
         self.assertFalse(result["certifies_truth"])
 

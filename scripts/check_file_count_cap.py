@@ -49,6 +49,8 @@ def count_entries(root: Path, *, package_oriented: bool) -> int:
 
 
 def count_violations(full_checkout: int, package_oriented: int, limit: int = ENTRY_LIMIT) -> list[str]:
+    if not 0 <= limit <= ENTRY_LIMIT:
+        raise ValueError(f"limit must be between 0 and the hard ceiling {ENTRY_LIMIT}")
     violations = []
     if full_checkout > limit:
         violations.append(f"full checkout has {full_checkout} entries; limit is {limit}")

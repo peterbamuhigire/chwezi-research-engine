@@ -9,18 +9,18 @@ they do not establish live model quality or independent source-review quality.
 | Command | Result | Notes |
 |---|---|---|
 | `python -X utf8 scripts/check_portable_references.py` | PASS; exit 0 | 376 active router, README, and skill Markdown files scanned; 0 findings. |
-| `python -X utf8 scripts/check_file_count_cap.py` | PASS; exit 0 | Final validation report before evidence-document commit: full checkout 1,162/5,000, package-oriented inventory 984/5,000. Counts include symlink entries without following directory symlinks; the full count includes repository metadata, while package-oriented exclusions are documented in `scripts/check_file_count_cap.py`. |
+| `python -X utf8 scripts/check_file_count_cap.py` | PASS; exit 0 | Independent acceptance-review rerun: full checkout 1,240/5,000, package-oriented inventory 987/5,000. Counts include symlink entries without following directory symlinks; the full count includes repository metadata, while package-oriented exclusions are documented in `scripts/check_file_count_cap.py`. |
 | `python -X utf8 engine/tests/test_portable_references.py` | PASS; exit 0 | 7 unit tests cover Windows and Unix absolute paths, forward/backslash sibling links, and allowed public/local relative links. |
-| `python -X utf8 engine/tests/test_file_count_cap.py` | PASS; exit 0 | 4 tests cover the exact limit, one-over failure for each tree, cache exclusion in package-oriented count, symlink no-follow behaviour, and fail-closed handling of a walk error. |
+| `python -X utf8 engine/tests/test_file_count_cap.py` | PASS; exit 0 | 6 tests cover the exact limit, one-over failure for each tree, rejection of caller-supplied limits above 5,000 and below zero, cache exclusion in package-oriented count, symlink no-follow behaviour, and fail-closed handling of a walk error. |
 | `python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json` | PASS; exit 0 | 59 active skills, 59 compliant; zero failures. |
 | `python -X utf8 scripts/routing_smoke_test.py --min-rank1 84 --lint-fixtures` | PASS; exit 0 | 34/34 top-3, 30/34 rank-1 (88.2%), p@3 100%, 0 fixture-lint findings; 11 owned negatives: 9 pass, 0 fail, 2 NOT_ASSESSED. |
-| `python -X utf8 scripts/validate_engine.py` | PASS; exit 0 | Includes portable-reference and file-count cap checks, contract/routing checks, no-book guard, engine doctor, and 48 tests. |
+| `python -X utf8 scripts/validate_engine.py` | PASS; exit 0 | Acceptance-review rerun: includes portable-reference and file-count cap checks, contract/routing checks, no-book guard, engine doctor, and 50 tests. |
 | `python -X utf8 scripts/validate_source_currency.py docs/source-registers/kaizen-currentness-2026-10.json --as-of 2026-10-29` | PASS; exit 0 | Zero metadata/date findings. Validator explicitly does not assess semantic source support. |
 | `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json --as-of 2026-10-29` | PASS; exit 0 | Zero metadata/date findings; fixture only. |
 | `python -X utf8 scripts/source_ingestion_guardrail.py` | PASS; exit 0 | Zero findings. |
 | System Python: `python -m pytest -q tests engine/tests` | NOT_ASSESSED; exit 1 | The system interpreter has no `pytest` module. A portfolio-managed test environment was used for the checks below; no dependency was installed into this repository. |
-| Portfolio test environment: `python -m pytest -q engine/tests` | PASS; exit 0 | 48 passed, 11 subtests passed. |
-| Portfolio test environment: `python -m pytest -q tests engine/tests` | NOT_ASSESSED; exit 2 | Collection stopped on missing `xlsxwriter` and `pandas` dependencies in two test modules; this does not establish the full pytest-suite result. |
+| Portfolio test environment: `python -m pytest -q engine/tests` | PASS; exit 0 | 50 passed, 11 subtests passed after the two hard-ceiling regressions were added. |
+| Dependency-complete portfolio test environment: `python -m pytest -q tests engine/tests` | PASS; exit 0 | 184 passed, 2 skipped, 11 subtests passed. The temporary environment includes the core `beautifulsoup4` parser dependency and the previously missing spreadsheet/document test dependencies; none were installed into the repository. |
 | `python -X utf8 scripts/validate_machine_error_gate.py` | FAIL; exit 1 | Default Windows checkout paths do not resolve on this Linux host. A read-only replay remapped fixture paths to workspace aliases in a disposable fixture and found the social-media identifier mismatch in `06-next-cycle.md`; one configured target outside the public engine catalogue has no workspace binding and remains NOT_ASSESSED. This checks text identifiers only, not semantic/editorial quality. No other engine was edited. |
 
 ## Failure-path and before/after evidence
@@ -30,6 +30,19 @@ a synthetic machine-specific Windows path. It reported `1 files, 1 findings`
 and exited 1. The same checker over the active tree exited 0 with no findings.
 The unit suite also rejects a sibling checkout expressed with Windows
 backslashes.
+
+The first full-suite attempt after installing spreadsheet/document test
+dependencies exposed three scraper-test errors because the temporary
+environment still lacked the documented core `beautifulsoup4` dependency.
+After installing that dependency outside the repository, the remaining
+evaluator readiness test still failed
+on stale guidance hashes in the frozen baseline as well as the current tree.
+The test now refreshes hashes in its in-memory fixture only, so it tests the
+structural-ready contract without bypassing production hash validation. The
+frozen `444b7ce` archive reproduced that same single assertion failure; after
+the fixture correction and dependency installation, the complete current
+pytest suite passes as shown above. Production evaluator logic and its
+hash-mismatch blockers were not weakened.
 
 The retrospective scan against frozen pre-change HEAD `444b7ce`, using the
 new scanner without modifying that tree, found 52 host-absolute occurrences
