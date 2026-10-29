@@ -45,6 +45,17 @@ metadata:
 - Derived numbers are labelled as estimates.
 - Precision does not exceed data quality.
 
+## Market Boundary Check
+
+Before sizing a market, specify the product bought, paying buyer, geography,
+period, and revenue basis. Keep government information systems, school
+reporting coverage, and adjacent education products separate from paid
+school-administration software unless the evidence directly links them to the
+same product and buyer. Do not convert enrolment, school counts, platform
+coverage, or an adjacent-product TAM into software demand. If product-level
+customer, price, or adoption evidence is missing, report the market-size input
+as a gap and stop the estimate rather than filling it with a proxy.
+
 
 ## Quantitative Modelling Existing Failure Notes
 - Single-path market sizing with no triangulation.
@@ -102,7 +113,23 @@ When evidence or calculation execution is unavailable, return a qualified model 
 
 ## Worked example
 
-Represent an uncertain driver as low, base, and high sourced assumptions; show the result range and do not collapse missing evidence into a base case.
+For a brief on school-administration software in Uganda and Kenya, define the
+market as paid software purchased by schools for administration, with a stated
+country, time period, and revenue basis. Uganda's Ministry statistical
+abstract describes a government EMIS, while Kenya's Ministry describes NEMIS
+as a government information system; neither source measures purchases of
+commercial school software ([Uganda Education Statistical Abstract 2025,
+pp. 3–4](https://www.education.go.ug/wp-content/uploads/2026/01/UGANDAS-EDUCATION-STATISTICAL-ABSTRACT_2025.pdf);
+[Kenya Ministry of Education, NEMIS](https://education.go.ke/nemis), checked
+2026-10-29). Acumen's Kenya survey reports that 23% of its respondents used a
+school management system, but that survey result is not a verified national
+adoption rate, does not establish paid use, and its addressable-market tables
+cover supplemental learning products rather than school-administration SaaS
+([Acumen, Kenya Education Market Research Summary, pp. 2–7](https://acumen.org/wp-content/uploads/2024/03/Acumen-East-Africa-Education-Research-Kenya.pdf),
+checked 2026-10-29). Therefore these sources do not yield a comparable
+Uganda/Kenya commercial-software TAM. Mark paid school counts, customers,
+prices, and current adoption as gaps until product-matched evidence is found.
+**(synthesis)**
 
 <!-- dual-compat-end -->
 

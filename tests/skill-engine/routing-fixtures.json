@@ -81,6 +81,46 @@
       ]
     },
     {
+      "id": "school-software-market-positive",
+      "prompt": "Build a quantitative market-size model for annual revenue from paid school administration software in Uganda and Kenya; define units, period, customer-count and price assumptions, sensitivity and missing inputs.",
+      "expected": "quantitative-modelling",
+      "forbidden": [
+        "dataset-discovery-and-analysis"
+      ]
+    },
+    {
+      "id": "software-demand-scenarios-positive",
+      "prompt": "Create a quantitative scenario model for low, central and high adoption of a school-bought attendance product; show units, forecast period, sourced assumptions, revenue formula and sensitivity analysis.",
+      "expected": "quantitative-modelling",
+      "forbidden": [
+        "research-design"
+      ]
+    },
+    {
+      "id": "buyer-based-edtech-sizing-positive",
+      "prompt": "Estimate and triangulate the commercial market size for paid school administration services by buyer, country and period; build an assumption register and sensitivity model, keeping public EMIS coverage separate.",
+      "expected": "quantitative-modelling",
+      "forbidden": [
+        "source-evaluation"
+      ]
+    },
+    {
+      "id": "emisinformation-study-design-negative",
+      "prompt": "Develop a mixed-method field study of government school information practices, specifying formal questions, method selection, case selection, sampling and interview instruments; no market estimate or forecast.",
+      "expected": "research-design",
+      "forbidden": [
+        "quantitative-modelling"
+      ]
+    },
+    {
+      "id": "survey-data-cleaning-negative",
+      "prompt": "Validate tabular research data by repairing encoding, checking tidy structure, cleaning duplicate rows, flagging anomalies, auditing merge lineage, and producing a quality score and manifest; do not forecast.",
+      "expected": "data-quality-pipeline",
+      "forbidden": [
+        "quantitative-modelling"
+      ]
+    },
+    {
       "id": "data-quality-collision",
       "prompt": "Our survey spreadsheets have broken encodings, duplicate rows and outliers; clean, merge and profile them with lineage before analysis.",
       "expected": "data-quality-pipeline",
@@ -288,6 +328,18 @@
       "skill": "validation-contract",
       "prompt": "Prepare the release evidence bundle for the new SaaS billing feature before deployment.",
       "owner": "chwezi-dev-engine/validation-contract"
+    },
+    {
+      "id": "qualitative-emis-study-not-market-model",
+      "skill": "quantitative-modelling",
+      "prompt": "Plan a mixed-method field study of government school information practices: connect formal questions to method selection, case logic, sampling, and interview instruments; no market estimate or forecast.",
+      "owner": "research-design"
+    },
+    {
+      "id": "clean-adoption-data-not-market-model",
+      "skill": "quantitative-modelling",
+      "prompt": "Repair encoding and tidy structure in a tabular dataset, clean duplicate rows, flag anomalies, audit merge lineage, and produce the data-quality score and manifest without making a forecast.",
+      "owner": "data-quality-pipeline"
     }
   ]
 }
