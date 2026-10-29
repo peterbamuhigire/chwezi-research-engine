@@ -18,8 +18,10 @@ they do not establish live model quality or independent source-review quality.
 | `python -X utf8 scripts/validate_source_currency.py docs/source-registers/kaizen-currentness-2026-10.json --as-of 2026-10-29` | PASS; exit 0 | Zero metadata/date findings. Validator explicitly does not assess semantic source support. |
 | `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json --as-of 2026-10-29` | PASS; exit 0 | Zero metadata/date findings; fixture only. |
 | `python -X utf8 scripts/source_ingestion_guardrail.py` | PASS; exit 0 | Zero findings. |
-| `python -m pytest -q tests engine/tests` | NOT_ASSESSED; exit 1 | The environment has no `pytest` module. The registered `validate_engine.py` unittest suite ran successfully; no package was installed. |
-| `python -X utf8 scripts/validate_machine_error_gate.py` | FAIL; exit 1 | Twelve configured targets in machine-specific checkouts are unavailable on this Linux host. This is not a passing cross-engine semantic check; target names and status are in `06-next-cycle.md`. No other engine was edited. |
+| System Python: `python -m pytest -q tests engine/tests` | NOT_ASSESSED; exit 1 | The system interpreter has no `pytest` module. A portfolio-managed test environment was used for the checks below; no dependency was installed into this repository. |
+| Portfolio test environment: `python -m pytest -q engine/tests` | PASS; exit 0 | 48 passed, 11 subtests passed. |
+| Portfolio test environment: `python -m pytest -q tests engine/tests` | NOT_ASSESSED; exit 2 | Collection stopped on missing `xlsxwriter` and `pandas` dependencies in two test modules; this does not establish the full pytest-suite result. |
+| `python -X utf8 scripts/validate_machine_error_gate.py` | FAIL; exit 1 | Default Windows checkout paths do not resolve on this Linux host. A read-only replay remapped fixture paths to workspace aliases in a disposable fixture and found the social-media identifier mismatch in `06-next-cycle.md`; one configured target outside the public engine catalogue has no workspace binding and remains NOT_ASSESSED. This checks text identifiers only, not semantic/editorial quality. No other engine was edited. |
 
 ## Failure-path and before/after evidence
 
@@ -82,9 +84,9 @@ a built-ZIP measurement.
   register, but no independent human reviewer signed off.
 - Archive snapshots were not captured for the three practitioner tasks;
   source-verification release status remains NOT_ASSESSED.
-- Cross-engine semantic handoffs could not be executed because configured
-  foreign checkout targets are missing from this host. Engine-by-engine
-  confirmation belongs to the portfolio cycle.
+- Cross-engine semantic handoffs remain NOT_ASSESSED. The workspace-resolved
+  identifier check found a social-media target mismatch and one unbound target
+  outside the public engine catalogue, recorded in `06-next-cycle.md`.
 - Tier-3 behavioural evaluation, comparative model quality/cost/latency,
   and live-agent routing were not run. No paid model calls were made.
 - Remote CI state and public marketplace submission were not checked or
