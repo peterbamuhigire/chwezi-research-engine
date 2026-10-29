@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_FILES = [ROOT / "AGENTS.md", ROOT / "README.md"]
 DEFAULT_FILES.extend(sorted((ROOT / "skills").rglob("*.md")))
 ABSOLUTE_PATH = re.compile(
-    r"(?i)(?:\b[A-Z]:[\\/][^\s`<>]+|(?<![:/A-Za-z0-9])/(?:home|Users|mnt|tmp)/[^\s`<>]+)"
+    r"(?i)(?:\b[A-Z]:[\\/][^\s`<>]+|(?<![:/A-Za-z0-9.])/(?:home|Users|mnt|tmp|root|opt|workspace|private|Volumes)(?:/|$)[^\s`<>]*)"
 )
 SIBLING_CHECKOUT = re.compile(
     r"(?i)(?:\.\.[\\/])+chwezi-[a-z0-9-]+(?:[\\/]|$)[^\s`<>]*"

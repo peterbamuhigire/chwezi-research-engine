@@ -26,6 +26,10 @@ class PortableReferenceTests(unittest.TestCase):
         findings = MODULE.find_nonportable_references("Open /home/peter/skill-engines/engine/SKILL.md")
         self.assertEqual(findings[0][1], "host-absolute-path")
 
+    def test_rejects_other_rooted_unix_paths(self) -> None:
+        findings = MODULE.find_nonportable_references("Open /opt/runtime/engine/SKILL.md")
+        self.assertEqual(findings[0][1], "host-absolute-path")
+
     def test_rejects_sibling_checkout_relative_link(self) -> None:
         findings = MODULE.find_nonportable_references("See ../../../chwezi-dev-engine/skills/example/SKILL.md")
         self.assertEqual(findings[0][1], "sibling-checkout-link")
