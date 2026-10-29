@@ -10,12 +10,24 @@ publication were performed.
 - **Plan:** Recheck the standards named by the prompt and TOP against current
   primary sources, then replace only the obsolete TOP statement and add a
   dated, claim-linked source register. Keep old source snapshots immutable.
-- **Do:** Pending.
-- **Study:** Pending exact commands, source status and post-edit comparison.
-- **Act:** Pending; retain only if validators pass and the skill/register agree.
+- **Do:** Added the dated claim register; directly refreshed PRISMA, GRADE,
+  Cochrane, ICD 203, ICD 206, RFC 9309 and TOP from official publisher sources;
+  corrected the TOP count and provenance wording in the academic-reporting
+  skill. Six due source records are dispositioned in the new register while
+  the old register remains unchanged.
+- **Study:** `validate_source_currency.py
+  docs/source-registers/kaizen-currentness-2026-10.json --as-of 2026-10-29`
+  exits 0 with zero metadata findings. Contract validator: 59/59 compliant;
+  routing remains 29/29 top-3, 25/29 rank-1, with 7 negative passes, 0
+  failures, 2 NOT_ASSESSED; `validate_engine.py` exits 0 with 37 tests; the
+  source-ingestion guard exits 0 with zero findings. Source limitations are
+  recorded per row in the JSON register.
+- **Act:** Kept. The new register validates and the skill now separates EQUATOR
+  guidance from independently governed GRADE, Cochrane and TOP sources. The
+  metadata pass does not certify semantic support; archive snapshots remain
+  unassessed.
 - **Stop/rollback:** If a source cannot be opened or its scope is ambiguous,
-  keep that claim `NOT_ASSESSED`; revert the relevant current wording rather
-  than infer a version.
+  keep that claim `NOT_ASSESSED`; historical source records remain immutable.
 
 ## PDSA-2 — portable-path recurrence check (R-KZ-02)
 

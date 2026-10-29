@@ -1,39 +1,27 @@
 # Research Standards Register
 
-Last verified: 2026-07-08
-Reviewer: Builder upgrade pass
-Next review: 2026-10-08 or when a listed standard is updated
+**Selected rows directly checked:** 2026-10-29. This is a scoped refresh, not a
+claim that every source family in the engine was reverified. Claim-level
+records, scope, dates, support state and limitations are in
+[`kaizen-currentness-2026-10.json`](kaizen-currentness-2026-10.json). The prior
+register date (2026-07-08) is historical.
 
-This register tracks standards and source families that affect engine output quality. It is a routing aid, not a substitute for opening official sources during live research.
+| Standard/source family | Current record from this check | Applies to | Review state |
+|---|---|---|---|
+| PRISMA | PRISMA 2020 remains the core general reporting resource; PRISMA-C 2026 is an extension for paediatric intervention systematic reviews. | Study-type reporting; choose applicable extensions by scope. | Verified against official PRISMA pages on 2026-10-29; recheck extensions for each study population. |
+| GRADE | Use the GRADE Living Map's official repository and item-level status; it distinguishes current, partially up-to-date, and outdated material. | Certainty and recommendation methods. | Map accessed 2026-10-29; check the specific item and content for each use. |
+| Cochrane Handbook for Systematic Reviews of Interventions | Cochrane's current page lists version 6.5 (2024), last updated 2024-08-22. | Intervention systematic reviews. | Version/date checked 2026-10-29; other Cochrane handbooks are separate. |
+| ICD 203 | Official ODNI PDF contains the 2015 directive and a technical amendment signed 2022-01-21. | Intelligence Community analytic products within directive scope. | Checked 2026-10-29; do not generalise its applicability beyond that scope. |
+| ICD 206 | Official ODNI result identifies a 2025-12-18 technical amendment and reference to ICS 206-01. | Sourcing requirements for disseminated IC analytic products. | Amendment summary verified; full amended text/conformance `NOT_ASSESSED` because PDF text was unavailable in this check. |
+| RFC 9309 | RFC Editor information page lists RFC 9309 as a Proposed Standard, published September 2022. | Robots Exclusion Protocol guidance for crawlers. | Status checked 2026-10-29; review errata and implementation behavior separately. |
+| TOP Guidelines | TOP 2025 is described as seven Research Practices, two Verification Practices, four Verification Study types; Research Practices have three levels. | Open-science and transparency policy selection. | Verified against COS official page on 2026-10-29; source describes TOP as evolving. |
+| EQUATOR reporting-guideline directory | Previous entry retained as a discovery route. | Study-type reporting guideline discovery. | New source/status check not completed in this cycle: `NOT_ASSESSED`. |
+| Heuer/Pherson, Minto, Verification Handbook, data-quality references | Durable concept references only. | Analysis and method design. | No new edition or platform currency claim made in this cycle; not reverified. |
+| SWEBOK Guide V4.0 | Previous entry retained for tool/process context. | Research tooling and validation scripts. | New edition/status check not completed in this cycle: `NOT_ASSESSED`. |
 
-| Standard or source family | Version / edition implemented | Source | Applies to | Reverification trigger |
-|---|---|---|---|---|
-| PRISMA 2020 | PRISMA 2020 statement and checklist | https://www.prisma-statement.org/prisma-2020 and https://www.prisma-statement.org/prisma-2020-checklist | Systematic reviews, evidence maps, scoping review discipline | PRISMA update, journal requirement change |
-| EQUATOR Network reporting guidance | Current guidance family as of 2026-07-08 | https://www.equator-network.org/reporting-guidelines/ | Academic health and social-science reporting standard selection | New reporting guideline or major checklist revision |
-| ICD 203 analytic tradecraft | ODNI ICD 203 Analytic Standards | https://www.dni.gov/files/documents/ICD/ICD-203.pdf | Intelligence-style judgments and estimative products | New analytic standard or agency update |
-| Heuer/Pherson structured analytic techniques | Structured analytic techniques reference corpus | Attached Markdown reference, mapped in `book-knowledge-map.md` | ACH, KAC, pre-mortem, red team, indicators | New edition or engine fixture drift |
-| Minto Pyramid Principle | Executive communication structure | Attached Markdown reference, mapped in `book-knowledge-map.md` | Executive memos, board briefs, consulting reports | Material revision to executive-communication skill |
-| Verification Handbook methods | Digital verification and UGC provenance | Attached Markdown reference, mapped in `book-knowledge-map.md` | URL, image, video, social-source, archive verification | New platform norms, tool changes, source access changes |
-| Data quality assessment | Data journalism and data-quality practices | Attached Markdown reference, mapped in `book-knowledge-map.md` | Dataset discovery, cleaning, statistics | Data-quality skill update |
-| SWEBOK | SWEBOK Guide V4.0 | https://www.computer.org/education/bodies-of-knowledge/software-engineering | Research tooling and validation scripts | New SWEBOK edition or tool architecture change |
+## Use and release rule
 
-## Required fields for volatile-source entries
-
-When a project adds a live source register, each source row must include:
-
-- source_id
-- title
-- url or locator
-- publisher
-- source_tier
-- accessed_utc
-- archived_url
-- verification_method
-- confidence
-- owner
-- next_review
-- affected_claim_ids
-
-## Release rule
-
-Any compliance-sensitive claim without a last-verified date and source-tier assignment fails the release gate.
+The register is a routing aid, not compliance certification. For time-sensitive,
+legal, policy or standards claims, verify the exact source and scope used in the
+work. Metadata passing the source-currentness validator does not prove claim
+support. Do not use a `NOT_ASSESSED` row as evidence of current compliance.

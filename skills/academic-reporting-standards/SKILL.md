@@ -17,7 +17,7 @@ This skill has three layers, all load-bearing:
 
 - **Practical craft** — the "invisible rules" Rita Brause articulates: dissertation as apprenticeship, chair-as-quasi-parental relationship, parallel work, pilot everything, recursive process. The unwritten conventions every examination committee assumes the candidate knows. Reference: `references/dissertation-unwritten-conventions.md`.
 - **Institutional examination conventions** — current published rules for Cambridge, Oxford, LSE, Harvard, Yale, and Princeton. This layer encodes word-count discipline, thesis-by-papers structures, original-contribution language, viva/defense procedures, examiner criteria, and explicit gaps where no central word-count cap is published. Reference: `references/oxbridge-ivy-examination-conventions.md`.
-- **Formal reporting** — the published study-type-specific checklists (PRISMA / CONSORT / STROBE / MOOSE / GRADE / Cochrane / TOP) hosted by the EQUATOR Network. The conventions every top journal and every doctoral committee require. Reference: `references/equator-decision-tree.md`.
+- **Formal reporting** — selects study-type-specific guidance such as PRISMA / CONSORT / STROBE / MOOSE from the EQUATOR directory, then follows each governing source. GRADE, Cochrane and TOP guidance have separate publishers and source registers. Reference: `references/equator-decision-tree.md`.
 
 A thesis or paper that satisfies only one layer fails. Examiners look for all applicable layers.
 
@@ -87,7 +87,7 @@ Rita S. Brause's *Writing Your Doctoral Dissertation: Invisible Rules for Succes
 
 ## The formal-reporting layer — one-paragraph summary
 
-The EQUATOR Network (Enhancing the QUAlity and Transparency Of health Research, https://www.equator-network.org/) hosts the master decision tree of 250+ published reporting guidelines. The engine encodes the most consequential: **PRISMA 2020** (27-item checklist for systematic reviews); **CONSORT 2025** (30-item checklist for randomised controlled trials, endorsed by 600+ journals including Lancet, BMJ, JAMA, NEJM); **STROBE** (cohort, case-control, cross-sectional studies); **MOOSE** (meta-analyses of observational studies, 35-item); **GRADE** (4-level evidence quality with 5 downgrade and 3 upgrade factors); **Cochrane Handbook** (systematic-review gold standard, includes RoB 2 and ROBINS-I tools); **TOP Guidelines** (Transparency and Openness Promotion — 8 modular standards × 3 implementation levels). For style, the engine routes: Bluebook (US legal), OSCOLA (Oxford legal), Chicago / Turabian (humanities), APA (social sciences), AMA / Vancouver (medicine), MLA (literature). Reference: `references/equator-decision-tree.md`.
+Use the EQUATOR Network to identify study-type reporting guidelines, then verify the selected checklist from its governing source. The engine keeps reporting references for PRISMA 2020, CONSORT, STROBE and MOOSE; exact versions and applicability must be checked for the study and venue. GRADE guidance is maintained separately: start with the GRADE Working Group's [Living Map](https://book.gradepro.org/map) and use the status of the relevant item. The [Cochrane Handbook](https://www.cochrane.org/handbook/current) is a separate source for Cochrane intervention reviews. The [TOP 2025 framework](https://www.cos.io/initiatives/top-guidelines) describes seven Research Practices, two Verification Practices and four Verification Study types; its Research Practices use three implementation levels. These sources are not all hosted by EQUATOR. For style, the engine routes: Bluebook (US legal), OSCOLA (Oxford legal), Chicago / Turabian (humanities), APA (social sciences), AMA / Vancouver (medicine), MLA (literature). Reference: `references/equator-decision-tree.md`.
 
 ## The institution-specific layer — one-paragraph summary
 
@@ -139,11 +139,11 @@ Before any academic artefact ships, every box must be ticked:
 
 - Brause, Rita S. *Writing Your Doctoral Dissertation: Invisible Rules for Success*. Falmer Press / RoutledgeFalmer, 1999. Tier 1.
 - EQUATOR Network. *Enhancing the QUAlity and Transparency Of health Research*. https://www.equator-network.org/. Tier 1.
-- PRISMA 2020. https://www.equator-network.org/reporting-guidelines/prisma/. Tier 1.
+- PRISMA 2020. https://www.prisma-statement.org/prisma-2020. Tier 1.
 - CONSORT 2025. https://www.equator-network.org/reporting-guidelines/consort/. Tier 1.
 - STROBE. https://www.equator-network.org/reporting-guidelines/strobe/. Tier 1.
 - MOOSE. https://www.equator-network.org/reporting-guidelines/moose/. Tier 1.
-- GRADE Working Group. https://www.gradeworkinggroup.org/. Tier 1.
+- GRADE Living Map. https://book.gradepro.org/map. Tier 1.
 - Cochrane Handbook. https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current. Tier 1.
 - TOP Guidelines (Center for Open Science). https://www.cos.io/initiatives/top-guidelines. Tier 1.
 - Cambridge, Oxford, LSE, Harvard, Yale, Princeton institutional examination and dissertation guidance. See `references/oxbridge-ivy-examination-conventions.md`. Tier 1.
