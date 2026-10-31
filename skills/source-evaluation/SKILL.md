@@ -16,6 +16,7 @@ metadata:
 ## Use When
 
 - Assess every candidate source before its claims enter the evidence corpus.
+- One current question (a rate, fee, deadline, version, status or count) needs a sourced, dated answer, or the question itself may rest on a false premise: start with `references/single-claim-lookup.md`.
 
 ## Do Not Use When
 

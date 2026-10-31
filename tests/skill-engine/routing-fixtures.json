@@ -304,6 +304,20 @@
       "forbidden": [
         "uganda-academic-research"
       ]
+    },
+    {
+      "id": "current-state-rate-positive",
+      "prompt": "What is the current employer contribution rate under a national social security scheme, and when was the figure last confirmed?",
+      "expected": "source-evaluation",
+      "forbidden": [
+        "uganda-academic-research",
+        "kenya-academic-research"
+      ]
+    },
+    {
+      "id": "false-premise-fee-positive",
+      "prompt": "Why is the filing fee still the old amount this year?",
+      "expected": "source-evaluation"
     }
   ],
   "negatives": [
@@ -396,6 +410,18 @@
       "skill": "online-legal-research",
       "prompt": "Map stakeholder positions on a proposed regulation, rank the decisions each group faces and identify their pain points.",
       "owner": "decision-support-analysis"
+    },
+    {
+      "id": "ugandan-rate-not-academic-handbook",
+      "skill": "uganda-academic-research",
+      "prompt": "What is the current Ugandan social security contribution rate for employers?",
+      "owner": "source-evaluation"
+    },
+    {
+      "id": "kenyan-rate-not-academic-handbook",
+      "skill": "kenya-academic-research",
+      "prompt": "What is the current Kenyan social security contribution rate for employers?",
+      "owner": "source-evaluation"
     }
   ]
 }
