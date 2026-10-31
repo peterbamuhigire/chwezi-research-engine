@@ -63,7 +63,7 @@ All commands run from the repository root. Exit codes and counts are as printed.
 | `python3 -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json --as-of 2026-10-31` | 0 | 0 findings; fixture only |
 | `python3 -X utf8 scripts/validate_source_currency.py docs/source-registers/skills-kaizen-wave2-2026-09.json --as-of 2026-10-31` | 1 | 6 findings: every record overdue (`review_after` 2026-10-03) |
 | `python3 -X utf8 scripts/validate_source_currency.py docs/source-registers/skills-kaizen-wave2-2026-09-verification.json --as-of 2026-10-31` | 1 | `sources must be a nonempty list`. This file is a verification log, not a register, so the failure is a wrong input rather than a defect. It is recorded so nobody repeats it. |
-| `python3 -X utf8 scripts/validate_machine_error_gate.py` | 1 | 12 of 12 targets missing: every path in the fixture begins `C:/wamp64/www/` |
+| `python3 -X utf8 scripts/validate_machine_error_gate.py` | 1 | 12 of 12 targets missing: every path in the fixture begins `<drive>:/<web-root>/` |
 | `python3 -m pytest` | NOT_ASSESSED | no `pytest` module on the system interpreter; not installed, per the brief |
 
 The prompt also lists `python -X utf8 ...`; on this host the interpreter is
@@ -222,7 +222,7 @@ failure), major (a gate cannot run, a guidance gap changed an output), minor.
 
 | ID | Severity | File and line | Finding |
 |---|---|---|---|
-| D-01 | Major | `scripts/validate_machine_error_gate.py:40`; `tests/fixtures/machine-error-gate-baseline.json:8-26` | The validator reads each target with `Path(target["path"])` and the fixture holds 17 hard-coded `C:/wamp64/www/...` paths. On any other host all 12 targets fail as missing, so the cross-engine handoff check cannot run. Every target except one exists under a renamed or relocated checkout on this machine. |
+| D-01 | Major | `scripts/validate_machine_error_gate.py:40`; `tests/fixtures/machine-error-gate-baseline.json:8-26` | The validator reads each target with `Path(target["path"])` and the fixture holds 17 hard-coded `<drive>:/<web-root>/...` paths. On any other host all 12 targets fail as missing, so the cross-engine handoff check cannot run. Every target except one exists under a renamed or relocated checkout on this machine. |
 | D-02 | Major | `scripts/validate_source_currency.py:93-94`; `docs/source-registers/skills-kaizen-wave2-2026-09.json`; `.github/workflows/skill-engine-quality.yml` (last step) | The validator has no concept of a superseded register, so six records that the 29 October cycle dispositioned still fail with exit 1. Separately, CI runs the validator only on `tests/fixtures/source-currency.json` with a fixed date of 2026-08-06; no real register is checked by CI, so an expired record cannot block release. `AGENTS.md` says overdue records block release. |
 | D-03 | Major | `skills/critical-reasoning-and-argument/SKILL.md:22-26, 43-44`; `skills/research-orchestration/SKILL.md:19-21` | No rule anywhere asks the agent to extract and test factual presuppositions in a question. Grep for "false premise", "presuppos", "premise check", "loaded question": 0 hits in `skills/`, `rules/`, `AGENTS.md`. |
 | D-04 | Major | `skills/research-orchestration/SKILL.md:19-21`; `skills/evidence-claim-graph/SKILL.md:23`; `skills/critical-reasoning-and-argument/SKILL.md:26` | Three skills each exclude a single-claim lookup and none says where it goes. A current-state question (Tasks 1 and 3) has no owner, no record shape and no stop rule. |
@@ -235,7 +235,7 @@ failure), major (a gate cannot run, a guidance gap changed an output), minor.
 | D-11 | Minor | `skills/*/SKILL.md` (19 skills) | Duplicate H2 headings in 19 skills (13 repeat "Companion Skills", the rest "See also", "Sources for this skill", "Reference index", "Core outcome", "Orchestrator outputs"; `capability-matrix` has three). The contract validator checks duplicates only for its 13 required section titles, so these pass. Nine more skills carry generated "Evidence Notes 1" and "Evidence Notes 2" headings. |
 | D-12 | Minor | `skills/data-quality-pipeline`, `skills/dataset-discovery-and-analysis`, others: 7 mentions | Companion lists name `data-quality-assessment` (4 mentions) which is no active skill. `world-class-engineering` (2) and `data-visualization` (1) are skills in other engines and are named without saying so. |
 | D-13 | Major (owner decision) | `docs/continuous-improvement/english-collocations-and-lexical-precision-2026-09-02.md:146-147` | Two "Local source" lines give a personal Windows path and filenames that carry the markers of unofficial book-sharing sites. No book content is stored, so the no-extraction rule is not breached, but the provenance line is a machine-specific path with personal data and signals unlawful copies. Not edited: it is a user-authored provenance record. Escalated to Peter. |
-| D-14 | Minor (protected file) | `docs/continuous-improvement/portfolio-kaizen-standard-2026-08.md:76`; `docs/continuous-improvement/kaizen-currentness-gate.md:52` | Both name `C:\wamp64\www\digital-research-engine`, a path that exists on no other host and that differs from the local checkout name here. Not edited, by instruction. Proposed text in `06-next-cycle.md`. |
+| D-14 | Minor (protected file) | `docs/continuous-improvement/portfolio-kaizen-standard-2026-08.md:76`; `docs/continuous-improvement/kaizen-currentness-gate.md:52` | Both name `<drive>:\<web-root>\digital-research-engine`, a path that exists on no other host and that differs from the local checkout name here. Not edited, by instruction. Proposed text in `06-next-cycle.md`. |
 | D-15 | Minor (protected file) | `docs/continuous-improvement/kaizen-currentness-gate.md:49`; `scripts/validate_source_currency.py:12` | The gate lists evidence fields (`source_id`, access date, verification date, review date) that the validator names differently (`id`, `accessed`, `verified_at`, `review_after`). The mapping is written nowhere, and sibling registers use a third naming (below). |
 
 No critical defect was found: no output contained a fabricated claim, no secret
@@ -257,7 +257,7 @@ and is escalated for an owner decision, not hidden behind the score.
 | Broken relative links, active scope (`AGENTS.md`, `README.md`, `skills/**/*.md`, 376 files) | 1 (D-09) | read-only link scan, fenced code skipped |
 | Relative links leaving the repository, active scope | 0 | same scan |
 | Relative links leaving the repository, `docs/continuous-improvement` | 7 (D-10) | same scan over the five non-historical `docs/` folders (40 files) |
-| Machine-specific paths, tracked text | 28 files outside `projects/` and 3 inside it. Three outside `docs/` history are in scope for repair: `CONTRIBUTING.md`, `docs/skill-authoring-standard.md` and the machine-error fixture. `engine/tests/test_portable_references.py` holds deliberate negative test strings. The rest are dated plans, audits and reports (immutable history) plus the two protected documents. | `git grep -lIE` for drive-letter, `/home/`, `/Users/` forms |
+| Machine-specific paths, tracked text | 28 files outside `projects/` and 3 inside it. Three outside `docs/` history are in scope for repair: `CONTRIBUTING.md`, `docs/skill-authoring-standard.md` and the machine-error fixture. `engine/tests/test_portable_references.py` holds deliberate negative test strings. The rest are dated plans, audits and reports (immutable history) plus the two protected documents. | `git grep -lIE` for drive-letter, home-directory and user-profile forms |
 | Duplicate H2 headings | 19 skills, 19 heading pairs; 9 skills with generated "Evidence Notes N" | scripted count |
 | Companion names that are neither active skills nor declared external | 3 distinct names, 7 mentions | scripted count over "Companion Skills" sections |
 | Dangling cross-engine references | 3 names (above); 6 sibling routers hard-code the research engine path (below) | grep over sibling checkouts |
@@ -271,7 +271,7 @@ The brief forbids editing any sibling; this section records only.
 
 | Engine file | Line | Observation |
 |---|---:|---|
-| `chwezi-accounting-doctrine/AGENTS.md` | 56 | Names `C:\wamp64\www\digital-research-engine`. |
+| `chwezi-accounting-doctrine/AGENTS.md` | 56 | Names `<drive>:\<web-root>\digital-research-engine`. |
 | `design-system-skills/AGENTS.md` | 66 | Same. |
 | `srs-skills/AGENTS.md` | 47 | Same. |
 | `social-media-skills/AGENTS.md` | 47, 232 | Same; line 232 says to locate the repository locally if the path differs. |
