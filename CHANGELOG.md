@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-10-31 - Documentation wave after pass 2
+
+- README: a measured validation table (commands, packages, results), the test status with its package list, a quality and improvement section with the latest score and the date-triggered gate calendar, `bash install.sh`, a project-relative `pack --out` path, `python3` throughout and the repository name `chwezi-research-engine` (`390a80c`).
+- AGENTS.md: corrected the claim that every skill ships `AGENTS.md`, `README.md`, `CLAUDE.md` and `references/` (27 and 48 of 59 do), and added the `python3` note and the machine-error gate root rules (`a77d75d`).
+- CONTRIBUTING, the skill authoring standard and the evidence pack template: bash blocks, `python3` and forward-slash paths instead of PowerShell, `python` and backslashes (`1542d6f`).
+- Added `docs/README.md` as the documentation index; marked `PROJECT_BRIEF.md` and `RESEARCH_CRAFT_INTEGRATION.md` as April 2026 records (`15b1a47`).
+- Recorded the findings this wave did not change in `docs/kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md` (`d912001`).
+
+Commit index for the pass 2 entry below, by theme:
+
+- Premise check, single-claim owner, undated-page and statute-consolidation rules, worked example: `4f73c9c`, `b81c727`, `81970a4`.
+- Denominator check and conflicting-count example: `9621cc6`.
+- Machine-error gate target resolution: `00bdc44`.
+- Register supersession and the register gate: `d581e01`.
+- Portable-reference scanner: `f610ce7`.
+- Contract checks and repeated headings: `b9648f6`, `d094054`.
+- Primary-page re-verification of named standards: `aeceb5a`.
+- Routing vocabulary and fixtures for current-state questions: `fb4dfee`.
+- Evidence records (baseline, backlog, experiments, validation, report, next cycle): `436dd70`, `a822fc6`, `6463f56`, `cfd910c`.
+
 ## 2026-10-31 - October 2026 Kaizen, pass 2
 
 - Added a premise check and a named owner for single-claim questions (`skills/source-evaluation/references/single-claim-lookup.md`), with rules for an undated official page and for a statute consolidation that lists unapplied amendments, and two checked worked records.
