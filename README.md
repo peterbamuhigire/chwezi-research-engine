@@ -1,59 +1,102 @@
 # Digital Research Engine
 
-The Digital Research Engine is Chwezi Core Systems' cross-cutting engine for finding, evaluating, verifying and synthesising evidence. It holds 59 skills that plan research and run it in waves: admitting and scoring sources, verifying URLs, quotations, statistics and claim links, and building evidence-to-claim graphs. Further skills cover analytic tradecraft, calibrated forecasting, OSINT, due-diligence and legal research, primary fieldwork, web data collection, dataset quality work and quantitative modelling. Its method follows named standards: PRISMA 2020 and the EQUATOR Network reporting guidelines (CONSORT, STROBE, MOOSE), GRADE and the Cochrane Handbook for evidence synthesis, ODNI ICD 203 and ICD 206 for analytic and sourcing standards, the NATO Admiralty Code (STANAG 2511) for source reliability, the Berkeley Protocol for digital open-source investigation, and IETF RFC 9309 for crawler conduct. Every material claim must be traceable to a source, independently verified, dated for currentness and kept separate from inference.
+The Digital Research Engine is Chwezi Core Systems' engine for finding, evaluating, verifying and synthesising evidence. It holds 59 skills that plan research in waves, admit and score sources, verify URLs, quotations, statistics and claim links, and build evidence-to-claim graphs. Every material claim must trace to a source, be independently verified, carry a currentness date and stay separate from inference.
 
-The engine produces research plans and wave roadmaps, source registers and verification manifests, evidence-claim graphs, audit-ready evidence packs, and intelligence briefs and estimative memos. It also delivers due-diligence reports, OSINT chronologies, legal research memoranda, systematic and scoping literature reviews, theses and dissertations checked against named Ugandan and Kenyan university handbooks, policy briefs, market analyses, decision memos, white papers, and professional Microsoft Word, Excel and PDF documents with render evidence. It is written for researchers, analysts, consultants, investigators, due-diligence teams, postgraduate students and their supervisors, and for decision-makers who need evidence they can defend. The other Chwezi engines consult it alongside their own skills whenever a task depends on current or uncertain facts.
+It is for researchers, analysts, consultants, investigators, due-diligence teams, postgraduate students and their supervisors, and decision-makers who need evidence they can defend. Use it when a task depends on current or uncertain facts. The other Chwezi engines consult it for the same reason.
 
-## Installation
+**At a glance**
 
-Prerequisites:
+- **Skills:** 59 in 11 groups, stored as `skills/<skill-name>/SKILL.md`. All 59 pass the skill contract validator.
+- **Runs in:** Claude Code (plugin `research`), Codex (through `AGENTS.md`) and any other agent that can read files.
+- **Routing check:** 40 of 40 routing fixtures reach the right skill in the top three, and 36 of 40 at rank 1. This is a lexical proxy, not live routing.
+- **Tests:** `validate_engine.py` passes and runs 94 unit tests. The full pytest run on this host gives 220 passed, 3 failed and 2 modules that cannot load, because optional packages are missing ([details](#test-status-measured)).
+- **Quality score:** 59.5/100 in the latest published audit, under a reporting cap of 65. The target is 95.
+- **Date gate:** the source registers pass on 2026-10-31 and fail from 2026-11-30 unless the sources are re-read ([dates](#date-triggered-gates)).
 
-- Claude Code, for the plugin route.
-- Node.js 18 or newer, for the clone installers (`install.sh` and `install.ps1` both delegate to `scripts/install-engine.js`).
-- Python 3.11 or newer, for the research workspace CLI (`python3 -m engine`), the validators and the Codex model-policy helper. The validators need `PyYAML` and the test suite needs `pytest`; CI runs Python 3.12 with both. The optional packages behind the document tools, the data and scraping tools and three test modules are listed under [Validation](#validation); the repository ships no requirements file. Commands in this README use `python3`; on Windows read it as `python`.
+## Start here
 
-**Claude Code plugin.** The marketplace is `chwezi-research` and the plugin is `research` (`.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`):
+1. **Load it.** In Claude Code, add the marketplace and install the plugin. [Install](#install) covers the clone, Codex and manual routes.
 
-```text
-/plugin marketplace add https://github.com/peterbamuhigire/chwezi-research-engine
-/plugin install research@chwezi-research
-```
+   ```text
+   /plugin marketplace add https://github.com/peterbamuhigire/chwezi-research-engine
+   /plugin install research@chwezi-research
+   ```
 
-**Clone and install.** The installer copies the engine into `~/.claude` (`--scope user`, the default) or into `.claude` under the current directory (`--scope project`). It also accepts `--dry-run`, `--json` and `--force`:
+2. **Check it.** From a clone, run the engine validator. It needs Python 3.11 or newer and `PyYAML`, and it exits 0 on a clean checkout until the [date gate](#date-triggered-gates).
 
-```text
-git clone https://github.com/peterbamuhigire/chwezi-research-engine
-cd chwezi-research-engine
-bash install.sh --scope project --dry-run   # macOS, Linux, Git Bash: print the plan, write nothing
-bash install.sh --scope project
-.\install.ps1 --scope project               # Windows PowerShell
-node scripts/install-engine.js doctor --scope project
-```
+   ```bash
+   python3 -X utf8 scripts/validate_engine.py
+   ```
 
-`install.sh` is tracked without the executable bit, so run it through `bash`; `./install.sh` fails with "Permission denied" on Linux. The installer records the name of the checkout directory as the engine name, which matches the repository name when you clone as shown. The GitHub repository is `chwezi-research-engine`; the older name `digital-research-skills`, still used as this engine's id in the portfolio catalogue and the Kaizen prompts, redirects to it. The same script also runs `uninstall --engine <name>` (use the name that `list-installed` prints) and `list-installed`.
+3. **Use it.** Give the agent a task from [Find the right skill](#find-the-right-skill), or scaffold a research workspace:
 
-**Codex.** Point Codex at the clone. It reads `AGENTS.md`, which routes to `SKILL.md` and `rules/common/core.md`. The Codex-only model-policy check lives in `.codex/`:
+   ```bash
+   python3 -m engine new-project "<name>" --type <research-type> --audience <audience>
+   ```
 
-```text
-python3 <engine-root>/.codex/ensure_model_policy.py --runtime codex --check
-```
+## Contents
 
-The check exits non-zero when the Codex configuration is missing or has drifted; with `--runtime claude` it prints `NOT_APPLICABLE` and exits 0.
+- [Find the right skill](#find-the-right-skill)
+- [How it works](#how-it-works)
+- [Skill catalogue](#skill-catalogue)
+- [Install](#install)
+- [Scaffold a research workspace](#scaffold-a-research-workspace)
+- [Operating rules and quality gates](#operating-rules-and-quality-gates)
+- [Validation](#validation)
+- [Quality and improvement](#quality-and-improvement)
+- [What the October 2026 kaizen improved](#what-the-october-2026-kaizen-improved)
+- [October 2026 measures, before and after](#october-2026-measures-before-and-after)
+- [References](#references)
+- [Contributing, author and licence](#contributing-author-and-licence)
 
-**Manual use (any agent).** Clone the repository and read `CLAUDE.md` (Claude Code) or `AGENTS.md` (other runners). Then open the router `SKILL.md` and load only the routed `skills/<skill-name>/SKILL.md` files. To scaffold and check a research workspace:
+## Find the right skill
 
-```text
-python3 -m engine doctor
-python3 -m engine new-project "<name>" --type <research-type> --audience <audience>
-python3 -m engine validate <project>
-python3 -m engine pack <project> --out export/<name>.zip
-```
+Describe the task in plain words and the router [`SKILL.md`](SKILL.md) selects the skills. To load one yourself, use this table. The full list of 59 is in the [Skill catalogue](#skill-catalogue).
 
-`--type` is free text. A relative `--out` path is resolved inside the project folder; an absolute path outside it writes the archive and then exits 1, because the release ledger cannot record it. On a freshly created workspace `validate` exits 1 (gates 01, 03 and 05 report blockers) until `_context/` and the registries are filled (run the `00-meta-initialization` skill first).
+| You need to | Skill |
+|---|---|
+| Judge whether sources are credible and assign evidence tiers | [`source-evaluation`](skills/source-evaluation/) |
+| Check one current rate, date, status or count | [`source-evaluation`](skills/source-evaluation/), then its `single-claim-lookup.md` reference |
+| Verify every URL, quotation and statistic in a finished manifest | [`source-verification`](skills/source-verification/) |
+| Plan research waves, parallel cohorts and agent briefs | [`research-orchestration`](skills/research-orchestration/) |
+| Choose questions, sampling and method for a new study | [`research-design`](skills/research-design/) |
+| Run due diligence on a company | [`due-diligence`](skills/due-diligence/) |
+| Investigate lawfully from public records | [`osint-investigation`](skills/osint-investigation/) |
+| Research statutes and cases, or confirm a law is still in force | [`online-legal-research`](skills/online-legal-research/) |
+| Size a market or model scenarios | [`quantitative-modelling`](skills/quantitative-modelling/) |
+| Test a forward-looking judgement with structured analytic techniques | [`analytic-tradecraft`](skills/analytic-tradecraft/) |
+| Turn verified findings into a board brief | [`executive-communication`](skills/executive-communication/) |
+| Grade a finished document for AI slop | [`ai-slop-audit`](skills/ai-slop-audit/) |
 
-## Capabilities
+## How it works
 
-Skills are stored flat as `skills/<skill-name>/SKILL.md`, so the table groups them by workflow. It lists 59 active skills in 11 groups, generated from the skill front matter; `skills/doc-standards.md` and `skills/encoding-patterns-into-skills.md` are shared notes, not skills. The router is [`SKILL.md`](SKILL.md).
+A task enters through the router [`SKILL.md`](SKILL.md). The router sends it to one or more skills, and you load only those. [`rules/common/core.md`](rules/common/core.md) travels with every routed skill. Each skill is a folder, `skills/<skill-name>/`, with a `SKILL.md` and, where the skill needs one, a `references/` folder.
+
+### Standards it follows
+
+- PRISMA 2020 and the EQUATOR Network reporting guidelines (CONSORT, STROBE, MOOSE), for reporting reviews and studies.
+- GRADE and the Cochrane Handbook, for evidence synthesis.
+- ODNI ICD 203 and ICD 206, for analytic and sourcing standards.
+- The NATO Admiralty Code (STANAG 2511), for source reliability.
+- The Berkeley Protocol, for digital open-source investigation.
+- IETF RFC 9309, for crawler conduct.
+
+The [standards register](docs/source-registers/research-standards-register.md) records how far each was checked against primary pages. ICD 203 and RFC 9309 are `partial`, and ICD 206 is `NOT_ASSESSED`.
+
+### What it produces
+
+- Research plans and wave roadmaps.
+- Source registers and verification manifests.
+- Evidence-claim graphs and audit-ready evidence packs.
+- Intelligence briefs and estimative memos.
+- Due-diligence reports, OSINT chronologies and legal research memoranda.
+- Systematic and scoping literature reviews, and theses and dissertations checked against named Ugandan and Kenyan university handbooks.
+- Policy briefs, market analyses, decision memos and white papers.
+- Professional Microsoft Word, Excel and PDF documents with render evidence.
+
+## Skill catalogue
+
+The table groups the 59 active skills into 11 workflow groups. It was generated from the skill front matter. The inventory is the filesystem below `skills/`, not this table. `skills/doc-standards.md` and `skills/encoding-patterns-into-skills.md` are shared notes, not skills.
 
 | Category | Skill | What it does |
 |---|---|---|
@@ -119,11 +162,73 @@ Skills are stored flat as `skills/<skill-name>/SKILL.md`, so the table groups th
 
 **Total: 59 skills** (6 + 5 + 6 + 3 + 7 + 5 + 9 + 5 + 2 + 5 + 6).
 
+## Install
+
+### Prerequisites
+
+- Claude Code, for the plugin route.
+- Node.js 18 or newer, for the clone installers. `install.sh` and `install.ps1` both delegate to `scripts/install-engine.js`.
+- Python 3.11 or newer, for the research workspace CLI (`python3 -m engine`), the validators and the Codex model-policy helper.
+- `PyYAML` for the validators and `pytest` for the test suite. CI runs Python 3.12 with both.
+- Optional packages for the document tools, the data and scraping tools and three test modules are listed under [Validation](#validation). The repository ships no requirements file.
+- Commands in this README use `python3`. On Windows, read it as `python`.
+
+### Claude Code plugin
+
+This is step 1 of [Start here](#start-here). The marketplace is `chwezi-research` and the plugin is `research` (`.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`).
+
+### Clone and install
+
+```text
+git clone https://github.com/peterbamuhigire/chwezi-research-engine
+cd chwezi-research-engine
+bash install.sh --scope project --dry-run   # macOS, Linux, Git Bash: print the plan, write nothing
+bash install.sh --scope project
+.\install.ps1 --scope project               # Windows PowerShell
+node scripts/install-engine.js doctor --scope project
+```
+
+- `--scope user` (the default) copies the engine into `~/.claude`. `--scope project` copies it into `.claude` under the current directory.
+- The installer also accepts `--dry-run`, `--json` and `--force`.
+- `doctor` reports each installed engine as OK, DAMAGED or LOCALLY MODIFIED.
+- `install.sh` is tracked without the executable bit, so run it through `bash`. `./install.sh` fails with "Permission denied" on Linux.
+- The installer records the name of the checkout directory as the engine name. That matches the repository name when you clone as shown.
+- The GitHub repository is `chwezi-research-engine`. The older name `digital-research-skills` redirects to it. The portfolio catalogue and the Kaizen prompts still use that older name as this engine's id.
+- To update, pull the checkout and run the installer again. A repeat install copies files over the old ones and does not delete files that were removed upstream. For a clean copy, uninstall first.
+- The same script runs `uninstall --engine <name>` (use the name that `list-installed` prints) and `list-installed`.
+
+### Codex
+
+Point Codex at the clone. It reads `AGENTS.md`, which routes to `SKILL.md` and `rules/common/core.md`. The Codex-only model-policy check lives in `.codex/`:
+
+```text
+python3 <engine-root>/.codex/ensure_model_policy.py --runtime codex --check
+```
+
+The check exits non-zero when the Codex configuration is missing or has drifted. With `--runtime claude` it prints `NOT_APPLICABLE` and exits 0.
+
+### Manual use in any agent
+
+Clone the repository and read `CLAUDE.md` (Claude Code) or `AGENTS.md` (other runners). Then open the router `SKILL.md` and load only the routed `skills/<skill-name>/SKILL.md` files. To scaffold and check a research workspace, see the next section.
+
+## Scaffold a research workspace
+
+```text
+python3 -m engine doctor
+python3 -m engine new-project "<name>" --type <research-type> --audience <audience>
+python3 -m engine validate <project>
+python3 -m engine pack <project> --out export/<name>.zip
+```
+
+- `--type` is free text.
+- A relative `--out` path is resolved inside the project folder. An absolute path outside it writes the archive and then exits 1, because the release ledger cannot record it.
+- On a freshly created workspace, `validate` exits 1 (gates 01, 03 and 05 report blockers) until `_context/` and the registries are filled. Run the `00-meta-initialization` skill first.
+
 ## Operating rules and quality gates
 
 - Load [`rules/common/core.md`](rules/common/core.md) with any routed skill. Current, legal, regulatory and platform claims need an authoritative source and a dated currentness check. Unexecuted checks are reported as `NOT_ASSESSED`.
-- Release gates live in [`docs/quality-gates/`](docs/quality-gates/). The standards register is [`docs/source-registers/research-standards-register.md`](docs/source-registers/research-standards-register.md). Kaizen guidance is under [`docs/continuous-improvement/`](docs/continuous-improvement/); the improvement records are indexed in [`docs/README.md`](docs/README.md) and summarised under [Quality and improvement](#quality-and-improvement).
-- Checks: see [Validation](#validation) for each command, what it needs and what it returned on 2026-10-31. The 5,000-entry cap gate follows the [OpenAI ZIP entry limit](https://developers.openai.com/plugins/deploy/submission-errors) for the package-oriented tree and the portfolio's full-checkout ceiling for the whole checkout; the two are measured separately.
+- Release gates live in [`docs/quality-gates/`](docs/quality-gates/). The standards register is [`docs/source-registers/research-standards-register.md`](docs/source-registers/research-standards-register.md). Kaizen guidance is under [`docs/continuous-improvement/`](docs/continuous-improvement/). The improvement records are indexed in [`docs/README.md`](docs/README.md) and summarised under [Quality and improvement](#quality-and-improvement).
+- Checks: see [Validation](#validation) for each command, what it needs and what it returned on 2026-10-31. The 5,000-entry cap gate follows the [OpenAI ZIP entry limit](https://developers.openai.com/plugins/deploy/submission-errors) for the package-oriented tree and the portfolio's full-checkout ceiling for the whole checkout. The two are measured separately.
 - Book-derived knowledge enters only as paraphrased, task-oriented references. `scripts/check_no_book_extractions.py` blocks book extractions from the repository.
 
 ## Validation
@@ -146,11 +251,17 @@ Run every command from the repository root. They were run on 2026-10-31 on Linux
 | `node hooks/test-destructive-bash-gate.js` and `node hooks/test-plugin-hook-config.js` | The shipped hook and its enable switch | Node | exit 0; 61 of 61 and 7 of 7 |
 | `python3 -X utf8 <chwezi-dev-engine>/skills/sdlc-meta/skill-writing/scripts/quick_validate.py skills/<skill-name>` | The canonical single-skill validator, run on each changed skill | `PyYAML`; a checkout of `chwezi-dev-engine` | exit 0 on `skills/source-evaluation` |
 
+### CI
+
 CI (`.github/workflows/skill-engine-quality.yml`) installs `PyYAML` and `pytest`, then runs the contract validator, the routing smoke test, `tests/test_routing_ratchet.py` only, `validate_engine.py` and both currency commands; `.github/workflows/source-ingestion-guardrail.yml` runs the ingestion guardrail. CI does not run the machine-error gate or the rest of the pytest suite, and remote CI was not checked in this pass.
 
-**Test status, measured.** Without `--continue-on-collection-errors`, pytest stops at collection (exit 2) because two modules cannot be imported here. The three failures are the `tests/test_research_scraper.py` tests; each fails with `ModuleNotFoundError: No module named 'bs4'`. The same three fail identically at `d350ce2`, the commit before the second October pass (3 failed, 176 passed there). The two collection errors are `tests/test_enriched_docx_structure.py` (no `docx`) and `tests/test_merge_population_conservation.py` (no `pandas`). Whether these two modules and the three scraper tests pass with their packages installed is `NOT_ASSESSED`: nothing was installed on this host, so none of them was rerun with `pandas`, `python-docx`, `beautifulsoup4` and `lxml` available. The two skips are opt-in tests (an installed portfolio, and all installed visual adapters).
+### Test status, measured
 
-**Packages.** The repository ships no requirements file. Install only what the command you are running needs, and record a check that cannot run as `NOT_ASSESSED`.
+Without `--continue-on-collection-errors`, pytest stops at collection (exit 2) because two modules cannot be imported here. The three failures are the `tests/test_research_scraper.py` tests; each fails with `ModuleNotFoundError: No module named 'bs4'`. The same three fail identically at `d350ce2`, the commit before the second October pass (3 failed, 176 passed there). The two collection errors are `tests/test_enriched_docx_structure.py` (no `docx`) and `tests/test_merge_population_conservation.py` (no `pandas`). Whether these two modules and the three scraper tests pass with their packages installed is `NOT_ASSESSED`: nothing was installed on this host, so none of them was rerun with `pandas`, `python-docx`, `beautifulsoup4` and `lxml` available. The two skips are opt-in tests (an installed portfolio, and all installed visual adapters).
+
+### Packages
+
+The repository ships no requirements file. Install only what the command you are running needs, and record a check that cannot run as `NOT_ASSESSED`.
 
 | Package | Used by |
 |---|---|
@@ -167,9 +278,14 @@ No repository validator needs Pandoc, Mermaid, a browser, LibreOffice or a conta
 
 Improvement records live under `docs/kaizen/`: [`2026-09-23-research-scraping/`](docs/kaizen/2026-09-23-research-scraping/), [`2026-10-engine-kaizen/`](docs/kaizen/2026-10-engine-kaizen/) (29 October 2026) and [`2026-10-engine-kaizen-pass-2/`](docs/kaizen/2026-10-engine-kaizen-pass-2/) (31 October 2026). Each holds seven files: scope and evidence, baseline scorecard, backlog, experiment log, validation record, final report and next cycle. Earlier audits are under [`docs/audits/`](docs/audits/), and [`docs/README.md`](docs/README.md) indexes all of it. What the two October cycles changed is listed under [What the October 2026 kaizen improved](#what-the-october-2026-kaizen-improved).
 
-**Latest published score.** Pass 2 ([final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md)): raw 59.5/100, published under the Portfolio Standard as `min(59.5, 65) = 59.5/100`. The frozen baseline for that pass was 56.3 and the 29 October final was 58.2. The target is 95/100; the cap is a reporting ceiling, not a rating. The pass kept ten backlog items, reverted none and found no critical defect.
+### Latest published score
 
-**Open findings that matter to a user** (the full list is in [`06-next-cycle.md`](docs/kaizen/2026-10-engine-kaizen-pass-2/06-next-cycle.md)):
+Pass 2 ([final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md)): raw 59.5/100, published under the Portfolio Standard as `min(59.5, 65) = 59.5/100`. The frozen baseline for that pass was 56.3 and the 29 October final was 58.2. The target is 95/100; the cap is a reporting ceiling, not a rating. The pass kept ten backlog items, reverted none and found no critical defect.
+
+### Open findings that matter to a user
+
+The full list is in [`06-next-cycle.md`](docs/kaizen/2026-10-engine-kaizen-pass-2/06-next-cycle.md).
+
 
 - Archive snapshots for live-web verification are `NOT_ASSESSED`. A live-web answer carries that status until a workflow is approved.
 - ICD 206 content, the latest ICD 203 amendment date and the RFC 9309 errata are `NOT_ASSESSED`; the register records ICD 203 as partial.
@@ -178,7 +294,9 @@ Improvement records live under `docs/kaizen/`: [`2026-09-23-research-scraping/`]
 - Routing evidence is lexical. Live-agent routing, paid behavioural runs, remote CI, marketplace readiness and installed-plugin discovery are `NOT_ASSESSED`.
 - Four decisions wait for the maintainer: two provenance lines in `docs/continuous-improvement/english-collocations-and-lexical-precision-2026-09-02.md` (lines 146 and 147); binding or dropping the `political` target in the machine-error gate fixture; retiring or redirecting about 14 imported engineering and documentation skills, which would change the 59-skill rule; and replacement wording for two protected documents in `docs/continuous-improvement/` that still name a workstation path.
 
-**Date-triggered gates.** `validate_engine.py` and CI check the source registers as of the day they run, so they fail on the dates below unless the sources are re-read and the registers updated first. Measured with `python3 -X utf8 scripts/validate_source_currency.py --registers-dir docs/source-registers --as-of <date>`; the counts assume nothing is re-verified in between.
+### Date-triggered gates
+
+`validate_engine.py` and CI check the source registers as of the day they run, so they fail on the dates below unless the sources are re-read and the registers updated first. Measured with `python3 -X utf8 scripts/validate_source_currency.py --registers-dir docs/source-registers --as-of <date>`; the counts assume nothing is re-verified in between.
 
 | As of | Exit | Findings | What lapses |
 |---|---:|---:|---|
@@ -190,11 +308,13 @@ Improvement records live under `docs/kaizen/`: [`2026-09-23-research-scraping/`]
 
 The next re-audit is on 2026-11-27, a Friday: re-read the six OpenAI platform records first, rerun every validator in this README and re-measure the ten dimensions. A full model-policy comparison is also due by 2026-12-28 under [`docs/continuous-improvement/model-policy-review-gpt6-luna-2026-09-28.md`](docs/continuous-improvement/model-policy-review-gpt6-luna-2026-09-28.md); no validator enforces that date.
 
-### What the October 2026 kaizen improved
+## What the October 2026 kaizen improved
 
 Two cycles ran in October 2026: 29 October ([final report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md), [experiment log](docs/kaizen/2026-10-engine-kaizen/03-experiment-log.md)) and 31 October ([final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md), [backlog](docs/kaizen/2026-10-engine-kaizen-pass-2/02-improvement-backlog.md), [experiment log](docs/kaizen/2026-10-engine-kaizen-pass-2/03-experiment-log.md), [validation record](docs/kaizen/2026-10-engine-kaizen-pass-2/04-validation-record.md)). The 18 items below were all kept and are on `main`; each short hash was checked against `git log` and `git show --stat`. Neither cycle reverted an experiment. Figures marked "re-measured" were rerun on 2026-10-31 from the commit named, in a scratch extraction outside this checkout; the others are copied from the evidence file linked. Every check here is a unit, repository or lexical check. No live-agent run, paid model call, remote CI run or installed-plugin check backs any item.
 
-**Gates and checks that were broken or blind** (ordered by severity: the pass 2 baseline rated the first, second and fourth Major; the 29 October backlog rated the path defect P0)
+### Gates and checks that were broken or blind
+
+Ordered by severity:  the pass 2 baseline rated the first, second and fourth Major; the 29 October backlog rated the path defect P0.
 
 - The cross-engine machine-error gate could run on only the original Windows host: all 12 targets failed as missing because the fixture held 17 absolute checkout paths. Targets now resolve under `--engines-root`, `CHWEZI_ENGINES_ROOT` or the checkout's parent, with an alias table for renamed checkouts, and an unresolvable target still fails. 12 new tests; fixture host paths 17 to 0; unresolved targets on a default run 12 to 3 (re-measured), and with the workstation's two engine roots named the 11 bound engines pass on identifier presence only, which says nothing about semantic agreement. `00bdc44`.
 - `validate_source_currency.py` could not read that a register was superseded, so six records that the 29 October cycle had already dispositioned still failed, and CI checked only a fixture at a fixed date, so no real register could block a release. The validator now accepts a `superseded_by` key (only when the successor validates and dispositions every old record) and has a `--registers-dir` gate that `validate_engine.py` and CI run as of the day. 13 new tests; the older register moves from exit 1 to exit 0 on 2026-10-31 (re-measured). The gate fails by date, so the table above lists when it turns red. `d581e01`.
@@ -202,35 +322,37 @@ Two cycles ran in October 2026: 29 October ([final report](docs/kaizen/2026-10-e
 - The same scanner missed `../../../skills-web-dev/...` style links (its pattern matched only `chwezi-` names), never read `CONTRIBUTING.md` or the authoring standard, and checked no link target, so a dead link at `skills/doc-standards.md:446` to a file that never existed passed. Two rules (`link-escapes-repository`, `broken-relative-link`) and a wider default scope found 5 findings on the unrepaired tree (evidence file), which were repaired; the scan now covers 389 files with 0 findings (re-measured) and its test file holds 14 tests, from 7. `f610ce7`.
 - `tests/test_research_evaluator_contract.py` failed on stale guidance hashes in the frozen tree as well as the current one. Its fixture now pins hashes in memory only; the production hash check is unchanged. The module runs 5 tests with `python3 -m unittest tests.test_research_evaluator_contract` (re-measured). The pytest total recorded for that cycle (184 passed) came from a portfolio environment with packages this host lacks and was not reproduced. `4c27f39`.
 
-**New checks and tests**
+### New checks and tests
 
 - Nothing guarded the 5,000-entry limit (the portfolio ceiling, and the OpenAI archive limit it matches). `scripts/check_file_count_cap.py` counts the full checkout and a package-oriented tree, runs inside `validate_engine.py`, and refuses a limit outside 0 to 5,000. 6 tests, including exact-limit and one-over; today 1,548 and 1,002 (re-measured; the full count includes `.git`). It is a preflight proxy, not a count of a built archive. `72bc019`, `4c27f39`.
 - 19 skills repeated an H2 heading because the contract validator checked duplicates only for its 13 required titles. A `duplicate_heading` code now rejects any repeat; 18 empty stub headings were removed in 17 skills and two repeated headings were renamed, with the set of non-blank lines checked as unchanged. The new check reports 19 on the tree before the fix and the catalogue now has 0 and is 59 of 59 compliant (re-measured). 5 tests. `b9648f6`.
 - Companion lists named `data-quality-assessment`, merged into `data-quality-pipeline` in April 2026, 15 times in 12 files. An `unresolved_companion_name` code now requires every backticked name in a Companion Skills section to be an active skill or an entry in `tests/skill-engine/external-skills.json` with its engine and a check date; none of the 15 mentions remains (re-measured). 7 tests. `d094054`.
 
-**Skill content added where a task exposed a gap**
+### Skill content added where a task exposed a gap
 
 - Nothing asked an agent to test the premise of a question, and three skills excluded single-claim lookups without naming where they go. `skills/source-evaluation/references/single-claim-lookup.md` now holds a premise check, a one-claim record and stop rules, reachable from `AGENTS.md`, `source-evaluation` and the three skills that excluded such lookups. Lines matching the four premise phrases in `skills/`, `rules/` and `AGENTS.md` went from 0 to 11 (re-measured). One held-out false premise (a claimed 2025 rise in Uganda's NSSF employer rate to 12 percent) was handled by following the procedure; that is one recorded run, not a measure of agent behaviour. `4f73c9c`, `81970a4`.
 - An undated first-party page and a statute consolidation that lists unapplied amendments had no rule. The same reference now covers both, with a worked record on the Uganda NSSF rate checked against the Act text, and `online-legal-research` points to it; lines mentioning "undated" in `skills/` went from 0 to 7 (re-measured). Whether Act 1 of 2022 changed the rate sections is still unread. `b81c727`.
 - The 29 October market brief could not support a commercial school-administration software market size, and `quantitative-modelling` had no rule separating government school-system coverage and adjacent learning-product spend from it. A boundary rule (product, buyer, geography, period, revenue basis) and a sourced worked example were added, and the re-run still ends at a gap rather than a figure, which is the intended result. `68d9747`.
 - The same skill had no rule for conflicting denominators or for checking a vendor figure's own arithmetic. A denominator check and a 336-word example now use the recorded figures: 45,164 registered against 26,597 responding Ugandan primary schools, and a vendor subtotal of 30,200 against components that sum to 26,700. Verified by redoing the arithmetic, not by a behavioural run. `9621cc6`.
 
-**Routing and discoverability**
+### Routing and discoverability
 
 - A plain "current NSSF employer rate" prompt ranked `source-evaluation` 55th because no skill text mentioned a current rate, date or status; one "Use When" bullet and four fixtures move it to 1st (re-measured with `routing_smoke_test.rank`). With "Uganda" in the prompt it moves from 56th to 2nd, still behind `uganda-academic-research`, and a Kenya false-premise prompt still does not reach it: a proper noun in a skill name outweighs general vocabulary in this proxy. A planned rewrite of the two country skills' descriptions was dropped after the diagnosis showed the descriptions were not the cause. `fb4dfee`.
 
-**Standards currency**
+### Standards currency
 
 - The standards register was overdue and omitted GRADE, Cochrane 6.5, ICD 206 and RFC 9309, and `academic-reporting-standards` described GRADE, Cochrane and TOP as hosted by EQUATOR and TOP as eight modular standards, where the publisher's current page describes TOP 2025 as seven Research Practices and two Verification Practices. A dated, claim-linked register was added (12 records), the six overdue records were dispositioned, and the skill now separates EQUATOR guidance from GRADE, Cochrane and TOP, each with its own source. The validator checks dates and metadata only, not whether a source supports a claim. `bd5a693`.
 - Two days later the named standards were re-read from primary pages (10 sources, 11 claims). The 29 October register had overstated three: ICD 203 moved from `verified` to `partial` (a second technical amendment exists and the latest amendment date cannot be read reliably), ICD 206 from `partial` to `NOT_ASSESSED` (the PDF has no text layer and no OCR tool is installed here) and RFC 9309 from `verified` to `partial` (errata unread). PRISMA 2020, GRADE, Cochrane 6.5 and TOP 2025 were unchanged, and the redirected ODNI links in `analytic-tradecraft` were updated. No independent reviewer has signed any row. `aeceb5a`.
 
-**Documentation and portability** (the 31 October documentation wave; no skill body was edited)
+### Documentation and portability
+
+The 31 October documentation wave. No skill body was edited.
 
 - The README told readers to clone `digital-research-skills`, run `./install.sh` (tracked as mode 100644, so it fails on Linux with "Permission denied") and gave a `pack --out <file>.zip` example without saying that an absolute path outside the project writes the archive and then exits 1. It now names `chwezi-research-engine`, uses `bash install.sh` and a project-relative `--out`, and carries the [Validation](#validation) table, in which each command was run on 2026-10-31 and each package-dependent test is marked `NOT_ASSESSED` where its package was absent. `390a80c`, `ebed632`.
 - `AGENTS.md` said every skill ships `AGENTS.md`, `README.md`, `CLAUDE.md` and `references/`; the counts are 27, 27, 27 and 48 of 59 (re-measured). It now says so, adds the `python3` note and documents the portfolio-root options of the machine-error gate. `a77d75d`. `CONTRIBUTING.md`, the authoring standard and the evidence pack template used PowerShell blocks and backslash paths; they now use bash, `python3` and forward slashes. `1542d6f`.
 - There was no documentation index, and two April 2026 briefs read as current. `docs/README.md` now indexes the folder and the improvement records, the two briefs carry a status note, and the findings the wave left unchanged are recorded in [`07-docs-followups.md`](docs/kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md). `15b1a47`, `d912001`.
 
-**Measures, before and after**
+## October 2026 measures, before and after
 
 | Measure | Before | After | Basis |
 |---|---|---|---|
@@ -469,3 +591,9 @@ The sources below are those cited in this repository: skill source sections and 
 - Wineburg and McGrew (2019) "Lateral reading and the nature of expertise", *Teachers College Record* 121(11).
 - Open policy and communication guides: IDRC, *How to Write a Policy Brief*; ODI, *Writing Policy Papers*; Tsai, *Communicating Research for Policy Change*; Anthony, *Communicating Research to Non-Specialist Audiences* (Wellcome Trust); The Op-Ed Project, *How to Write an Op-Ed*; Content Marketing Institute, *Case Study Roadmap*.
 - Eleken design and product guides (design-system checklist, onboarding, product-idea validation, dashboards, SaaS launch, AI design workflow, design consistency, UX ideas), from `docs/continuous-improvement/eleken-design-product-learning-2026-08.md`.
+
+## Contributing, author and licence
+
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and the [skill authoring standard](docs/skill-authoring-standard.md) before you change a skill, and run the checks in [Validation](#validation). The [documentation index](docs/README.md) lists the standards, gates and records.
+
+Author: Peter Bamuhigire, for Chwezi Core Systems. Licence: GNU General Public License, version 3 only (`GPL-3.0-only`); see [`LICENSE`](LICENSE).
