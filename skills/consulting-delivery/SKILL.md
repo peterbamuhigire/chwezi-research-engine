@@ -111,7 +111,6 @@ Consulting output must be more than polished slides. Run `critical-reasoning-and
 - Treating stakeholder politics as outside the scope of strategy
 - Confusing slide polish with problem solving
 
-## Companion skills
 
 ## Inputs
 

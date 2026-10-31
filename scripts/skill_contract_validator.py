@@ -185,6 +185,7 @@ def assess(root: Path, path: Path) -> list[tuple[str, str]]:
 
     heading_names = [match.group(1).strip().casefold() for match in HEADING_RE.finditer(body)]
     parts = sections(body)
+    contract_headings: set[str] = set()
     for title in REQUIRED_SECTIONS:
         content = get_section(parts, title)
         if not content:
@@ -194,9 +195,13 @@ def assess(root: Path, path: Path) -> list[tuple[str, str]]:
             "Capability Contract": ("capability contract", "capability and permission boundaries"),
             "Worked Example": ("worked example", "worked examples"),
         }.get(title, (title.casefold(),))
+        contract_headings.update(aliases)
         count = sum(heading_names.count(alias) for alias in aliases)
         if count > 1:
             add("duplicate_contract_section", f"{title} appears {count} times; consolidate or rename legacy detail")
+    for heading, count in Counter(heading_names).items():
+        if count > 1 and heading not in contract_headings:
+            add("duplicate_heading", f"{heading!r} appears {count} times; merge the sections or rename one")
 
     inputs = get_section(parts, "Inputs")
     if inputs and not (table_present(inputs) or re.search(r"\bno (?:input|upstream artefact)s?\b|\bnone\b", inputs, re.I)):

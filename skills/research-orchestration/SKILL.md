@@ -208,7 +208,7 @@ Every research-agent prompt should contain:
 
 If the brief is missing any of those, the output will be uneven.
 
-## Orchestrator outputs
+## Cohort output files
 
 After each wave, the orchestrator writes:
 

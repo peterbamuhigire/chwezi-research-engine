@@ -75,7 +75,6 @@ metadata:
 
 <!-- dual-compat-end -->
 
-## Companion Skills
 
 ## Capability Contract
 

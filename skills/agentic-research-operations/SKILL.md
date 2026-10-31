@@ -81,7 +81,6 @@ metadata:
 
 <!-- dual-compat-end -->
 
-## Companion Skills
 
 ## Intake Fields
 

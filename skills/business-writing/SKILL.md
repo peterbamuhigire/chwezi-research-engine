@@ -112,7 +112,6 @@ Every sentence carries its point plainly. Stacked hedges, Latinate fog and burea
 - [ ] Mechanical proof on paper / out loud; two human eyes for external artifacts.
 - [ ] Multi-language: per-language register rules verified.
 
-## Companion skills
 
 <!-- dual-compat-start -->
 ## Use When

@@ -128,7 +128,6 @@ Every output using this skill must be:
 
 <!-- dual-compat-end -->
 
-## Companion Skills
 
 ## Inputs
 

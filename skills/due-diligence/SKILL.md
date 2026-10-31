@@ -105,7 +105,6 @@ A finding without those fields does not ship.
 - [ ] No legal advice; counsel boundary respected.
 - [ ] Report container conforms to `report-and-proposal-craft` formal-report standards.
 
-## Companion skills
 
 <!-- dual-compat-start -->
 ## Use When

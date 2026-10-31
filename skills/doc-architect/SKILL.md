@@ -78,7 +78,6 @@ When generated documentation must describe system boundaries, workflows, require
 - **Smart subdirectory grouping** for related documentation
 - **See `doc-standards.md` for complete requirements**
 
-## Core Outcome
 
 ## Inputs
 

@@ -77,7 +77,6 @@ metadata:
 
 <!-- dual-compat-end -->
 
-## Companion Skills
 
 ## Inputs
 

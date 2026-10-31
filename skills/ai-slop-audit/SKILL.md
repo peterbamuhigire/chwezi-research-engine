@@ -146,7 +146,6 @@ record `NOT_ASSESSED` rather than assuming a pass or a machine origin.
 - [Responsible publishing standard](https://github.com/peterbamuhigire/chwezi-dev-engine/blob/main/references/ai-slop-responsible-publishing-standard-2026-09-11.md)
 - [25-claim responsibility assessment](../../docs/continuous-improvement/ai-slop-responsibility-assessment-2026-09-11.md)
 
-## See also
 
 <!-- dual-compat-start -->
 ## Use When

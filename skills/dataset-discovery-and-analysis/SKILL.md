@@ -155,7 +155,6 @@ The profile applies Segnini's **five-step verification** (Verification Handbook)
 - **World Bank Open Data** — best for cross-country comparison
 - **Humanitarian Data Exchange (HDX)** — crisis / refugee data, including East African flows
 
-## See also
 
 ## Inputs
 

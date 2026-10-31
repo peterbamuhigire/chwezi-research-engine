@@ -148,7 +148,6 @@ Without the manifest, the data is not shippable.
 - [ ] Provenance packet written: parquet + profile.json + dq.json + manifest.json.
 - [ ] Pair with `source-evaluation` reliability tier (mandatory).
 
-## Companion skills
 
 ## Inputs
 

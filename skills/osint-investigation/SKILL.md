@@ -206,7 +206,7 @@ For an authorised stakeholder review, corroborate public organisational roles ac
 |---|---|---|
 | Source and collection register | Investigation lead | Provenance, collection time, confidence, and gaps are recorded |
 
-## Reference Index
+## Reference links
 
 - [Advanced techniques](references/advanced-osint-techniques.md); [adverse media](references/adverse-media-investigation.md); [stakeholder reconnaissance](references/google-stakeholder-recon.md)
 - [Investigative search](references/public-records-investigative-search.md); [case vaults](references/osint-case-vaults.md); [doctrine and history](references/osint-doctrine-and-history.md)

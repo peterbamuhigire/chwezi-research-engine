@@ -100,7 +100,6 @@ Before any estimative output ships, every box must be ticked:
 - `due-diligence` — DD outputs are estimative judgments by another name; this skill applies in full.
 - `consulting-delivery` — for turning the judgment into a client-ready problem-solving recommendation.
 
-## Sources for this skill
 
 <!-- dual-compat-start -->
 ## Use When

@@ -120,7 +120,6 @@ Some verticals add a small set of skills on top of whatever rows apply:
 
 The Validation column in every row pulls skills that are themselves declared `validation-contract` contributors. This matrix tells you *which* validation skills apply per domain; `validation-contract` defines *what evidence* those skills must produce at ship time. Always load `validation-contract` alongside the matrix when shipping is in scope.
 
-## Companion Skills
 
 ## Workflow
 
@@ -158,7 +157,6 @@ Minimum capability is read-only access to active skill roots and task context. C
 
 A dataset-cleaning request routes to the data-quality pipeline and validation gate, not the entire report-production and orchestration stack.
 
-## Companion Skills
 
 ## Inputs
 
