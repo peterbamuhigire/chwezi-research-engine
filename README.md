@@ -456,7 +456,9 @@ These are items 9 to 18 of the same account. The method, evidence labels and lim
     - Result: the validator checks dates and metadata only, not whether a source supports a claim.
 15. **The register overstated three standards** (`aeceb5a`)
     - Problem: the 29 October register overstated three standards. Two days later the named standards were re-read from primary pages (10 sources, 11 claims).
-    - Change: ICD 203 moved from `verified` to `partial`, because a second technical amendment exists and its date cannot be read reliably. ICD 206 moved from `partial` to `NOT_ASSESSED`, because the PDF has no text layer and no OCR tool is installed here. RFC 9309 moved from `verified` to `partial`, because the errata are unread.
+    - Change: ICD 203 moved from `verified` to `partial`, because a second technical amendment exists and its date cannot be read reliably.
+    - Change: ICD 206 moved from `partial` to `NOT_ASSESSED`, because the PDF has no text layer and no OCR tool is installed here.
+    - Change: RFC 9309 moved from `verified` to `partial`, because the errata are unread.
     - Result: PRISMA 2020, GRADE, Cochrane 6.5 and TOP 2025 were unchanged, and the redirected ODNI links in `analytic-tradecraft` were updated. No independent reviewer has signed any row.
 
 ### Documentation and portability
@@ -464,7 +466,8 @@ These are items 9 to 18 of the same account. The method, evidence labels and lim
 The 31 October documentation wave. No skill body was edited.
 
 16. **Install and validation guidance in the README** (`390a80c`, `ebed632`)
-    - Problem: the README told readers to clone `digital-research-skills`, run `./install.sh` and use a `pack --out <file>.zip` example. `install.sh` is tracked as mode 100644, so `./install.sh` fails on Linux with "Permission denied". The example did not say that an absolute path outside the project writes the archive and then exits 1.
+    - Problem: the README told readers to clone `digital-research-skills`, run `./install.sh` and use a `pack --out <file>.zip` example.
+    - Problem: `install.sh` is tracked as mode 100644, so `./install.sh` fails on Linux with "Permission denied". The example did not say that an absolute path outside the project writes the archive and then exits 1.
     - Change: the README names `chwezi-research-engine`, uses `bash install.sh` and a project-relative `--out`, and carries the [Validation](#validation) table.
     - Result: each command in that table was run on 2026-10-31, and each package-dependent test is marked `NOT_ASSESSED` where its package was absent.
 17. **Counts and shell blocks in the guidance files** (`a77d75d`, `1542d6f`)
@@ -495,7 +498,9 @@ Considered and left out: the nine "Evidence Notes 1 and 2" headings (one holds a
 
 Notes on the table:
 
-- Scores are reviewer judgement from the [29 October baseline](docs/kaizen/2026-10-engine-kaizen/01-baseline-scorecard.md) and [final report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md), and the pass 2 [baseline](docs/kaizen/2026-10-engine-kaizen-pass-2/01-baseline-scorecard.md) and [final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md). They are copied, not re-measured.
+- Scores are reviewer judgement. They are copied, not re-measured.
+  - 29 October: [baseline](docs/kaizen/2026-10-engine-kaizen/01-baseline-scorecard.md) and [final report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md).
+  - Pass 2: [baseline](docs/kaizen/2026-10-engine-kaizen-pass-2/01-baseline-scorecard.md) and [final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md).
 - The pass 2 baseline (56.3) is lower than the 29 October final (58.2). Fresh observation found defects that the earlier scoring had missed. The code did not change.
 - The rises in routing precision come from added fixtures that pass, except the NSSF probe in item 13.
 - The unit-test counts come from `python3 -m unittest discover -s engine/tests`. The 29 October final report says 48 in one table row, and its validation record says 50. The run gives 50.
@@ -504,225 +509,9 @@ Notes on the table:
 
 ## References
 
-The sources below are those cited in this repository: skill source sections and source registers, [`RESEARCH_CRAFT_INTEGRATION.md`](RESEARCH_CRAFT_INTEGRATION.md), the July 2026 book-to-engine map, Kaizen records, the 2026-Q4 ecosystem scan and code attribution comments. Where the repository omits an author, year or publisher, so does this list. Citations only; no book content is reproduced.
+The engine cites books, standards and official sources, open-source repositories, and websites and articles. The full list, grouped in that way, is in [`docs/references.md`](docs/references.md). It gives citations only; no book content is reproduced.
 
-### Books
-
-- Aaker, Kumar, Leone and Day (2022) *Marketing Research*, 13th ed., Wiley.
-- Abbott (2014) *Digital Paper*.
-- Bailey (2018) *Academic Writing: A Handbook for International Students*, 5th ed., Routledge.
-- Bazerman (1988) *Shaping Written Knowledge: The Genre and Activity of the Experimental Article in Science*, University of Wisconsin Press.
-- Bazzell *Open Source Intelligence Techniques*, 11th ed.
-- Bean (2011) *No More Secrets: Open Source Information and the Reshaping of U.S. Intelligence*, Praeger Security International / ABC-CLIO.
-- Behrens and Hawranek (1991) *Manual for the Preparation of Industrial Feasibility Studies*, rev. ed., UNIDO.
-- Belcher (2019) *Writing Your Journal Article in Twelve Weeks*, 2nd ed., University of Chicago Press.
-- Bell (2015) *Librarian's Guide to Online Searching*, 4th ed.
-- Berg (2004) *Qualitative Research Methods for the Social Sciences*, Pearson.
-- Bergeron (2003) *Essentials of Knowledge Management*.
-- Boardman and Sauser *Systemic Thinking: Building Maps for Worlds of Systems*.
-- Booth, Colomb, Williams, Bizup and FitzGerald (2016) *The Craft of Research*, 4th ed., University of Chicago Press.
-- Booth, Sutton and Papaioannou (2021) *Systematic Approaches to a Successful Literature Review*, 3rd ed., SAGE.
-- Botwright (2024) *Advanced OSINT Strategies: Online Investigations and Intelligence Gathering*.
-- Boynton *The New New Journalism*.
-- Brause (1999) *Writing Your Doctoral Dissertation: Invisible Rules for Success*, Falmer Press / RoutledgeFalmer.
-- BRB Publications *The Sourcebook to Public Record Information*.
-- Brockman (ed.) *Thinking: The New Science of Decision-Making, Problem-Solving, and Prediction*.
-- Brody (2017) *The Ultimate Guide to Web Scraping*.
-- Brown (2017) *Harnessing the Power of Google*.
-- Bui (2019) *How to Write a Master's Thesis*, 3rd ed., SAGE.
-- Burke (1945) *A Grammar of Motives*.
-- Burtonshaw-Gunn *Essential Tools for Management Consulting*.
-- Buzan *Mind Map Mastery*; Buzan *Buzan Study Skills Handbook*.
-- Caples and Hahn (1998) *Tested Advertising Methods*, 5th ed., Prentice Hall.
-- Clark (2019) *Intelligence Analysis: A Target-Centric Approach*, 6th ed., CQ Press.
-- Clippinger (2019) *Business Report Guides: Research Reports and Business Plans*.
-- Cottrell (2023) *Critical Thinking Skills*, 4th ed., Bloomsbury.
-- Day and Gastel (2017) *How to Write and Publish a Scientific Paper*, 8th ed., Cambridge University Press.
-- Deason *Internet Research with Google*.
-- Denscombe (2019) *Research Proposals: A Practical Guide*, 2nd ed., Open University Press.
-- Duarte (2014) *Slidedocs: Spread Ideas with Effective Visual Documents*, Duarte Inc.
-- Dunleavy (2003) *Authoring a PhD*, Palgrave Macmillan.
-- Eco (2015) *How to Write a Thesis* (English translation).
-- Edwards (2019) *Legal Writing and Analysis*, 5th ed., Wolters Kluwer.
-- Ellet (2007) *The Case Study Handbook*, Harvard Business Review Press.
-- Forsyth (2016) *How to Write Reports and Proposals*.
-- Garner (2013) *HBR Guide to Better Business Writing*, Harvard Business Review Press.
-- Garner (2013) *Legal Writing in Plain English*, 2nd ed., University of Chicago Press.
-- Geffner *Business English*.
-- George *Excel 2019 Advanced Topics*.
-- George and Bruce (eds.) (2008) *Analyzing Intelligence: Origins, Obstacles, and Innovations*, Georgetown University Press.
-- Glaser and Strauss (1967) *The Discovery of Grounded Theory*.
-- Glatthorn and Joyner (2017) *Writing the Winning Thesis or Dissertation*, 4th ed., Corwin.
-- Gottschall (2013) *The Storytelling Animal: How Stories Make Us Human*, Mariner Books.
-- Graham (2013) *White Papers For Dummies*, Wiley.
-- Grant (2021) *Contemporary Strategy Analysis*, 11th ed., Wiley.
-- Hackos *The Complete Guide to Knowledge Management*.
-- Hague, Hague and Morgan (2022) *Market Research in Practice*, 4th ed., Kogan Page.
-- Hancock and Algozzine (2006) *Doing Case Study Research: A Practical Guide for Beginning Researchers*, Teachers College Press.
-- Hanington and Martin *The Pocket Universal Methods of Design*.
-- Hart (2018) *Doing a Literature Review*, 2nd ed., SAGE.
-- Hart *Storycraft*.
-- Hartley (2008) *Communicating Ideas: The Politics of Scholarly Publishing*, Routledge.
-- Hattori *The McKinsey Edge*.
-- Heath and Heath (2013) *Decisive: How to Make Better Choices in Life and Work*, Random House.
-- Henwood (2020) *Business Writing for Innovators and Change-Makers*, Business Expert Press.
-- Hetherington (2015) *The Guide to Online Due Diligence Investigations*, 2nd ed., Facts on Demand Press.
-- Heuer (1999) *Psychology of Intelligence Analysis*, CIA Center for the Study of Intelligence.
-- Heuer and Pherson *Structured Analytic Techniques for Intelligence Analysis*, CQ Press / SAGE (1st ed. 2010; 3rd ed. cited as 2020 and 2021).
-- Hewings and Hewings *Grammar and Context*, Routledge.
-- Hood *Words at Work*.
-- Hyland (1998) *Hedging in Scientific Research Articles*.
-- Hyland (2004) *Disciplinary Discourses: Social Interactions in Academic Writing*, 2nd ed., University of Michigan Press.
-- Jordan *ICDL Word*.
-- Kamler and Thomson (2014) *Helping Doctoral Students Write*, 2nd ed., Routledge.
-- Kantor (2009) *Crafting White Paper 2.0*, Lulu.
-- Kelley *The Art of Reasoning: An Introduction to Logic and Critical Thinking*.
-- Koelsch *Requirements Writing for System Engineering*.
-- Kotler and Keller (2022) *Marketing Management*, 16th ed., Pearson.
-- Kramer and Call *Telling True Stories*.
-- Krone *Navigating the Dissertation Writing Process*.
-- Kunz, Schmedemann, Erlinder, Downs and Bateson (2020) *The Process of Legal Research: Practices and Resources*, 9th ed., Wolters Kluwer.
-- Lawson (2015) *Web Scraping with Python*, Packt.
-- Lindsell-Roberts (2024) *Business Writing with AI for Dummies*, Wiley.
-- Locke, Spirduso and Silverman (2013) *Proposals That Work*, 6th ed., SAGE.
-- Lockridge and Van Ittersum *Writing Workflows*.
-- Long *Legal Research Using the Internet*.
-- MacLeod (2012) *How to Find Out Anything*.
-- Magaziner and Patinkin (1989) *The Silent War*, Random House.
-- Maslen (2019) *Persuasive Copywriting*, 2nd ed., Kogan Page.
-- Maxwell (2020) *7 Steps to Better Writing*.
-- McCandless (2014) *Knowledge is Beautiful*, William Collins.
-- McInerny *Being Logical: A Guide to Good Thinking*.
-- McMahon (2001) *Practical Handbook for Professional Investigators*.
-- Medina (2014) *Brain Rules*, 2nd ed., Pear Press.
-- Merriam (2001) *Qualitative Research and Case Study Applications in Education*, Jossey-Bass.
-- Minto (1985; revised 1996, 2002, 2009) *The Minto Pyramid Principle: Logic in Writing, Thinking and Problem Solving*, Minto Books International.
-- Morley (2017) *Academic Phrasebank*, 4th ed.
-- Murray (2017) *How to Write a Thesis*, 4th ed., Open University Press.
-- National Research Council (2011) *Intelligence Analysis for Tomorrow: Advances from the Behavioral and Social Sciences*, National Academies Press.
-- Norman (2004) *Emotional Design: Why We Love (or Hate) Everyday Things*, Basic Books.
-- O'Dell and McCarthy (2017) *English Collocations in Use Advanced*, 2nd ed., Cambridge University Press.
-- Ogilvy (1985) *Ogilvy on Advertising*, Vintage.
-- Oxylabs (2024) *Python Web Scraping for Developers*.
-- Patton (2015) *Qualitative Research & Evaluation Methods: Integrating Theory and Practice*, 4th ed., SAGE.
-- Phillips and Pugh (2015) *How to Get a PhD*, 6th ed., Open University Press.
-- Porter (1980) *Competitive Strategy*, Free Press; Porter (1985) *Competitive Advantage*.
-- Poynter (2010) *The Handbook of Online and Social Media Research*.
-- Punch (2016) *Developing Effective Research Proposals*, 3rd ed., SAGE.
-- Putman and Albright (2018) *Legal Research, Analysis and Writing*, Cengage.
-- Ramsey (2017) *Business Writing Scenarios*, Bedford/St Martin's.
-- Rasiel (1999) *The McKinsey Way*, McGraw-Hill.
-- Rasiel and Friga (2001) *The McKinsey Mind*, McGraw-Hill.
-- Raymond (2003) *Pamphlets and Pamphleteering in Early Modern Britain*, Cambridge University Press.
-- Ridley (2012) *The Literature Review: A Step-by-Step Guide for Students*, 2nd ed., SAGE.
-- Roman and Raphaelson (2000) *Writing That Works*, 3rd ed.
-- Rowland (2000) *The Creative Guide to Research*.
-- Rubie and Provost *How to Tell a Story*.
-- Rumelt (2011) *Good Strategy, Bad Strategy*, Crown Business.
-- Russell (2019) *The Joy of Search*.
-- Seely *The Oxford Guide to Effective Writing and Speaking*.
-- Shiach *How to Write Essays*.
-- Shikhman and Mueller (2021) *Mathematical Foundations of Big Data Analytics*.
-- Silverman (ed.) (2015) *Verification Handbook for Investigative Reporting*.
-- Smith and Albaum (2005) *Fundamentals of Marketing Research*, SAGE.
-- Stake (1995) *The Art of Case Study Research*, SAGE.
-- Starkman, Hamilton, Chittum and Salmon (eds.) (2014) *The Best Business Writing 2014*, Columbia University Press / Columbia Journalism Review Books.
-- Stelzner (2007) *Writing White Papers*, WhitePaperSource Publishing.
-- Stoner and Perkins (2015) *Making Sense of Messages*, 2nd ed., Routledge.
-- Strunk and White *The Elements of Style*, 4th ed.
-- Sugarman (2007) *The Adweek Copywriting Handbook*, Wiley.
-- Swales (1990) *Genre Analysis*.
-- Swales and Feak (2012) *Academic Writing for Graduate Students*, 3rd ed., University of Michigan Press.
-- Thompson (2014) *Feasibility Studies: Tools and Techniques*, Routledge.
-- Treverton (2003) *Reshaping National Intelligence for an Age of Information*, Cambridge University Press.
-- Trzeciak and Mackay (1994) *Study Skills for Academic Writing*.
-- Tufte (2001) *The Visual Display of Quantitative Information*, 2nd ed.
-- Urban *Advanced Excel for Productivity*.
-- Van Der Post *Python in Excel Advanced*.
-- Vic *Microsoft Word 2022 for Beginners & Pros*.
-- Walkenbach and Alexander *Microsoft Excel 365 Bible*.
-- Walker *Python Data Cleaning Cookbook*.
-- Wallwork (2016) *English for Writing Research Papers*, 2nd ed., Springer.
-- Watkins *The Six Disciplines of Strategic Thinking*.
-- Wempen *Advanced Microsoft Word 2016*.
-- Wengler (2026) *Automate Excel with Python*.
-- Wiegers *More About Software Requirements*.
-- Wiegers and Hokanson *Software Requirements Essentials*.
-- Williams and Newton (2007) *Visual Communication: Integrating Media, Art, and Science*, Routledge.
-- Wohlstetter (1962) *Pearl Harbor: Warning and Decision*, Stanford University Press.
-- Yayici *Business Analysis Methodology Book*.
-- Yin (2014) *Case Study Research: Design and Methods*, 5th ed., SAGE; Yin (2018) *Case Study Research and Applications: Design and Methods*, 6th ed., SAGE.
-- Young and Quinn (2002) *Writing Effective Public Policy Papers*, Open Society Institute.
-- Zelazny (2001) *Say It With Charts: The Executive's Guide to Visual Communication*, 4th ed., McGraw-Hill.
-- Titles cited without an author: *AI-Based Data Analytics: Applications for Business Management*; *Applying the Kaizen in Africa* (2018); *Better Data Visualizations*; *Business Requirements Gathering and Data Architecture Modeling*; *Clear Written Communication* (50Minutes); *Critical Thinking, Logic & Problem Solving*; *Critical Thinking Skills: Developing Effective Analysis and Argument*; *Critical Thinking Skills for Education Students*; *Dare to Disrupt*; *Data Analytics using Python*; *Data Journalism Heist*; *Design Systems Handbook*; *Design Thinking*; *Designing for AI* (early release); *Developments in Information and Knowledge Management Systems for Business Applications*; *Doing Internet Research*; *Doing Your Research Project*; *Excel 2025 All-in-One*; *Facility Move Playbook*; *Finish Your Thesis or Dissertation! Tips & Hacks for Success*; *Growth Engineering*; *Hands-On Website Scraping with Python*; *How to Write a Literature Review: A Workbook in Six Steps*; *How to Write a Master's Thesis Fast*; *Inside the Minds: Leading Consultants*; *Introduction to Data Analytics*; *Knowledge Management and Business Strategies*; *LEAN Ultimate Collection* (2018); *Legal Research* (anonymous compendium); *Make Phenomenal Profits*; *Mental Models 2*; *Microsoft Excel Bible 2026*; *MSC Software Magazine* (2019); *Oxford Guide to Effective Argument and Critical Thinking*; *Platform Enterprise* (early release); *Project Scope Management: A Practical Guide to Requirements*; *Remarkable Business Growth*; *Rewired: The McKinsey Guide to Outcompeting in the Age of Digital and AI*; *Smart Thinking: Skills for Critical Understanding and Writing*, 2nd ed.; *The Art of Asking Essential Questions*; *The Data Analytics Advantage*; *The Great Mental Models, Volume 1*; *Think Deeper*; *Thinking in Systems and Mental Models*; *True or False*; *Ultimate Excel Formula & Function Reference Guide*; *Writing a Postgraduate Thesis or Dissertation: Tools for Success*.
-
-### Repositories
-
-- affaan-m/ECC — https://github.com/affaan-m/ECC — MIT — `santa-method` dual-reviewer convergence and stratified batch sampling (`peer-review-loop`); `scientific-thinking-literature-review` rigour levels (`academic-reporting-standards`); the MSYS2 path fix and installer scope choice (`install.sh`, `scripts/install-engine.js`).
-- obra/superpowers — https://github.com/obra/superpowers — MIT, commit `8ca22db` — the description-narration lint in `skills/skill-writing/scripts/quick_validate.py` (my-10-kaizen SP-14).
-- addyosmani/agent-skills — https://github.com/addyosmani/agent-skills — MIT, commit `2686b62` — four Tier-1 lint rules from `scripts/lib/skill-lint.js` (`quick_validate.py`) and the owner-outranks-self routing rule from `scripts/run-evals.js` (`scripts/routing_smoke_test.py`) (my-10-kaizen M10-03).
-- JuliusBrussee/caveman — https://github.com/JuliusBrussee/caveman — MIT (skill side only), commit `2fd153c` — the evidence-rung vocabulary for improvement claims in `ai-evaluation-and-data-flywheel/references/eval-flywheel.md` (my-10-kaizen CV-07).
-- DietrichGebert/ponytail — https://github.com/DietrichGebert/ponytail — MIT, commit `e3ba2aa` — the thin `CLAUDE.md` bridge to `AGENTS.md` and a real semantic version, 1.1.0 (my-10-kaizen PT-01, PT-04).
-- pbakaus/impeccable — https://github.com/pbakaus/impeccable — Apache-2.0, commit `114ea1d` — anti-slop source record, the design trigger block, the detector rule-source pin for the K5 re-audit and the `PROJECT.md` context read in `AGENTS.md` (my-10-kaizen IM-11); ideas paraphrased, no code copied.
-- ComposioHQ/awesome-claude-skills — https://github.com/ComposioHQ/awesome-claude-skills — NOASSERTION, commit `be2a406` — scan source for the first quarterly ecosystem scan (my-10-kaizen AC-04); nothing installed.
-- Egonex-AI/Understand-Anything — https://github.com/Egonex-AI/Understand-Anything — MIT, commit `b05cc3b` — `/understand-knowledge` sandbox pilot recorded as `NOT_ASSESSED` under the zero-spend rule; not installed or adopted.
-- WebBreacher/obsidian-osint-templates — https://github.com/WebBreacher/obsidian-osint-templates — practitioner OSINT note structure (`osint-investigation/references/osint-case-vaults.md`).
-- donvito/codex-astra-luna-orchestrator — https://github.com/donvito/codex-astra-luna-orchestrator — commit `21f4561` — concept reference for the Codex model-policy helper in `.codex/`; independently implemented.
-- peterbamuhigire/chwezi-dev-engine — https://github.com/peterbamuhigire/chwezi-dev-engine — canonical skill-writing standard and ecosystem-scan intake procedure.
-- Reviewed in the 2026-Q4 ecosystem scan with no borrowing (licences and verdicts in [`docs/continuous-improvement/ecosystem-scan-2026-Q4.md`](docs/continuous-improvement/ecosystem-scan-2026-Q4.md)): agentskills/agentskills, alibaba/open-code-review, alirezarezvani/claude-skills, anthropics/skills, asgeirtj/system_prompts_leaks, blader/humanizer, career-ops-hq/career-ops, cathrynlavery/diagram-design, CherryHQ/cherry-studio, diegosouzapw/OmniRoute, farion1231/cc-switch, github/awesome-copilot, googleworkspace/cli, Graphify-Labs/graphify, headroomlabs-ai/headroom, hesreallyhim/awesome-claude-code, Imbad0202/academic-research-skills, jeecgboot/JeecgBoot, JimLiu/baoyu-skills, K-Dense-AI/scientific-agent-skills, KKKKhazix/khazix-skills, Leonxlnx/taste-skill, mvanhorn/last30days-skill, nextlevelbuilder/ui-ux-pro-max-skill, nexu-io/open-design, NousResearch/hermes-agent, NVIDIA/SkillSpector, OthmanAdi/planning-with-files, Panniantong/Agent-Reach, pascalorg/editor, phuryn/pm-skills, reactive-resume/reactive-resume, router-for-me/CLIProxyAPI, rtk-ai/rtk, ruvnet/ruflo, shanraisshan/claude-code-best-practice, shareAI-lab/learn-claude-code, sickn33/agentic-awesome-skills, snyk-labs/toxicskills-goof, stablyai/orca, thedotmack/claude-mem, titanwings/distilly, topoteretes/cognee, tt-a1i/archify, virgiliojr94/book-to-skill, VoltAgent/awesome-agent-skills, VoltAgent/awesome-openclaw-skills, zhayujie/CowAgent.
-
-### Standards and official sources
-
-- PRISMA 2020 statement and checklist — https://www.prisma-statement.org/prisma-2020; Page et al., *BMJ* 2021;372:n71.
-- EQUATOR Network reporting guidelines — https://www.equator-network.org/ — including CONSORT 2025 (https://www.consort-spirit.org/), STROBE (https://www.strobe-statement.org/) and MOOSE (Stroup et al., *JAMA* 2000;283:2008-2012).
-- GRADE Working Group — https://www.gradeworkinggroup.org/; GRADEpro handbook — https://gradepro.org/handbook/.
-- Cochrane Handbook for Systematic Reviews — https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current.
-- Center for Open Science TOP Guidelines — https://www.cos.io/initiatives/top-guidelines.
-- ICMJE Recommendations — https://www.icmje.org/recommendations/.
-- ODNI Intelligence Community Directive 203, *Analytic Standards* (2015) — https://www.dni.gov/files/documents/ICD/ICD-203.pdf; ICD 206, *Sourcing Requirements for Disseminated Analytic Products*.
-- Kent (1964) "Words of Estimative Probability", *Studies in Intelligence* — https://www.cia.gov/resources/csi/static/Words-of-Estimative-Probability.pdf.
-- NATO Admiralty Code, STANAG 2511 / AJP-2.1.
-- UK Professional Head of Intelligence Assessment, *Probability Yardstick*.
-- Silberman-Robb WMD Commission Report (2005).
-- Berkeley Protocol on Digital Open Source Investigations — https://humanrights.berkeley.edu/wp-content/uploads/2024/02/Berkeley-Protocol.pdf.
-- FIRST CTI SIG, "Source Evaluation" — https://www.first.org/global/sigs/cti/curriculum/source-evaluation.
-- IETF RFC 9309, *Robots Exclusion Protocol* (September 2022).
-- NIST AI Risk Management Framework — https://www.nist.gov/itl/ai-risk-management-framework; NIST, "Four Principles of Explainable Artificial Intelligence" — https://www.nist.gov/publications/four-principles-explainable-artificial-intelligence.
-- IEEE Computer Society, SWEBOK Guide V4.0 — https://www.computer.org/education/bodies-of-knowledge/software-engineering.
-- Schema.org `ClaimReview` — https://schema.org/ClaimReview; Google Fact Check structured data — https://developers.google.com/search/docs/appearance/structured-data/factcheck; Google Search Central documentation.
-- Citation standards: APA 7; *OSCOLA*, 4th ed. (2012); *The Bluebook: A Uniform System of Citation*, 21st ed. (2020).
-- IFRS Conceptual Framework (qualitative characteristics of useful financial information).
-- Plain Language Action and Information Network, *Federal Plain Language Guidelines*.
-- World Bank Project Appraisal Document templates and *Reference Guide to Cost-Benefit Analysis*; ESOMAR *Global Market Research* and methodology guidelines.
-- Institutional doctoral regulations (accessed 2026-04-26): University of Cambridge, University of Oxford, London School of Economics, Harvard Griffin GSAS and SEAS, Yale GSAS and Registrar, and Princeton Graduate School and Library. Links are in `skills/academic-reporting-standards/references/oxbridge-ivy-examination-conventions.md`.
-- Ugandan handbooks: Busitema University research dissemination handbook; Makerere University Directorate of Research and Graduate Training guidelines (2011); Uganda Christian University Research Manual (revised April 2018).
-- Kenyan handbooks: Adventist University of Africa Research Handbook; Regional Centre on Groundwater Resources research guide (2019); Kenyatta University School of Hospitality research guide.
-- W3C WCAG 2.2; Apple Human Interface Guidelines (Onboarding); GOV.UK Service Manual (user research and prototypes), from the design and product learning record.
-- Anthropic, Claude Code plugin manifest reference — https://code.claude.com/docs/en/plugins-reference; OpenAI API models and pricing pages — https://developers.openai.com/api/docs/models (currentness register `docs/source-registers/skills-kaizen-wave2-2026-09.json`).
-
-### Websites and articles
-
-- Bellingcat, *Online Open Source Investigation Toolkit* and the Information Laundromat — https://bellingcat.gitbook.io/toolkit/more/all-tools/the-information-laundromat.
-- Dutch OSINT Guy, "OSINT Is A State Of Mind" (2018) — https://medium.com/@Dutchosintguy/osint-as-a-mindset-7d42ad72113d.
-- AaronCTI, "My OSINT Blueprint — Methodology and Tools", parts one and two (2024) — https://aaroncti.com/my-osint-blueprint-methodology-and-tools-part-one/ and https://aaroncti.com/my-osint-blueprint-methodology-and-tools-part-two/.
-- CQCore, "OSINT Methodology" (2024) — https://www.cqcore.uk/osint-methodology/.
-- Sector035, "Week in OSINT #2023-06" — https://sector035.nl/articles/2023-06.
-- Neon Maxima, "How I Turned Obsidian Into a Black-Ops Intelligence Hub" (Medium, 2025); Obsidian — https://obsidian.md/.
-- NATO StratCom COE, report on information laundering in the Nordic-Baltic region — https://stratcomcoe.org/news/a-new-report-focuses-on-information-laundering-in-the-nordic-baltic-region/133.
-- FEVER dataset — https://fever.ai/dataset/fever.html; AVeriTeC dataset — https://fever.ai/dataset/averitec.html.
-- "Automated Fact-Checking" survey, *TACL* (2022) — https://aclanthology.org/2022.tacl-1.11.pdf; CREDULE / EVVER — https://arxiv.org/abs/2404.18971; Guo et al., "On Calibration of Modern Neural Networks" — https://arxiv.org/abs/1706.04599.
-- Barbara Minto — https://www.barbaraminto.com/; McKinsey Alumni interview, "Barbara Minto: MECE" — https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it.
-- University of Manchester, *Academic Phrasebank* (online).
-- Cleveland and McGill (1984) "Graphical perception", *Journal of the American Statistical Association* 79(387).
-- Cowan (2000) "The Magical Number 4 in Short-term Memory", *Behavioral and Brain Sciences* 24.
-- Davis and Morley (2015) "Phrasal intertextuality", *Journal of Second Language Writing* 28.
-- DeMarco and Tufts (2014) "The Mechanics of Writing a Policy Brief", *Nursing Outlook* 62(3).
-- Dow et al. (2010), parallel prototyping study, *ACM TOCHI* 17(4).
-- Flowers (1979) "Madman, Architect, Carpenter, Judge".
-- MacEachin (1994) "Tradecraft of Analysis: Challenge and Change in the CIA".
-- Wineburg and McGrew (2019) "Lateral reading and the nature of expertise", *Teachers College Record* 121(11).
-- Open policy and communication guides: IDRC, *How to Write a Policy Brief*; ODI, *Writing Policy Papers*; Tsai, *Communicating Research for Policy Change*; Anthony, *Communicating Research to Non-Specialist Audiences* (Wellcome Trust); The Op-Ed Project, *How to Write an Op-Ed*; Content Marketing Institute, *Case Study Roadmap*.
-- Eleken design and product guides (design-system checklist, onboarding, product-idea validation, dashboards, SaaS launch, AI design workflow, design consistency, UX ideas), from `docs/continuous-improvement/eleken-design-product-learning-2026-08.md`.
+Two records explain how sources entered the engine: [`RESEARCH_CRAFT_INTEGRATION.md`](RESEARCH_CRAFT_INTEGRATION.md) and the [2026-Q4 ecosystem scan](docs/continuous-improvement/ecosystem-scan-2026-Q4.md). The scan gives the licence and verdict for each repository reviewed without borrowing.
 
 ## Contributing, author and licence
 
