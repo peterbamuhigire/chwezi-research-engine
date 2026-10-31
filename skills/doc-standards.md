@@ -443,4 +443,4 @@ See `prompting-patterns-reference.md` for complete guide and examples.
 
 ## Additional Reference
 
-Markdown portability and Pandoc-focused formatting rules were moved to [docs/markdown-portability-reference.md](docs/markdown-portability-reference.md) to keep this repository entrypoint concise.
+The Markdown portability and Pandoc-focused formatting rules once planned for a separate `docs/markdown-portability-reference.md` were never written into this repository. Until they are, use `skills/professional-word-output/references/word-features.md` for Pandoc and Word output rules.

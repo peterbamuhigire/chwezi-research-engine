@@ -1,10 +1,10 @@
 # Digital Research Skill Authoring Standard
 
-This is the local, executable form of Peter Bamuhigire's July 2026 skill-writing and composition contract. The canonical source remains `C:\Users\Peter\.claude\skills`; this file records only the rules this engine enforces locally.
+This is the local, executable form of Peter Bamuhigire's July 2026 skill-writing and composition contract. The canonical source remains the engineering engine's skill-writing and skill-composition-standards skills, resolved through the engine-routing table; this file records only the rules this engine enforces locally.
 
 ## Catalogue boundary
 
-Active skills are filesystem-discovered `SKILL.md` files below `skills/`. The standalone proposal engine at `C:\wamp64\www\proposal-skills` is outside this repository and never enters its active-skill metrics. Skill templates live below `templates/` and never enter active-skill metrics. Do not use README tables as inventory.
+Active skills are filesystem-discovered `SKILL.md` files below `skills/`. The standalone proposal engine (`proposal-skills`, resolved through the engine-routing table) is outside this repository and never enters its active-skill metrics. Skill templates live below `templates/` and never enter active-skill metrics. Do not use README tables as inventory.
 
 ## Entrypoint contract
 

@@ -4,7 +4,7 @@ Changes to this engine must preserve evidence discipline and pass the zero-debt 
 
 ## Skill changes
 
-Start from [the local authoring standard](docs/skill-authoring-standard.md) and [skill template](templates/skill-template/SKILL.md). Read the target skill and its directly linked references before editing. Compare the nearest neighbours so the positive and negative triggers remain distinct. Proposal-engine changes belong in the standalone repository at `C:\wamp64\www\proposal-skills`.
+Start from [the local authoring standard](docs/skill-authoring-standard.md) and [skill template](templates/skill-template/SKILL.md). Read the target skill and its directly linked references before editing. Compare the nearest neighbours so the positive and negative triggers remain distinct. Proposal-engine changes belong in the standalone `proposal-skills` repository, resolved through the engine-routing table.
 
 Add or update routing fixtures for trigger changes. Fixtures must cover the positive route, a negative or neighbouring route, limited capabilities, and a failure or stop path where applicable.
 
@@ -14,9 +14,11 @@ Add or update routing fixtures for trigger changes. Fixtures must cover the posi
 python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json
 python -X utf8 scripts/routing_smoke_test.py
 python -X utf8 scripts/validate_engine.py
-python -X utf8 C:\Users\Peter\.claude\skills\skills\sdlc-meta\skill-writing\scripts\quick_validate.py <skill-directory>
+python -X utf8 <engineering-engine-root>/skills/sdlc-meta/skill-writing/scripts/quick_validate.py <skill-directory>
 git diff --check
 ```
+
+`<engineering-engine-root>` is the engineering engine's checkout, resolved through the engine-routing table. If it is unavailable, record `quick_validate.py` as not assessed.
 
 Run relevant syntax, link, unit, render, or domain checks as well. A check that cannot run is `not assessed`, not passed.
 
