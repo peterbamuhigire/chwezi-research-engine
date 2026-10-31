@@ -38,6 +38,7 @@ It is for researchers, analysts, consultants, investigators, due-diligence teams
 
 ## Contents
 
+- [Capabilities](#capabilities)
 - [Find the right skill](#find-the-right-skill)
 - [How it works](#how-it-works)
 - [Skill catalogue](#skill-catalogue)
@@ -52,7 +53,11 @@ It is for researchers, analysts, consultants, investigators, due-diligence teams
 - [References](#references)
 - [Contributing, author and licence](#contributing-author-and-licence)
 
-## Find the right skill
+## Capabilities
+
+The engine holds 59 skills. The [skill catalogue](#skill-catalogue) lists each one. The table under Find the right skill is the capability map: common tasks and the skill that handles each.
+
+### Find the right skill
 
 Describe the task in plain words and the router [`SKILL.md`](SKILL.md) selects the skills. To load one yourself, use this table. The full list of 59 is in the [Skill catalogue](#skill-catalogue).
 
