@@ -1,6 +1,6 @@
 # Documentation index
 
-This folder holds the engine's standards, gates, registers and improvement records. The router is [`../SKILL.md`](../SKILL.md); the operating rules for agents are in [`../AGENTS.md`](../AGENTS.md); how to install and validate the engine is in [`../README.md`](../README.md).
+This folder holds the engine's standards, gates, registers and improvement records. The router is [`../SKILL.md`](../SKILL.md); the operating rules for agents are in [`../AGENTS.md`](../AGENTS.md); how to install and validate the engine, and what the October 2026 kaizen cycles improved, is in [`../README.md`](../README.md).
 
 ## Working documents
 
