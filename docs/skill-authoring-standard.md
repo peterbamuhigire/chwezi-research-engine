@@ -33,10 +33,10 @@ Research skills inherit [evidence discipline](../skills/source-evaluation/refere
 
 Run from the repository root:
 
-```powershell
-python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json
-python -X utf8 scripts/routing_smoke_test.py
-python -X utf8 scripts/validate_engine.py
+```bash
+python3 -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json
+python3 -X utf8 scripts/routing_smoke_test.py --min-rank1 84 --lint-fixtures
+python3 -X utf8 scripts/validate_engine.py
 ```
 
 The baseline is zero debt, not a waiver. Any finding, duplicate name, missing mandatory resource, active-count drift, template-count drift, or routing miss fails CI. After changing a skill, also run the canonical quick validator with the skill directory as its argument.

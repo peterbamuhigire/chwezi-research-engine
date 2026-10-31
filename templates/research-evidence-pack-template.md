@@ -53,14 +53,14 @@ Stop conditions:
 
 Verifier command:
 
-```powershell
-python tools\verification\source_verifier.py projects\<project-id>\_registry\verification-manifest.yaml --out projects\<project-id>\_registry\verification-report.md
+```bash
+python3 tools/verification/source_verifier.py projects/<project-id>/_registry/verification-manifest.yaml --out projects/<project-id>/_registry/verification-report.md
 ```
 
 Citation dashboard command:
 
-```powershell
-python tools\reports\citation_density_dashboard.py projects\<project-id>\05-output\<output-family>\draft.md --manifest projects\<project-id>\_registry\verification-manifest.yaml --out projects\<project-id>\_registry\citation-density.md
+```bash
+python3 tools/reports/citation_density_dashboard.py projects/<project-id>/05-output/<output-family>/draft.md --manifest projects/<project-id>/_registry/verification-manifest.yaml --out projects/<project-id>/_registry/citation-density.md
 ```
 
 ## 7. Reasoning and Review

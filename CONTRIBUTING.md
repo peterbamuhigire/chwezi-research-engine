@@ -10,17 +10,17 @@ Add or update routing fixtures for trigger changes. Fixtures must cover the posi
 
 ## Required checks
 
-```powershell
-python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json
-python -X utf8 scripts/routing_smoke_test.py
-python -X utf8 scripts/validate_engine.py
-python -X utf8 <engineering-engine-root>/skills/sdlc-meta/skill-writing/scripts/quick_validate.py <skill-directory>
+```bash
+python3 -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json
+python3 -X utf8 scripts/routing_smoke_test.py --min-rank1 84 --lint-fixtures
+python3 -X utf8 scripts/validate_engine.py
+python3 -X utf8 <engineering-engine-root>/skills/sdlc-meta/skill-writing/scripts/quick_validate.py <skill-directory>
 git diff --check
 ```
 
-`<engineering-engine-root>` is the engineering engine's checkout, resolved through the engine-routing table. If it is unavailable, record `quick_validate.py` as not assessed.
+`<engineering-engine-root>` is the checkout of `chwezi-dev-engine` (the engineering engine, formerly `skills-web-dev`), resolved through the engine-routing table. If it is unavailable, record `quick_validate.py` as not assessed.
 
-Run relevant syntax, link, unit, render, or domain checks as well. A check that cannot run is `not assessed`, not passed.
+Run relevant syntax, link, unit, render, or domain checks as well: `python3 -m pytest -q -p no:cacheprovider tests engine/tests` for the test suite, and `python3 -X utf8 scripts/validate_machine_error_gate.py` after any anti-slop or cross-engine gate change. The [README](README.md#validation) lists every command, the packages it needs, and what it returned on 2026-10-31, including the two pytest modules and three scraper tests that cannot run without `pandas`, `python-docx` and `beautifulsoup4`. A check that cannot run is `not assessed`, not passed.
 
 ## Release procedure
 
