@@ -158,12 +158,12 @@ Default reflex: find a new source. Acceptable alternatives: restate existing sou
 
 ## Skill loading
 
-Every skill ships:
+Every skill ships `SKILL.md` (59 of 59). Beyond that, do not assume a file exists: measured on 2026-10-31, `AGENTS.md`, `README.md` and `CLAUDE.md` each exist in 27 of the 59 skill directories and `references/` in 48.
 - `SKILL.md` — canonical instructions
-- `AGENTS.md` — runtime-specific notes
-- `README.md` — human overview
-- `CLAUDE.md` — Claude-Code notes (ignored by non-Claude runtimes)
-- `references/` — deep-dive references
+- `AGENTS.md` — runtime-specific notes, where present
+- `README.md` — human overview, where present
+- `CLAUDE.md` — Claude-Code notes (ignored by non-Claude runtimes), where present
+- `references/` — deep-dive references, where present
 
 ## Sequential fallback
 
@@ -207,6 +207,8 @@ Use these commands for project-managed work. After step 2, run `00-meta-initiali
 
 ## Skill authoring and release gates
 
+Commands below say `python`; where only `python3` exists (current Linux and macOS), use `python3`. [`README.md`](README.md#validation) lists every command with its dependencies and its latest measured result.
+
 Run `python -X utf8 scripts/check_portable_references.py` after changing router, README, or skill references. Before release, run `python -X utf8 scripts/check_file_count_cap.py` to enforce the checkout/package-oriented entry limit, and run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
 for the deterministic currentness gate, and `python -X utf8 scripts/validate_source_currency.py --registers-dir docs/source-registers`
 for every real register (`validate_engine.py` runs it as of today). Time-sensitive source records require
@@ -219,7 +221,7 @@ and lists a disposition for every old record.
 - Preserve the 59-skill active catalogue unless an independently justified routing change requires a count change.
 - Run `python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json`, `python -X utf8 scripts/routing_smoke_test.py`, and `python -X utf8 scripts/validate_engine.py` before release.
 - Run the canonical `quick_validate.py` against every changed skill directory. A missing capability or unavailable check is `not assessed`, never passed.
-- Run `python -X utf8 scripts/validate_machine_error_gate.py` after any anti-slop, editorial, or cross-engine gate change. The validator checks ME1-ME7 and AS1-AS7 coverage plus the visual pressure fixture; semantic and visual findings still require human evidence review. It finds the other engines under portfolio roots: pass `--engines-root <dir>` (repeatable) or set `CHWEZI_ENGINES_ROOT` when they are not siblings of this checkout, and add `--engine <name>` for each engine bound on the host. An engine that cannot be found is an error, never a pass.
+- Run `python -X utf8 scripts/validate_machine_error_gate.py` after any anti-slop, editorial, or cross-engine gate change. The validator checks ME1-ME7 and AS1-AS7 coverage plus the visual pressure fixture; semantic and visual findings still require human evidence review. It finds the other engines under portfolio roots: pass `--engines-root <dir>` (repeatable) or set `CHWEZI_ENGINES_ROOT` when they are not siblings of this checkout, and add `--engine <name>` for each engine bound on the host. An engine that cannot be found is an error, never a pass. When the engines sit under more than one root, give every root (`CHWEZI_ENGINES_ROOT` takes the platform path separator). The fixture also names a `political` target (`political-essay-skills`) that has no public checkout, so a run without `--engine` fails on it until it is bound or dropped; the eleven bound target names are in the README command.
 
 ## Proposal-output trigger
 
