@@ -57,7 +57,8 @@ standardisation decision MUST begin in this checkout. Read the local
 current claim.
 
 For the October 2026 cycle, use the frozen baseline and complete evidence set
-in `docs/kaizen/2026-10-engine-kaizen/`; the final report links its validation
+in `docs/kaizen/2026-10-engine-kaizen/`, continued by the pass 2 set in
+`docs/kaizen/2026-10-engine-kaizen-pass-2/`; each final report links its validation
 record and next-cycle actions.
 
 Record source scope, publication/version date, access date, freshness class,

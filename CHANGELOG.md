@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-31 - October 2026 Kaizen, pass 2
+
+- Added a premise check and a named owner for single-claim questions (`skills/source-evaluation/references/single-claim-lookup.md`), with rules for an undated official page and for a statute consolidation that lists unapplied amendments, and two checked worked records.
+- Added a denominator check and a checked conflicting-count example to `quantitative-modelling`.
+- Made the machine-error gate runnable on any host: targets resolve under `--engines-root`, `CHWEZI_ENGINES_ROOT` or the parent of the checkout, with no host path in the fixture.
+- Added machine-checkable register supersession (`superseded_by`) and a gate over every register in `docs/source-registers/`, run by `validate_engine.py` and CI.
+- Extended the portable-reference scanner to repository-escaping and dead relative links and to the author-facing guides; repaired the findings.
+- Added `duplicate_heading` and `unresolved_companion_name` contract checks; merged repeated headings in 19 skills and replaced a retired skill name in 12 files.
+- Re-verified PRISMA, GRADE, Cochrane Handbook, ICD 203 and 206, RFC 9309 and TOP from primary pages; corrected ICD 203 to partial and ICD 206 to `NOT_ASSESSED`.
+- Added routing vocabulary and fixtures for current-state questions; three skills now hold three positive and two owned-negative fixtures.
+- Recorded the baseline, experiments, validation evidence, residual gaps and next review under `docs/kaizen/2026-10-engine-kaizen-pass-2/`.
+
 ## 2026-10-29 - October 2026 Kaizen
 
 - Added a claim-linked source-currentness register for reviewed research standards and dispositioned overdue historical records.
