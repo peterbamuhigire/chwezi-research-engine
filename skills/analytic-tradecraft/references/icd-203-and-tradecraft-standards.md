@@ -1,6 +1,6 @@
 # Reference — ICD 203 and Tradecraft Standards
 
-**Canonical source:** Office of the Director of National Intelligence, Intelligence Community Directive 203 — Analytic Standards. Effective 2 January 2015 (revalidated). PDF: https://www.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
+**Canonical source:** Office of the Director of National Intelligence, Intelligence Community Directive 203 — Analytic Standards. Effective 2 January 2015 (revalidated). PDF: https://archive.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
 
 **Companion:** *Analyzing Intelligence: Origins, Obstacles, and Innovations* (George & Bruce, eds., Georgetown UP, 2008) treats the MacEachin tradecraft reforms throughout — see esp. Davis Ch 10 ("Why Bad Things Happen to Good Analysts"), Bruce Ch 11 ("Making Analysis More Reliable").
 
@@ -68,7 +68,7 @@ Douglas MacEachin (Deputy Director for Intelligence, CIA, early 1990s) introduce
 
 ## Sources
 
-- ODNI Intelligence Community Directive 203, January 2015. https://www.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
+- ODNI Intelligence Community Directive 203, January 2015. https://archive.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
 - George & Bruce, *Analyzing Intelligence*, esp. Davis Ch 10, Bruce Ch 11. Tier 1.
 - Silberman-Robb WMD Commission Report, 2005. Tier 1.
 - MacEachin, Douglas. "Tradecraft of Analysis: Challenge and Change in the CIA." 1994. Cited by Davis and Bruce.

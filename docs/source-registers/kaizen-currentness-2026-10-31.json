@@ -1,0 +1,304 @@
+{
+  "register_id": "digital-research-kaizen-currentness-2026-10-31",
+  "purpose": "Claim-scoped re-verification of the standards and platform records named in the Step 5 currency check of kaizen pass 2, read from primary pages on 2026-10-31. It builds on, and does not replace, kaizen-currentness-2026-10.json.",
+  "as_of": "2026-10-31",
+  "builds_on": "kaizen-currentness-2026-10.json",
+  "changes_from_previous": [
+    "ICD 203: downgraded from verified to partial. The PDF holds a second technical amendment (annual training) that the 29 October record did not mention, and the January 2022 amendment prints a signature date that conflicts with a memorandum it cites.",
+    "ICD 206: downgraded from partial to NOT_ASSESSED. The PDF is image-only; the 29 October amendment date was a search-result summary and is not confirmed by the document.",
+    "RFC 9309: errata check not reproduced; support is partial, not verified.",
+    "ODNI locators: the www.odni.gov PDF URLs now redirect to archive.dni.gov.",
+    "OpenAI: GPT-6 Rosalind (30 October, trusted access, life sciences) is a release after the previous register; the flagship catalogue is unchanged and the Luna/high Codex pin is retained."
+  ],
+  "sources": [
+    {
+      "id": "SRC-PRISMA-CORE-2026-10-31",
+      "title": "PRISMA 2020 statement resource page",
+      "url": "https://www.prisma-statement.org/prisma-2020",
+      "publisher": "PRISMA Executive",
+      "tier": 1,
+      "scope": "The page presents PRISMA 2020 (statement paper, checklists, abstract checklist, flow diagrams) as the current statement; it does not name extensions.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "verified",
+      "uncertainty": "The page carries no publication or revision date, only a copyright line (2024-2026). Absence of a successor on the page is not proof that none exists elsewhere.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-PRISMA-C-2026-10-31",
+      "title": "PRISMA-Children and Adolescents (PRISMA-C) 2026 extension page",
+      "url": "https://www.prisma-statement.org/children",
+      "publisher": "PRISMA Executive",
+      "tier": 1,
+      "scope": "Population scope (children and adolescents aged 0-19, mixed-population reviews, parent-delivered interventions with outcomes assessed in children) and the BMJ 2026 citation; it does not replace PRISMA 2020 generally.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "verified",
+      "uncertainty": "Publication year 2026 from the cited article (BMJ 2026;393:e088561); the page gives no day-level date.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-GRADE-LIVING-MAP-2026-10-31",
+      "title": "GRADE Living Map",
+      "url": "https://book.gradepro.org/map",
+      "publisher": "GRADE Working Group",
+      "tier": 1,
+      "scope": "Which GRADE resources the Working Group labels current, superseded, archived or not valid guidance; not the content of any chapter.",
+      "revision_date": "2026-06-13",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "verified",
+      "uncertainty": "Footer reads 'Version: 13 June 2026'. The page does not mention the older GRADE Handbook, so that Handbook's status is not established by this record.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-COCHRANE-HANDBOOK-2026-10-31",
+      "title": "Cochrane Handbook for Systematic Reviews of Interventions, version page",
+      "url": "https://www.cochrane.org/handbook",
+      "publisher": "Cochrane",
+      "tier": 1,
+      "scope": "Version number and publisher-listed update date for the intervention Handbook only.",
+      "revision_date": "2024-08-22",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "verified",
+      "uncertainty": "The page announces no newer version. Other Cochrane handbooks are separate.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-ODNI-ICD203-2026-10-31",
+      "title": "Intelligence Community Directive 203, Analytic Standards, with technical amendments (archive.dni.gov copy)",
+      "url": "https://archive.dni.gov/files/documents/ICD/ICD-203.pdf",
+      "publisher": "Office of the Director of National Intelligence",
+      "tier": 1,
+      "scope": "Text layer of the 8-page PDF: base directive signed 2 January 2015 and two technical amendment pages. Applies within the Intelligence Community only.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "partial",
+      "uncertainty": "The first amendment page (annual training on the analytic standards) prints no signature date in the text layer. The second prints 'Signed//James A. Smith 21 January 2022' yet cites a memorandum signed 22 August 2022; the inconsistency is not resolved here. Which amendment is the latest is NOT_ASSESSED. PDF metadata shows creation on 2024-11-20, which is file metadata, not a signature date. The text layer looks like OCR output (spacing errors such as 'Analy tic'), so a printed digit or date could be misread.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-ODNI-ICD206-2026-10-31",
+      "title": "Intelligence Community Directive 206, Sourcing Requirements for Disseminated Analytic Products (archive.dni.gov copy)",
+      "url": "https://archive.dni.gov/files/documents/ICD/ICD-206.pdf",
+      "publisher": "Office of the Director of National Intelligence",
+      "tier": 1,
+      "scope": "An 8-page PDF that is image-only; no text could be extracted.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "NOT_ASSESSED",
+      "uncertainty": "No text layer and no OCR tool on this host, so title, dates, amendment and ICS 206-01 reference were not read. The 29 October claim (amendment dated 18 December 2025) is carried as unverified. PDF metadata shows creation on 2025-12-19, which is file metadata only.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-RFC9309-2026-10-31",
+      "title": "RFC 9309, Robots Exclusion Protocol",
+      "url": "https://www.rfc-editor.org/info/rfc9309",
+      "publisher": "RFC Editor / IETF",
+      "tier": 1,
+      "scope": "Document text as returned by the fetch: Internet Standards Track, Proposed Standard, copyright 2022; no obsoletes or updates statement.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "partial",
+      "uncertainty": "Status and 2022 date are supported. The fetch returned the document text, not an errata listing, so errata and any later updating RFC are NOT_ASSESSED in this run.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-COS-TOP-2026-10-31",
+      "title": "TOP Guidelines",
+      "url": "https://www.cos.io/initiatives/top-guidelines",
+      "publisher": "Center for Open Science",
+      "tier": 1,
+      "scope": "TOP 2025 structure as described on the official page: seven Research Practices, two Verification Practices, four Verification Study types, three implementation levels for Research Practices.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2027-01-31",
+      "freshness_class": "context-bound",
+      "support_state": "verified",
+      "uncertainty": "The page says 'Updated in 2025' and cites a 2026 article; it presents TOP as evolving.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-OPENAI-CHANGELOG-2026-10-31",
+      "title": "OpenAI API changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "publisher": "OpenAI",
+      "tier": 1,
+      "scope": "Provider-published release dates and descriptions; not comparative quality evidence.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2026-11-30",
+      "freshness_class": "platform",
+      "support_state": "verified",
+      "uncertainty": "The changelog is a provider statement. Descriptions say what each model is for, not how it performs against another.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    },
+    {
+      "id": "SRC-OPENAI-MODELS-2026-10-31",
+      "title": "OpenAI API models catalogue",
+      "url": "https://developers.openai.com/api/docs/models",
+      "publisher": "OpenAI",
+      "tier": 1,
+      "scope": "Provider-published model names and one-line descriptions on the access date.",
+      "as_of": "2026-10-31",
+      "accessed": "2026-10-31",
+      "verified_at": "2026-10-31",
+      "review_after": "2026-11-30",
+      "freshness_class": "platform",
+      "support_state": "verified",
+      "uncertainty": "Catalogue presence is not proof of account entitlement or of which model ran any session.",
+      "archive_status": "NOT_ASSESSED",
+      "owner": "Digital Research Engine"
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM-PRISMA-CORE-2026-10-31",
+      "text": "The official PRISMA page still presents PRISMA 2020 as the current statement and names no successor.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-PRISMA-CORE-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Undated page; extensions are chosen by study scope and were not enumerated by this page."
+    },
+    {
+      "id": "CLM-PRISMA-C-2026-10-31",
+      "text": "PRISMA-C 2026 is an extension for systematic reviews of intervention effects in children and adolescents aged 0-19; citation BMJ 2026;393:e088561.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-PRISMA-C-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Use only within the extension's population scope."
+    },
+    {
+      "id": "CLM-GRADE-MAP-2026-10-31",
+      "text": "The GRADE Living Map, version dated 13 June 2026, separates current official sources, superseded sources, an archive and related papers that are not valid GRADE guidance; judge each GRADE source by its own status, not by a blanket Handbook claim.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-GRADE-LIVING-MAP-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Chapter content needs direct inspection for each use."
+    },
+    {
+      "id": "CLM-COCHRANE-65-2026-10-31",
+      "text": "The Cochrane Handbook for Systematic Reviews of Interventions page lists version 6.5 and 'Last updated: 22 August, 2024', with no newer version announced.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-COCHRANE-HANDBOOK-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Intervention Handbook only."
+    },
+    {
+      "id": "CLM-ICD203-2026-10-31",
+      "text": "The archive.dni.gov ICD 203 PDF holds the base directive signed 2 January 2015 and at least two technical amendment pages, one adding an annual-training requirement for analysts and one dated 21 January 2022 on its signature line.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-ODNI-ICD203-2026-10-31"
+      ],
+      "support_state": "partial",
+      "limitation": "The 29 October wording named only the January 2022 amendment. The first amendment's date is unread, the second's date conflicts with the memorandum it cites, and the latest amendment is NOT_ASSESSED. The PDF text layer appears to be OCR output."
+    },
+    {
+      "id": "CLM-ICD206-2026-10-31",
+      "text": "The archive.dni.gov ICD 206 PDF could not be read as text; its content and any 18 December 2025 amendment are not verified in this run.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-ODNI-ICD206-2026-10-31"
+      ],
+      "support_state": "NOT_ASSESSED",
+      "limitation": "Image-only PDF and no OCR tool."
+    },
+    {
+      "id": "CLM-ODNI-LOCATOR-2026-10-31",
+      "text": "On 2026-10-31 the www.dni.gov ICD 203 URL answered with a permanent redirect to www.odni.gov, and the www.odni.gov ICD 203 and ICD 206 URLs answered with permanent redirects to archive.dni.gov.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-ODNI-ICD203-2026-10-31",
+        "SRC-ODNI-ICD206-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Observed behaviour of the redirects on one date; the redirect targets are server-supplied and were taken to be official because they are dni.gov hosts."
+    },
+    {
+      "id": "CLM-RFC9309-2026-10-31",
+      "text": "RFC 9309 is a Proposed Standard on the Internet Standards Track, copyright 2022, and states no obsoletes or updates relationship.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-RFC9309-2026-10-31"
+      ],
+      "support_state": "partial",
+      "limitation": "Errata and later updating RFCs were not read in this run."
+    },
+    {
+      "id": "CLM-TOP2025-2026-10-31",
+      "text": "The official TOP page describes TOP 2025 as seven Research Practices, two Verification Practices and four Verification Study types, with three implementation levels for the Research Practices.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-COS-TOP-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "The publisher describes TOP as evolving."
+    },
+    {
+      "id": "CLM-OAI-RELEASES-2026-10-31",
+      "text": "OpenAI's changelog lists GPT-6.1 Terra on 26 October 2026 and GPT-6 Rosalind on 30 October 2026; Rosalind is described as specialised biological reasoning for life-sciences research, with access limited to organisations approved for Rosalind Research.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-OPENAI-CHANGELOG-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "The Rosalind release post-dates the 29 October register. A release notice is not task-fit, cost, latency or quality evidence."
+    },
+    {
+      "id": "CLM-OAI-CATALOGUE-2026-10-31",
+      "text": "The models catalogue lists GPT-6 Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna as its flagship models, unchanged from 29 October, with GPT-Rosalind among the specialised models.",
+      "requires_currentness": true,
+      "source_ids": [
+        "SRC-OPENAI-MODELS-2026-10-31"
+      ],
+      "support_state": "verified",
+      "limitation": "Does not prove account entitlement. This Claude session's own model selection is outside the Codex policy and is not changed by it."
+    }
+  ],
+  "limitations": [
+    "Source metadata checks do not prove semantic support; support states are researcher dispositions against the scopes above.",
+    "No archive snapshots were captured; archive status is NOT_ASSESSED for every record.",
+    "No paid model call, account-entitlement test or independent human review was made.",
+    "The fetch tool summarises pages; PDF text was read locally with pdftotext where a text layer existed."
+  ]
+}

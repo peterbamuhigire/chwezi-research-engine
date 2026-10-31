@@ -52,7 +52,7 @@ If the output is purely descriptive ("the regulator filed X on date Y"), this sk
 
 ## ICD 203 — one-paragraph summary
 
-The Office of the Director of National Intelligence's Intelligence Community Directive 203 (revalidated January 2015) requires every IC analytic product to satisfy nine standards: appropriate sourcing; explicit uncertainty; distinction between assumption and judgment; analysis of alternatives; customer relevance; logical argumentation; consistency with prior judgments (with change explained); accurate probability judgments; and proper use of visual information. The engine adopts these as a universal ship-gate for any estimative output. Source: ODNI ICD 203 PDF — https://www.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
+The Office of the Director of National Intelligence's Intelligence Community Directive 203 (revalidated January 2015) requires every IC analytic product to satisfy nine standards: appropriate sourcing; explicit uncertainty; distinction between assumption and judgment; analysis of alternatives; customer relevance; logical argumentation; consistency with prior judgments (with change explained); accurate probability judgments; and proper use of visual information. The engine adopts these as a universal ship-gate for any estimative output. Source: ODNI ICD 203 PDF — https://archive.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
 
 ## Structured Analytic Techniques — one-paragraph summary
 
@@ -176,7 +176,7 @@ Two explanations supported by overlapping sources remain separate until independ
 ## Sources for this skill
 
 - George, Roger Z., and Bruce, James B., eds. *Analyzing Intelligence: Origins, Obstacles, and Innovations*. Georgetown University Press, 2008. Tier 1.
-- ODNI Intelligence Community Directive 203 — Analytic Standards. January 2015. https://www.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
+- ODNI Intelligence Community Directive 203 — Analytic Standards. January 2015. https://archive.dni.gov/files/documents/ICD/ICD-203.pdf. Tier 1.
 - Heuer, Richards J., Jr. *Psychology of Intelligence Analysis*. CIA Center for the Study of Intelligence, 1999. https://www.cia.gov/resources/csi/books-monographs/psychology-of-intelligence-analysis-2/. Tier 1.
 - Heuer, Richards J., Jr., and Pherson, Randolph H. *Structured Analytic Techniques for Intelligence Analysis*. CQ Press / SAGE, multiple editions. Tier 1.
 - Kent, Sherman. *Words of Estimative Probability* (1964; declassified). https://www.cia.gov/resources/csi/static/Words-of-Estimative-Probability.pdf. Tier 1.
