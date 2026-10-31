@@ -207,8 +207,11 @@ Use these commands for project-managed work. After step 2, run `00-meta-initiali
 ## Skill authoring and release gates
 
 Run `python -X utf8 scripts/check_portable_references.py` after changing router, README, or skill references. Before release, run `python -X utf8 scripts/check_file_count_cap.py` to enforce the checkout/package-oriented entry limit, and run `python -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json`
-for the deterministic currentness gate. Time-sensitive source records require
-verification and review dates; overdue records block release.
+for the deterministic currentness gate, and `python -X utf8 scripts/validate_source_currency.py --registers-dir docs/source-registers`
+for every real register (`validate_engine.py` runs it as of today). Time-sensitive source records require
+verification and review dates; overdue records block release. A register that is history may name a newer
+register in a top-level `superseded_by` key; its overdue records are accepted only while that successor validates
+and lists a disposition for every old record.
 
 - Discover active skills from the filesystem below `skills/`. The standalone proposal engine is routed through the global engine table and is not part of this repository's catalogue. Do not use a README table as inventory.
 - Follow `docs/skill-authoring-standard.md` and begin new skills from `templates/skill-template/SKILL.md`.

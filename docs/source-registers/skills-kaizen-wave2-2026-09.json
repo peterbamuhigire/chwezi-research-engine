@@ -2,6 +2,7 @@
   "register_id": "skills-kaizen-wave2-2026-09",
   "purpose": "Currentness evidence for the model-policy and plugin-documentation claims used in the internal Skills Kaizen execution log. This is not external certification or an engine-wide claim census.",
   "as_of": "2026-09-26",
+  "superseded_by": "kaizen-currentness-2026-10.json",
   "sources": [
     {
       "id": "SRC-OAI-MODEL-CATALOGUE-2026-09-26",
