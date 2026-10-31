@@ -8,6 +8,7 @@
 - Added `docs/README.md` as the documentation index; marked `PROJECT_BRIEF.md` and `RESEARCH_CRAFT_INTEGRATION.md` as April 2026 records (`15b1a47`).
 - Recorded the findings this wave did not change in `docs/kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md` (`d912001`).
 - README: added "What the October 2026 kaizen improved" under Quality and improvement, an account of the 18 changes kept in the 29 and 31 October cycles with their commits, verification and before and after figures; it points to the evidence files and does not replace them.
+- README restructured for reading (`c75a92f`, `ea7d370`, `7a98d48`, `165d906`): a front door with an at-a-glance list and a three-step Start here, a contents list, a 12-row task-to-skill table, shorter sections and sentences, and the 18-item October account as numbered Problem, Change and Result lists. The 220-line reference list moved to `docs/references.md` and the 59-row skill table to `docs/skill-catalogue.md`; the README keeps an 11-row group summary. Corrected the scraper test note: the three failures are assertion failures caused by the scraper recording `ModuleNotFoundError: No module named 'bs4'` for each page. Measures, validators and the preservation check are in `docs/kaizen/2026-10-readme-kaizen/readme-kaizen-record.md`.
 
 Commit index for the pass 2 entry below, by theme:
 
