@@ -288,6 +288,22 @@
       "forbidden": [
         "source-verification"
       ]
+    },
+    {
+      "id": "statute-currency-positive",
+      "prompt": "Confirm whether a statute amended in 2022 is controlling law today, and which amending Acts or regulations still need applying to its consolidated text.",
+      "expected": "online-legal-research",
+      "forbidden": [
+        "source-verification"
+      ]
+    },
+    {
+      "id": "case-authority-treatment-positive",
+      "prompt": "Find the leading cases and legal authority on employer social security liability in Uganda and state their jurisdiction and treatment by later courts.",
+      "expected": "online-legal-research",
+      "forbidden": [
+        "uganda-academic-research"
+      ]
     }
   ],
   "negatives": [
@@ -368,6 +384,18 @@
       "skill": "source-evaluation",
       "prompt": "Plan the waves, cohort briefs and synthesis route for a multi-cohort research project on rural clinics.",
       "owner": "research-orchestration"
+    },
+    {
+      "id": "partner-vetting-not-legal-research",
+      "skill": "online-legal-research",
+      "prompt": "Investigate a prospective partner's corporate registration, ownership, adverse litigation and regulatory standing before a deal.",
+      "owner": "due-diligence"
+    },
+    {
+      "id": "stakeholder-map-not-legal-research",
+      "skill": "online-legal-research",
+      "prompt": "Map stakeholder positions on a proposed regulation, rank the decisions each group faces and identify their pain points.",
+      "owner": "decision-support-analysis"
     }
   ]
 }

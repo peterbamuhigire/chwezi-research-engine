@@ -103,7 +103,7 @@ A Kenyan court is bound by the equivalent Kenyan-jurisdiction sources.
 
 In jurisdictions where Shepard's or KeyCite are not standard, currency must be checked manually:
 
-1. **Statute currency** — locate the consolidated/revised version; check the gazette amendment index for any amending Acts since
+1. **Statute currency** — locate the consolidated/revised version; read the repository's own currency notice first, and treat the text as partial for the current rule while that notice lists amendments not yet applied (see [single-claim lookup](../../source-evaluation/references/single-claim-lookup.md), section 3); check the gazette amendment index for any amending Acts since
 2. **Case currency** — search the judgments repository for later judgments citing the case; read each to determine treatment (followed / distinguished / criticised / overruled)
 3. **Constitutional provisions** — cross-check the amendment index of the constitution itself; some clauses have been amended
 

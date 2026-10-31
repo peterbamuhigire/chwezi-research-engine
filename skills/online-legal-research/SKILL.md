@@ -50,7 +50,7 @@ HARD CONSTRAINT — NO HALLUCINATION:
 
 1. Frame the legal issue, jurisdiction, date, and required authority level.
 2. Search primary authority first, then use secondary material only to locate or interpret it.
-3. Verify text, currency, treatment, and pinpoint location; stop when controlling authority cannot be confirmed.
+3. Verify text, currency, treatment, and pinpoint location; stop when controlling authority cannot be confirmed, and treat a repository notice of unapplied amendments as currency not confirmed.
 4. Analyse authority and facts separately, state counter-authority, and recover with a qualified research note when access is incomplete.
 
 ## Capability contract

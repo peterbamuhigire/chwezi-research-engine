@@ -31,7 +31,22 @@ or regulator's own statement (tier 1) and one independent dated official source
 (tier 2 or better), and read the primary text where it exists. A vendor, news or
 blog statement can locate a source but cannot be the support.
 
-## 3. Record the claim
+## 3. Two page-level traps
+
+**An official page with no date.** Record it as `undated`, and note any date the page
+does show, such as a footer year. A footer year is not a revision date, and the
+access date is not the page's date. The page supports the claim only alongside a
+dated source that says the same.
+
+**A statute consolidation with a currency notice.** Read the repository's own
+notice before the text. If it lists amendments not yet applied, the text is
+`partial` for the current rule: it shows what the older text said and cannot show
+what the amendments changed. The current rule then needs the amending text or an
+official current statement, and the answer names the amendments that stayed
+unread. Chapter numbers differ between revised editions; do not reconcile two
+numbers by guessing.
+
+## 4. Record the claim
 
 One row is enough. Keep access date, publication date and review date apart.
 
@@ -47,13 +62,13 @@ One row is enough. Keep access date, publication date and review date apart.
 Label an inference as `(inference)`, for example a figure worked out from two
 sections rather than stated in one.
 
-## 4. Stop rules
+## 5. Stop rules
 
 - Answer when two independent current sources agree and the primary text, where read, does not contradict them.
 - Return a gap, not an answer, when the only support is one source, an unreadable document or a stale text. Say what would close it.
 - An archive snapshot, where the verification gate requires one, is recorded as captured or `NOT_ASSESSED`. Absence is never silently dropped.
 
-## Worked example: a question built on a false premise
+## Worked example 1: a question built on a false premise
 
 Question put to the engine on 2026-10-31: "Why does Kenya's NSSF still cap employee
 contributions at a flat KES 200 a month in 2026?"
@@ -73,3 +88,21 @@ Presuppositions: (a) the cap is flat, (b) it is KES 200, (c) it still applies in
 Answer given: the premise is wrong, here is the current structure, and a better
 question is how the phased increase under the Third Schedule works or where the
 flat figure is still quoted.
+
+## Worked example 2: a current rate with an undated page and a stale consolidation
+
+Question put to the engine on 2026-10-31: "What is the current Uganda NSSF employer
+contribution rate?"
+
+| Field | Content |
+|---|---|
+| Claim | The employer contributes 10% and the employee 5% of gross monthly wage, 15% in total, due by the 15th day of the following month. |
+| Sources | NSSF Uganda membership page (tier 1, states the split and the deadline). Ministry of Finance business portal, NSSF employer registration page (tier 2, states the same split and names the principal Act and its 2022 amendment). National Social Security Fund Act on the Uganda Legal Information Institute site (tier 1, primary text): section 11(1) sets a standard contribution of 15 percent of wages; section 12(1) lets the employer deduct an employee share of 5 percent. |
+| Dates | Membership page: `undated`; its only date is a footer, "2019-2021". Ministry page: "Last reviewed: 15 June 2026". Act text: the consolidation header reads "Legislation as at 31 December 2000". Accessed 2026-10-31. |
+| Verification | All three agree on the 15% total and the 5% employee share. The 10% employer figure is the remainder, so it is an **(inference)** from sections 11 and 12 and a direct statement on both web pages. |
+| Support state | `supported`: employer 10%, employee 5%, total 15%, deadline. `NOT_ASSESSED`: whether the 2022 amendment or General Notice 2917 of 2024 changed section 11 or 12. |
+| Open limits | The consolidation's own notice lists unapplied amendments (Act 1 of 2022 and General Notice 2917 of 2024), so the statute text is `partial` for the current rule. The Ministry page is the only dated current statement. The consolidation numbers the Act as Chapter 222 and the Ministry page as Cap. 230; not reconciled. No source found reports a 2026 change to the split, which is an absence of contrary evidence, not support. No archive snapshot: `NOT_ASSESSED`. |
+
+Answer given: 10% employer and 5% employee, stated with the date of the only dated
+source and with the two limits that a reader needs: one page is undated, and the
+statute text predates amendments that were not read.
