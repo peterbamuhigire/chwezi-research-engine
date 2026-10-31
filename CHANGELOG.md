@@ -7,6 +7,7 @@
 - CONTRIBUTING, the skill authoring standard and the evidence pack template: bash blocks, `python3` and forward-slash paths instead of PowerShell, `python` and backslashes (`1542d6f`).
 - Added `docs/README.md` as the documentation index; marked `PROJECT_BRIEF.md` and `RESEARCH_CRAFT_INTEGRATION.md` as April 2026 records (`15b1a47`).
 - Recorded the findings this wave did not change in `docs/kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md` (`d912001`).
+- README: added "What the October 2026 kaizen improved" under Quality and improvement, an account of the 18 changes kept in the 29 and 31 October cycles with their commits, verification and before and after figures; it points to the evidence files and does not replace them.
 
 Commit index for the pass 2 entry below, by theme:
 
