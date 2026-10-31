@@ -101,71 +101,25 @@ The [standards register](docs/source-registers/research-standards-register.md) r
 
 ## Skill catalogue
 
-The table groups the 59 active skills into 11 workflow groups. It was generated from the skill front matter. The inventory is the filesystem below `skills/`, not this table. `skills/doc-standards.md` and `skills/encoding-patterns-into-skills.md` are shared notes, not skills.
+The 59 active skills fall into 11 workflow groups. The full table, with one line and one link per skill, is in [`docs/skill-catalogue.md`](docs/skill-catalogue.md). It was generated from the skill front matter.
 
-| Category | Skill | What it does |
-|---|---|---|
-| Research operating system (6) | [`00-meta-initialization`](skills/00-meta-initialization/) | Initialises a research workspace with profile, method, audience-output matrix, wave roadmap and dispatch gate |
-| | [`doctrine-spine`](skills/doctrine-spine/) | Defines and audits the mandatory research sequence from evidence discipline to export |
-| | [`research-orchestration`](skills/research-orchestration/) | Chooses research type, discipline strategy and reading mode, then plans waves, gap filling and synthesis |
-| | [`research-design`](skills/research-design/) | Sets formal questions, method, case logic, historical or trend design and MROC design |
-| | [`research-techniques`](skills/research-techniques/) | Supplies named techniques: mini-analysis, crosswalk matrix, gap analysis, reference interview, search-operator grammar |
-| | [`agentic-research-operations`](skills/agentic-research-operations/) | Designs and audits multi-agent research: briefs, roles, tool limits, verification loops and recovery |
-| Source discipline and verification (5) | [`source-evaluation`](skills/source-evaluation/) | Admits sources after testing provenance, authority, independence, timeliness, bias and fit to the claim |
-| | [`source-verification`](skills/source-verification/) | Verifies URLs, quotations, statistics, claim-source links, archive snapshots and release readiness |
-| | [`evidence-claim-graph`](skills/evidence-claim-graph/) | Builds a traceable graph of sources, evidence, claims, warrants, gaps and contradictions |
-| | [`validation-contract`](skills/validation-contract/) | Defines the seven evidence categories and the Release Evidence Bundle for specialist skills and releases |
-| | [`peer-review-loop`](skills/peer-review-loop/) | Runs adversarial, red-team, source and method review with dissent handling before release |
-| Reasoning, analysis and forecasting (6) | [`critical-reasoning-and-argument`](skills/critical-reasoning-and-argument/) | Tests claims for warrants, assumptions, countercases and implications |
-| | [`analytic-tradecraft`](skills/analytic-tradecraft/) | Applies structured analytic techniques, bias checks and calibrated estimative language |
-| | [`calibration-and-forecasting`](skills/calibration-and-forecasting/) | Calibrates, scores and updates forecasts, probability judgements and confidence claims |
-| | [`decision-support-analysis`](skills/decision-support-analysis/) | Frames decisions with alternatives, values, uncertainty, trade-offs and pre-mortems |
-| | [`systems-thinking-and-mental-models`](skills/systems-thinking-and-mental-models/) | Analyses feedback loops, root causes and leverage points with systemigrams and mental models |
-| | [`mind-mapping-and-synthesis`](skills/mind-mapping-and-synthesis/) | Compresses a verified corpus into a navigable mind map for synthesis and decomposition |
-| Data and quantitative work (3) | [`dataset-discovery-and-analysis`](skills/dataset-discovery-and-analysis/) | Finds public datasets, retrieves them with integrity checks and profiles their quality |
-| | [`data-quality-pipeline`](skills/data-quality-pipeline/) | Profiles, cleans, merges and validates tabular data through lineage and quality gates |
-| | [`quantitative-modelling`](skills/quantitative-modelling/) | Builds market-sizing, scenario and forecast models with assumption registers and model audits |
-| Investigation and collection (7) | [`osint-investigation`](skills/osint-investigation/) | Runs lawful public-source investigation: reconnaissance, adverse media, chronology and case vaults |
-| | [`due-diligence`](skills/due-diligence/) | Conducts corporate, sanctions, ownership and background due diligence with an auditable finding trail |
-| | [`pi-investigation`](skills/pi-investigation/) | Supports authorised licensed-investigator work with chain of custody and evidentiary reports |
-| | [`online-legal-research`](skills/online-legal-research/) | Researches statutes, cases and treaties by jurisdiction and refuses unverified law |
-| | [`primary-research`](skills/primary-research/) | Designs interviews, observation, focus groups and coding for first-hand qualitative evidence |
-| | [`web-scraping-foundations`](skills/web-scraping-foundations/) | Chooses the least invasive web acquisition path, with politeness and error handling |
-| | [`scraping-engineering-python`](skills/scraping-engineering-python/) | Scales Python scrapers with caching, concurrency, browser automation and form handling |
-| Academic research (5) | [`academic-writing`](skills/academic-writing/) | Drafts academic prose with source-away composition, citation, synthesis and register controls |
-| | [`academic-reporting-standards`](skills/academic-reporting-standards/) | Applies named reporting and examination standards to papers, theses and systematic reviews |
-| | [`dissertation-writing-process`](skills/dissertation-writing-process/) | Plans and drafts a dissertation from research question to defence-ready manuscript |
-| | [`uganda-academic-research`](skills/uganda-academic-research/) | Checks academic work against named Ugandan university handbooks |
-| | [`kenya-academic-research`](skills/kenya-academic-research/) | Checks academic work against named Kenya-based institutional handbooks |
-| Writing and communication (9) | [`research-output-formats`](skills/research-output-formats/) | Selects the document form and academic or non-academic variant for a deliverable |
-| | [`analytical-report-shapes`](skills/analytical-report-shapes/) | Shapes decision-grade artefacts: intelligence briefs, estimative and decision memos, evaluation reports |
-| | [`report-and-proposal-craft`](skills/report-and-proposal-craft/) | Drafts long-form reports, proposals, business plans, bid responses and white papers |
-| | [`business-writing`](skills/business-writing/) | Drafts emails, memos, letters, articles, web copy and speeches |
-| | [`executive-communication`](skills/executive-communication/) | Turns verified research into answer-first memos, reports, decks and one-pagers |
-| | [`consulting-delivery`](skills/consulting-delivery/) | Structures consulting work with issue trees, hypothesis-led workplans and implementation logic |
-| | [`east-african-english`](skills/east-african-english/) | Adjusts English to natural, professional East African usage |
-| | [`anti-ai-slop`](skills/anti-ai-slop/) | Prevents generic, unsupported or mechanical prose while an artefact is produced |
-| | [`ai-slop-audit`](skills/ai-slop-audit/) | Grades a finished artefact for AI slop with evidenced findings, fixes and a verdict |
-| Document production (5) | [`professional-word-output`](skills/professional-word-output/) | Produces and checks Word documents with controlled styles, pagination, tables and render evidence |
-| | [`excel-spreadsheets`](skills/excel-spreadsheets/) | Builds and repairs Excel workbooks with formulas, tables, charts and formatting |
-| | [`python-document-generation`](skills/python-document-generation/) | Generates branded Excel, Word and PDF exports from Python |
-| | [`manual-guide`](skills/manual-guide/) | Writes end-user manuals and reference guides for ERP or SaaS features |
-| | [`markdown-lint-cleanup`](skills/markdown-lint-cleanup/) | Repairs Markdown lint issues without changing meaning |
-| Knowledge products (2) | [`knowledge-mining`](skills/knowledge-mining/) | Turns a corpus into claim libraries, evidence maps, dossiers and ontology seeds |
-| | [`knowledge-productization`](skills/knowledge-productization/) | Converts research into reusable knowledge assets and audience-specific offerings |
-| Requirements and project documentation (5) | [`project-requirements`](skills/project-requirements/) | Runs a discovery interview that yields requirements, business rules, user types and workflows |
-| | [`systems-process-requirements`](skills/systems-process-requirements/) | Describes systems, processes, interfaces, states and data in testable, traceable form |
-| | [`spec-architect`](skills/spec-architect/) | Produces coding-ready specifications with scope, acceptance criteria and risks |
-| | [`doc-architect`](skills/doc-architect/) | Generates a project's layered `AGENTS.md` documentation from observed workspace evidence |
-| | [`update-claude-documentation`](skills/update-claude-documentation/) | Reconciles project documentation with code after an authorised change |
-| Engine and skill practice (6) | [`skill-writing`](skills/skill-writing/) | Creates or upgrades a skill under the canonical chwezi-dev-engine standard |
-| | [`skill-composition-standards`](skills/skill-composition-standards/) | Sets house style, artefact contracts and evidence declarations for composed skills |
-| | [`skill-taxonomy-and-routing`](skills/skill-taxonomy-and-routing/) | Normalises skill names, resolves skill-or-reference decisions and updates routers |
-| | [`skill-safety-audit`](skills/skill-safety-audit/) | Reviews a new or changed skill for credential harvesting, unsafe installers and hidden mutation |
-| | [`capability-matrix`](skills/capability-matrix/) | Maps a technology domain to its foundation, implementation, validation and companion skills |
-| | [`ai-evaluation-and-data-flywheel`](skills/ai-evaluation-and-data-flywheel/) | Designs evaluations, failure analysis, regression sets and feedback loops for AI-assisted research |
+The inventory is the filesystem below `skills/`, not that table. `skills/doc-standards.md` and `skills/encoding-patterns-into-skills.md` are shared notes, not skills.
 
-**Total: 59 skills** (6 + 5 + 6 + 3 + 7 + 5 + 9 + 5 + 2 + 5 + 6).
+| Group | Skills | Covers |
+|---|---:|---|
+| Research operating system | 6 | Workspace set-up, doctrine, orchestration, research design, techniques and multi-agent operations |
+| Source discipline and verification | 5 | Admitting sources, verifying claims, evidence graphs, validation contracts and peer review |
+| Reasoning, analysis and forecasting | 6 | Argument testing, analytic tradecraft, forecasting, decision support, systems thinking and mind maps |
+| Data and quantitative work | 3 | Dataset discovery, data-quality pipelines and quantitative modelling |
+| Investigation and collection | 7 | OSINT, due diligence, licensed investigation, legal research, fieldwork and web scraping |
+| Academic research | 5 | Academic writing, reporting standards, dissertations and Ugandan and Kenyan handbooks |
+| Writing and communication | 9 | Output formats, report shapes, business and executive writing, East African English and the anti-slop gates |
+| Document production | 5 | Word, Excel and Python document output, manuals and Markdown cleanup |
+| Knowledge products | 2 | Knowledge mining and productisation |
+| Requirements and project documentation | 5 | Requirements interviews, specifications and project documentation upkeep |
+| Engine and skill practice | 6 | Writing, standardising, routing and safety-auditing skills, capability mapping and AI evaluation |
+
+Total: 59 skills (6 + 5 + 6 + 3 + 7 + 5 + 9 + 5 + 2 + 5 + 6).
 
 ## Install
 
@@ -250,7 +204,7 @@ Run every command from the repository root. They were run on 2026-10-31 on Linux
 | `python3 -X utf8 scripts/validate_source_currency.py --registers-dir docs/source-registers` | Dates and review metadata of every source register, as of today. Claim support is not checked | Python only | exit 0; 3 registers, 0 findings |
 | `python3 -X utf8 scripts/validate_source_currency.py tests/fixtures/source-currency.json --as-of 2026-08-06` | The same validator against its fixed fixture | Python only | exit 0 |
 | `python3 -X utf8 scripts/check_portable_references.py` | Host paths, repository-escaping links and dead relative links in active documents | Python only | exit 0; 389 files, 0 findings |
-| `python3 -X utf8 scripts/check_file_count_cap.py` | Entry count of the full checkout and of the package-oriented tree, against 5,000 | Python only | exit 0; package-oriented tree 1002 of 5,000 |
+| `python3 -X utf8 scripts/check_file_count_cap.py` | Entry count of the full checkout and of the package-oriented tree, against 5,000 | Python only | exit 0; package-oriented tree 1005 of 5,000 |
 | `python3 -X utf8 scripts/check_no_book_extractions.py` | No book-extraction folders, and no text file that links into one | Python; uses `git` when present | exit 0 |
 | `python3 -X utf8 scripts/source_ingestion_guardrail.py` | No raw books or reconstructive text | Python only | exit 0; 0 findings |
 | `validate_machine_error_gate.py` (command below the table) | The ME1 to ME7 and AS1 to AS7 identifiers exist in 11 bound engines. Wording quality is not checked | Sibling engine checkouts | exit 0; 11 engines |
@@ -263,7 +217,7 @@ Run every command from the repository root. They were run on 2026-10-31 on Linux
 ### Notes on the table
 
 - `validate_engine.py` runs these checks in order: portable references, file-count cap, register gate, skill contract, routing smoke test, no book extractions, `engine doctor`, and the unit tests in `engine/tests`.
-- The full-checkout figure of the file-count cap counts `.git` objects, so it grows with every commit. It was 1,561 when measured.
+- The full-checkout figure of the file-count cap counts `.git` objects, so it grows with every commit. It was about 1,600 on 2026-10-31.
 - The machine-error gate finds the other engines under portfolio roots. A root is a folder that holds engine checkouts. Separate roots with `:` on Linux and macOS and `;` on Windows.
 - Without `--engine` the gate exits 1, even with both roots named. The fixture's `political` target (`political-essay-skills`) has no checkout.
 
