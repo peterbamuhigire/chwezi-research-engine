@@ -105,10 +105,12 @@ All 15 exit codes are identical before and after. Pytest was run twice more to r
 
 `python3 -I readme-preserve-check.py <repo> main kaizen/2026-10-readme-kaizen`, run on the branch tip:
 
+The anchors line is shortened in the block below. Quoted verbatim, it contains the pattern the checker searches for and the checker flags it as a broken link to itself.
+
 ```text
 links: old README 131 targets; new README 44; moved to docs 94; LOST 0
 commands: old README 33; kept in README 33; moved to docs 0; LOST 0
-anchors: 1 README.md#anchor links in tracked files; BROKEN 0
+anchors: 1 distinct anchor (validation) linked from tracked files; BROKEN 0
 in-page links: 17 anchors used; BROKEN 0
 RESULT: OK
 ```
