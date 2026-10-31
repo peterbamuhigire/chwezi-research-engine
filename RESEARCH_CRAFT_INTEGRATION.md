@@ -1,5 +1,7 @@
 # Research-Craft Integration
 
+> **Status of this file.** This is a record of the April 2026 book-to-skill passes. Skill names, the layer lists and the roadmap below are those of that date; many skills were consolidated afterwards, so a name here may not be a directory under `skills/` today. The current catalogue is in [`README.md`](README.md) and is counted from the filesystem.
+
 How the canonical books on research, search, knowledge management, scraping, verification, intelligence analysis, output craft, and academic discipline informed the engine's skill set.
 
 ## Pass 1 — research methodology (compiled 2026-04-25)

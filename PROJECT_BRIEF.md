@@ -1,5 +1,7 @@
 # PROJECT_BRIEF — digital-research-engine
 
+> **Status of this file.** This is the founding brief of April 2026, kept as history. Its status table, roadmap, skill inventory and "30+ skills" count describe the engine as it stood on 2026-04-26. For the current catalogue (59 skills, counted from `skills/`), installation and validation, read [`README.md`](README.md); for operating rules, read [`AGENTS.md`](AGENTS.md); for improvement records and scores, see [`docs/README.md`](docs/README.md). Three skill names below are not in `skills/` today: `research-type-router`, `data-visualization` and `knowledge-base`. The repository rule against storing book extractions (see `AGENTS.md`) takes precedence over the "Books extracted into engine" row.
+
 ## Mission
 
 Build a **world-class research engine** — multi-agent, evidence-disciplined, portable across AI runtimes — that produces world-class research, status, intelligence, evaluation, and decision-support reports for diverse audiences and purposes.
@@ -102,7 +104,7 @@ The engine ran a self-evaluation comparing its capabilities against the publishe
 
 ## Repository
 
-https://github.com/peterbamuhigire/digital-research-skills
+https://github.com/peterbamuhigire/chwezi-research-engine
 
 ## Roadmap
 
