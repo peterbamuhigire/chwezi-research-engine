@@ -79,7 +79,7 @@ Every admission decision is claim-specific, traceable, explicit about limitation
 
 ## Worked Example
 
-For a statistic quoted by a news article, locate the originating dataset or publication, evaluate that source for the precise statistic, record any definition mismatch, and send the claim-source pair to verification.
+For a statistic quoted by a news article, locate the originating dataset or publication, evaluate that source for the precise statistic, record any definition mismatch, and send the claim-source pair to verification. Two complete single-claim records, one for a false premise and one for a rate that rests on an undated page, are in [single-claim lookup](references/single-claim-lookup.md).
 
 ## References
 
