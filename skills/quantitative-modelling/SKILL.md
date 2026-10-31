@@ -56,6 +56,15 @@ coverage, or an adjacent-product TAM into software demand. If product-level
 customer, price, or adoption evidence is missing, report the market-size input
 as a gap and stop the estimate rather than filling it with a proxy.
 
+**Denominator check.** A school count becomes a denominator only after its
+definition is stated: registered, responding or active; which levels; which year.
+When two sources disagree, record both with their definitions, prefer an
+official statistical release for a defined register over a vendor or blog figure,
+and never average them. Test a vendor figure's arithmetic before reading it: the
+parts must sum to the stated total, and a country count must not sit far outside
+the official series without an explanation. A figure that fails is quarantined,
+not corrected.
+
 
 ## Quantitative Modelling Existing Failure Notes
 - Single-path market sizing with no triangulation.
@@ -130,6 +139,23 @@ checked 2026-10-29). Therefore these sources do not yield a comparable
 Uganda/Kenya commercial-software TAM. Mark paid school counts, customers,
 prices, and current adoption as gaps until product-matched evidence is found.
 **(synthesis)**
+
+For the denominators in the same brief, Uganda's 2025 abstract reports 45,164
+primary schools on the education information system, of which 26,597 responded to
+it ([Uganda Education Statistical Abstract 2025, executive summary](https://www.education.go.ug/wp-content/uploads/2026/01/UGANDAS-EDUCATION-STATISTICAL-ABSTRACT_2025.pdf),
+checked 2026-10-31). Both are real counts: the first is the register and the
+second is the reporting base, so the model states which one it uses. A vendor
+planning page (YeboLearn internal business page, last updated 23 November 2025)
+gives Uganda as 6,000 schools, about 13% of the register, cites no source for
+it, and states an East Africa total of 30,200 whose four country figures sum to
+26,700. It fails the arithmetic test and contradicts the official register, so it
+is quarantined as tier 5 vendor self-assertion; the model uses the register and
+shows the responding base as a sensitivity. For Kenya, the 130,659 institutions
+offering basic education in 2025, as reported from the Kenya National Bureau of
+Statistics Economic Survey 2026
+([Radio Generation, 1 May 2026](https://radiogeneration.co.ke/news/87034/pre-primary-enrolment-rises-to-31-million-as-more-girls-join-classrooms)),
+include pre-primary and junior schools, so they are not comparable with earlier
+school counts; compare like with like or label the break. **(synthesis)**
 
 <!-- dual-compat-end -->
 
