@@ -83,6 +83,7 @@ For a statistic quoted by a news article, locate the originating dataset or publ
 ## References
 
 - [Freshness and uncertainty](references/freshness-and-uncertainty.md)
+- [Single-claim lookup](references/single-claim-lookup.md) for one current-state question: premise check, one-claim record and stop rules.
 - [Index-layer evidence](references/index-layer-evidence.md) when a source is represented in an index, taxonomy, or evidence graph.
 - [Evidence discipline](references/evidence-discipline.md)
 - [Credibility ladder](references/credibility-ladder.md)

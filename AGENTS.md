@@ -98,7 +98,7 @@ Kaizen is mandatory for this engine and every research product. Load
 maximum of 65/100 and remediation plans targeting 95/100. For book or source intake, record
 provenance, completeness, limitations, and whether the material is current before synthesis.
 
-1. Load `skills/source-evaluation/SKILL.md` + `skills/source-evaluation/references/evidence-discipline.md` → enforce throughout
+1. Load `skills/source-evaluation/SKILL.md` + `skills/source-evaluation/references/evidence-discipline.md` → enforce throughout. For a single current-state question (a rate, date, version, status or count), also load `skills/source-evaluation/references/single-claim-lookup.md`; it begins with a premise check.
 2. Load `skills/research-orchestration/SKILL.md` → drives wave planning
 3. For each cohort: dispatch a research sub-task with the standard brief structure
 4. After each wave: run `source-verification` and gap analysis via `analytic-tradecraft`

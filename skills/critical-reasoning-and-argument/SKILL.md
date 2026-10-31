@@ -23,7 +23,7 @@ Use this skill for all forms of writing and reporting that contain a claim or co
 
 - The task is purely formatting, file movement, or mechanical conversion.
 - The output contains no claim, recommendation, interpretation, evaluation, forecast, or decision support.
-- A domain skill already handles a narrow factual extraction and no conclusion is being drawn.
+- A domain skill already handles a narrow factual extraction and no conclusion is being drawn; the premise check for a single factual question is in `source-evaluation` (`references/single-claim-lookup.md`).
 
 ## Reasoning Intake Guidance
 
@@ -40,7 +40,7 @@ For research work, this skill operates after `source-evaluation`: source quality
 
 ## Reasoning Method Detail
 
-1. **Frame the real question.** Convert the prompt into a precise question the output must answer. If the prompt asks for "a report", infer the decision, controversy, interpretation, or action the report is meant to support.
+1. **Frame the real question.** Convert the prompt into a precise question the output must answer. If the prompt asks for "a report", infer the decision, controversy, interpretation, or action the report is meant to support. List the factual presuppositions inside the prompt and test the load-bearing ones before answering; a false one is stated first (see `source-evaluation`, `references/single-claim-lookup.md`).
 2. **Define scope and terms.** Identify key terms, boundaries, jurisdiction, time period, population, market, method, or discipline. Flag ambiguous or loaded language.
 3. **Separate the materials.** Distinguish facts, claims, assumptions, values, interpretations, inferences, recommendations, and unknowns.
 4. **Map the argument.** Build the chain: main conclusion -> intermediate conclusions -> premises/evidence -> warrants/linking assumptions. Use the table in `references/reasoning-protocol.md`.

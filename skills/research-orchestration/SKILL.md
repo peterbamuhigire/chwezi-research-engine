@@ -18,7 +18,7 @@ metadata:
 
 ## Do Not Use When
 
-- Do not use for a single known fact lookup, URL check, or short target read that does not need orchestration.
+- Do not use for a single known fact lookup, URL check, or short target read that does not need orchestration; route a single current-state question to `source-evaluation` (`references/single-claim-lookup.md`).
 
 ## Required Inputs
 

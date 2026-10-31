@@ -20,7 +20,7 @@ metadata:
 
 ## Do Not Use When
 
-- The task is a single fact lookup with no downstream reuse.
+- The task is a single fact lookup with no downstream reuse; use `source-evaluation` (`references/single-claim-lookup.md`).
 - The corpus is too immature; run source collection and evaluation first.
 
 

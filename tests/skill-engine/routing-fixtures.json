@@ -272,6 +272,22 @@
       "forbidden": [
         "anti-ai-slop"
       ]
+    },
+    {
+      "id": "premise-and-timeliness-positive",
+      "prompt": "Before admitting any source for a claim that a published figure is unchanged since 2019, assess its provenance, authority, independence and timeliness.",
+      "expected": "source-evaluation",
+      "forbidden": [
+        "source-verification"
+      ]
+    },
+    {
+      "id": "undated-official-page-positive",
+      "prompt": "Assess the authority, independence and timeliness of an official body's own undated web page when admitting it as a source for a current rate.",
+      "expected": "source-evaluation",
+      "forbidden": [
+        "source-verification"
+      ]
     }
   ],
   "negatives": [
@@ -340,6 +356,18 @@
       "skill": "quantitative-modelling",
       "prompt": "Repair encoding and tidy structure in a tabular dataset, clean duplicate rows, flag anomalies, audit merge lineage, and produce the data-quality score and manifest without making a forecast.",
       "owner": "data-quality-pipeline"
+    },
+    {
+      "id": "claim-registry-check-not-source-evaluation",
+      "skill": "source-evaluation",
+      "prompt": "Check each cited URL, quotation and statistic in the claim registry against the source text and produce the release manifest.",
+      "owner": "source-verification"
+    },
+    {
+      "id": "wave-plan-not-source-evaluation",
+      "skill": "source-evaluation",
+      "prompt": "Plan the waves, cohort briefs and synthesis route for a multi-cohort research project on rural clinics.",
+      "owner": "research-orchestration"
     }
   ]
 }
