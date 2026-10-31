@@ -215,7 +215,7 @@ verification and review dates; overdue records block release.
 - Preserve the 59-skill active catalogue unless an independently justified routing change requires a count change.
 - Run `python -X utf8 scripts/skill_contract_validator.py --baseline tests/skill-engine/quality-baseline.json`, `python -X utf8 scripts/routing_smoke_test.py`, and `python -X utf8 scripts/validate_engine.py` before release.
 - Run the canonical `quick_validate.py` against every changed skill directory. A missing capability or unavailable check is `not assessed`, never passed.
-- Run `python -X utf8 scripts/validate_machine_error_gate.py` after any anti-slop, editorial, or cross-engine gate change. The validator checks ME1-ME7 and AS1-AS7 coverage plus the visual pressure fixture; semantic and visual findings still require human evidence review.
+- Run `python -X utf8 scripts/validate_machine_error_gate.py` after any anti-slop, editorial, or cross-engine gate change. The validator checks ME1-ME7 and AS1-AS7 coverage plus the visual pressure fixture; semantic and visual findings still require human evidence review. It finds the other engines under portfolio roots: pass `--engines-root <dir>` (repeatable) or set `CHWEZI_ENGINES_ROOT` when they are not siblings of this checkout, and add `--engine <name>` for each engine bound on the host. An engine that cannot be found is an error, never a pass.
 
 ## Proposal-output trigger
 

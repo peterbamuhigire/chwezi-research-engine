@@ -21,10 +21,12 @@ OVERLAY_PRESSURE_FIXTURE = ROOT / "tests" / "fixtures" / "anti-slop-overlay-pres
 class MachineErrorGateCoverageTests(unittest.TestCase):
     @unittest.skipUnless(os.environ.get("SKILL_ENGINE_LIVE_TESTS") == "1", "requires installed portfolio; opt in explicitly")
     def test_shared_reference_and_all_engine_adapters_expose_every_check(self):
-        from scripts.validate_machine_error_gate import validate
+        from scripts.validate_machine_error_gate import resolve_roots, resolve_target, validate
         contract = json.loads(FIXTURE.read_text(encoding="utf-8"))
         selected = os.environ.get("SKILL_ENGINE_TARGETS")
-        self.assertEqual(validate(contract, set(selected.split(",")) if selected else None), [])
+        chosen = set(selected.split(",")) if selected else None
+        roots = resolve_roots()
+        self.assertEqual(validate(contract, chosen, roots), [])
         required_ids = contract["required_ids"]
         shared_reference = ROOT / contract["shared_reference"]
         self.assertTrue(shared_reference.exists(), shared_reference)
@@ -34,12 +36,11 @@ class MachineErrorGateCoverageTests(unittest.TestCase):
 
         missing = []
         for target in contract["targets"]:
-            selected = os.environ.get("SKILL_ENGINE_TARGETS")
-            if selected and target["engine"] not in selected.split(","):
+            if chosen and target["engine"] not in chosen:
                 continue
-            path = Path(target["path"])
-            if not path.exists():
-                missing.append(f"{target['engine']}: missing {path}")
+            path, description = resolve_target(contract, target, roots)
+            if path is None:
+                missing.append(f"{target['engine']}: missing {description}")
                 continue
             text = path.read_text(encoding="utf-8")
             for check_id in required_ids:
@@ -64,10 +65,12 @@ class MachineErrorGateCoverageTests(unittest.TestCase):
 
     @unittest.skipUnless(os.environ.get("SKILL_ENGINE_LIVE_TESTS") == "1", "requires all installed visual adapters; separate all-visual integration gate")
     def test_all_visual_adapters_declare_hard_bans_integration(self):
+        from scripts.validate_machine_error_gate import resolve_roots, resolve_target
         contract = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        roots = resolve_roots()
         for target in contract["visual_targets"]:
-            path = Path(target["path"])
-            self.assertTrue(path.exists(), path)
+            path, description = resolve_target(contract, target, roots)
+            self.assertIsNotNone(path, f"{target['engine']}: missing {description}")
             text = path.read_text(encoding="utf-8").lower()
             for phrase in contract["visual_hard_ban_phrases"]:
                 self.assertIn(phrase.lower(), text, f"{target['engine']}: missing {phrase}")

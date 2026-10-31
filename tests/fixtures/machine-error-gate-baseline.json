@@ -4,25 +4,30 @@
   "overlay_pressure_fixture": "tests/fixtures/anti-slop-overlay-pressure-fixture.md",
   "overlay_ids": ["AS1", "AS2", "AS3", "AS4", "AS5", "AS6", "AS7"],
   "visual_hard_ban_phrases": ["purple gradient", "glassmorphism", "neon glow", "AI-beige", "editorial scaffolding", "decorative motion"],
+  "engine_aliases": {
+    "chwezi-sdlc-documentation": ["srs-skills"],
+    "chwezi-design-engine": ["design-system-skills"],
+    "chwezi-dev-engine": ["skills-web-dev"]
+  },
   "visual_targets": [
-    {"engine": "engineering-visual", "path": "C:/wamp64/www/chwezi-dev-engine/skills/sdlc-meta/anti-ai-slop/SKILL.md"},
-    {"engine": "website-design", "path": "C:/wamp64/www/website-skills/skills/build/design-system/references/ai-slop-prevention.md"},
-    {"engine": "website-visual-qa", "path": "C:/wamp64/www/website-skills/skills/quality-gates/visual-qa/references/slop-rules.md"},
-    {"engine": "design-taxonomy", "path": "C:/wamp64/www/chwezi-design-engine/doctrine/references/ai-slop-taxonomy.md"},
-    {"engine": "design-audit", "path": "C:/wamp64/www/chwezi-design-engine/skills/00-cross-cutting-ops-qa-a11y/visual-product-slop-audit/SKILL.md"}
+    {"engine": "engineering-visual", "engine_dir": "chwezi-dev-engine", "path": "skills/sdlc-meta/anti-ai-slop/SKILL.md"},
+    {"engine": "website-design", "engine_dir": "website-skills", "path": "skills/build/design-system/references/ai-slop-prevention.md"},
+    {"engine": "website-visual-qa", "engine_dir": "website-skills", "path": "skills/quality-gates/visual-qa/references/slop-rules.md"},
+    {"engine": "design-taxonomy", "engine_dir": "chwezi-design-engine", "path": "doctrine/references/ai-slop-taxonomy.md"},
+    {"engine": "design-audit", "engine_dir": "chwezi-design-engine", "path": "skills/00-cross-cutting-ops-qa-a11y/visual-product-slop-audit/SKILL.md"}
   ],
   "targets": [
-    {"engine": "srs", "path": "C:/wamp64/www/chwezi-sdlc-documentation/09-governance-compliance/28-anti-ai-slop/SKILL.md"},
-    {"engine": "business-plan", "path": "C:/wamp64/www/business-plan-skills/skills/meta-utility/anti-ai-slop/SKILL.md"},
-    {"engine": "website-copy", "path": "C:/wamp64/www/website-skills/skills/content-copy/premium-commercial-writing/references/genuine-writing-and-ai-slop-gate.md"},
-    {"engine": "social-media", "path": "C:/wamp64/www/social-media-skills/skills/ai-marketing/anti-ai-slop/SKILL.md"},
-    {"engine": "linux", "path": "C:/wamp64/www/linux-skills/AGENTS.md"},
-    {"engine": "proposal", "path": "C:/wamp64/www/proposal-skills/skills/meta/anti-ai-slop/SKILL.md"},
-    {"engine": "engineering", "path": "C:/wamp64/www/chwezi-dev-engine/skills/sdlc-meta/anti-ai-slop/SKILL.md"},
-    {"engine": "accounting", "path": "C:/wamp64/www/chwezi-accounting-doctrine/governance/anti-slop-finance-output.md"},
-    {"engine": "design", "path": "C:/wamp64/www/chwezi-design-engine/doctrine/references/ai-slop-taxonomy.md"},
-    {"engine": "digital-research", "path": "C:/wamp64/www/digital-research-engine/skills/anti-ai-slop/SKILL.md"},
-    {"engine": "windows", "path": "C:/wamp64/www/windows-admin-engine-skills/AGENTS.md"},
-    {"engine": "political", "path": "C:/wamp64/www/political-essay-skills/skills/political-essay-doctrine/SKILL.md"}
+    {"engine": "srs", "engine_dir": "chwezi-sdlc-documentation", "path": "09-governance-compliance/28-anti-ai-slop/SKILL.md"},
+    {"engine": "business-plan", "engine_dir": "business-plan-skills", "path": "skills/meta-utility/anti-ai-slop/SKILL.md"},
+    {"engine": "website-copy", "engine_dir": "website-skills", "path": "skills/content-copy/premium-commercial-writing/references/genuine-writing-and-ai-slop-gate.md"},
+    {"engine": "social-media", "engine_dir": "social-media-skills", "path": "skills/ai-marketing/anti-ai-slop/SKILL.md"},
+    {"engine": "linux", "engine_dir": "linux-skills", "path": "AGENTS.md"},
+    {"engine": "proposal", "engine_dir": "proposal-skills", "path": "skills/meta/anti-ai-slop/SKILL.md"},
+    {"engine": "engineering", "engine_dir": "chwezi-dev-engine", "path": "skills/sdlc-meta/anti-ai-slop/SKILL.md"},
+    {"engine": "accounting", "engine_dir": "chwezi-accounting-doctrine", "path": "governance/anti-slop-finance-output.md"},
+    {"engine": "design", "engine_dir": "chwezi-design-engine", "path": "doctrine/references/ai-slop-taxonomy.md"},
+    {"engine": "digital-research", "self": true, "path": "skills/anti-ai-slop/SKILL.md"},
+    {"engine": "windows", "engine_dir": "windows-admin-engine-skills", "path": "AGENTS.md"},
+    {"engine": "political", "engine_dir": "political-essay-skills", "path": "skills/political-essay-doctrine/SKILL.md"}
   ]
 }
