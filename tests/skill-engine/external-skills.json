@@ -1,0 +1,8 @@
+{
+  "purpose": "Skills named in a Companion Skills list that live in another engine. The contract validator accepts a backticked name there only if it is an active skill here or is listed below.",
+  "checked": "2026-10-31",
+  "skills": [
+    {"name": "world-class-engineering", "engine": "chwezi-dev-engine"},
+    {"name": "data-visualization", "engine": "chwezi-design-engine"}
+  ]
+}

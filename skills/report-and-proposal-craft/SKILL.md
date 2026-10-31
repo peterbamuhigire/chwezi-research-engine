@@ -159,7 +159,7 @@ For any report >10 pages, the executive summary stands alone. Stand-alone test: 
 - `critical-reasoning-and-argument` — mandatory for every analytical finding, conclusion, recommendation, option, objection, risk, and implementation implication.
 - `systems-process-requirements` — for system/process descriptions, requirements sets, scope, workflows, interfaces, data architecture, and design-system documentation.
 - `academic-writing` — papers, essays, theses, dissertations.
-- `data-quality-assessment` — score the data behind report findings.
+- `data-quality-pipeline` — score the data behind report findings.
 - `dataset-discovery-and-analysis` — for evidence-driven reports.
 
 ## Use When

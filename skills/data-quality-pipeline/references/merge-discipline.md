@@ -69,7 +69,7 @@ Sometimes a many-to-many is genuine (one tenant has multiple deposits; one paper
 
 - `tools/data/checkmerge.py` — implementation
 - `data-cleaning-pandas` — pre-merge cleanup
-- `data-quality-assessment` — score both inputs first
+- `dataset-quality-four-axes.md` — score both inputs first
 - `evidence-discipline` — every merge documented in the cleaning log
 
 ## Worked example

@@ -96,5 +96,5 @@ flagged = residuals[abs(residuals) > 3 * residuals.std()]
 ## See also
 
 - `tools/data/outlier_panel.py` — implementation
-- `data-quality-assessment` — outlier rate feeds reliability score
+- `dataset-quality-four-axes.md` — outlier rate feeds reliability score
 - `data-cleaning-pandas` — full pipeline context

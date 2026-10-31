@@ -98,7 +98,7 @@ This skill is for both research and delivery work: institutional process descrip
 
 - Run `source-evaluation` for any source-backed description.
 - Run `critical-reasoning-and-argument` for every claim about why a system behaves as it does, what causes a process failure, which requirements matter, or what should change.
-- Run `data-quality-assessment` when the description relies on datasets, reports, or operational data.
+- Run `data-quality-pipeline` when the description relies on datasets, reports, or operational data.
 
 ## First Decision: What Is Being Described?
 
@@ -190,7 +190,7 @@ Use the lightest artifact that explains the system without hiding important comp
 - `research-techniques` - gap analysis, crosswalk matrices, and synthesis.
 - `report-and-proposal-craft` - formal reports and proposals describing systems/processes.
 - `business-writing` - shorter memos or process notes.
-- `data-quality-pipeline` and `data-quality-assessment` - when operational data and data governance are central.
+- `data-quality-pipeline` - when operational data and data governance are central.
 - `executive-communication` - executive version of system/process findings.
 - `critical-reasoning-and-argument` - causal diagnosis, recommendations, prioritization, and tradeoff logic.
 

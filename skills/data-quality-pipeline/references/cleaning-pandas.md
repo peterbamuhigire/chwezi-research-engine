@@ -116,7 +116,7 @@ violations = tidy_check(df)
 ## See also
 
 - `tools/data/` — implementations (profiler, dq_score, checkmerge, outlier_panel, encoding_repair, tidy_check, imputation_advisor)
-- `data-quality-assessment` — upstream gate
+- `dataset-quality-four-axes.md` — upstream gate
 - `tidy-data-craft` — Wickham violations specifically
 - `merge-discipline` — joins
 - `anomaly-detection` — outliers in depth

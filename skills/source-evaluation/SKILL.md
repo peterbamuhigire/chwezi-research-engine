@@ -121,7 +121,7 @@ Always load `references/evidence-discipline.md`. The engine's first rule: **no c
 | **Image, video, audio, screenshot, suspect document** | `references/media-forensics-verification.md` |
 | **Encyclopaedic / reference work** | `references/credibility-ladder.md` (tier 4: tertiary) |
 | **Social media post / forum / comment** | `references/twelve-criterion-source-scoring.md` + `references/media-forensics-verification.md` (provenance) |
-| **Statistic / dataset** | `references/credibility-ladder.md` + Walker four-axis (`data-quality-assessment`) |
+| **Statistic / dataset** | `references/credibility-ladder.md` + Walker four-axis (`data-quality-pipeline`, its `references/dataset-quality-four-axes.md`) |
 | **Automated source / claim reliability triage** | `references/automated-reliability-triage.md` + `references/credibility-ladder.md` |
 
 ## The 5-tier credibility ladder (universal)
@@ -230,7 +230,7 @@ For book-informed work, apply [book-driven source admission and currentness](ref
 
 ## Companion skills
 
-- `data-quality-assessment` — for source-vetting at the dataset level (Walker four axes).
+- `data-quality-pipeline` — for source-vetting at the dataset level (Walker four axes).
 - `web-scraping-foundations` — when you collect the source yourself.
 - `osint-investigation` — when sources sit inside a broader investigation.
 - `academic-writing` — when sources feed an academic artifact (citation styles in references).

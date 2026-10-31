@@ -59,5 +59,62 @@ class DuplicateHeadingTests(unittest.TestCase):
         self.assertNotIn("duplicate_heading", self.codes())
 
 
+class CompanionNameTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.skill = self.root / "skills" / "source-verification" / "SKILL.md"
+        self.skill.parent.mkdir(parents=True)
+        shutil.copyfile(SOURCE_SKILL, self.skill)
+        self.known = {"source-verification", "source-evaluation", "evidence-claim-graph", "agentic-research-operations"}
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def unresolved(self) -> list[str]:
+        return [detail for code, detail in MODULE.assess(self.root, self.skill, self.known) if code == "unresolved_companion_name"]
+
+    def test_names_that_resolve_pass(self) -> None:
+        self.assertEqual(self.unresolved(), [])
+
+    def test_retired_skill_name_in_a_companion_list_is_reported(self) -> None:
+        text = self.skill.read_text(encoding="utf-8").replace("- `source-evaluation` defines source credibility.", "- `data-quality-assessment` scores datasets.")
+        self.skill.write_text(text, encoding="utf-8")
+        findings = self.unresolved()
+        self.assertEqual(len(findings), 1)
+        self.assertIn("`data-quality-assessment`", findings[0])
+
+    def test_declared_external_skill_is_accepted(self) -> None:
+        text = self.skill.read_text(encoding="utf-8").replace("- `source-evaluation` defines source credibility.", "- `world-class-engineering` sets the bar.")
+        self.skill.write_text(text, encoding="utf-8")
+        self.assertEqual(len(self.unresolved()), 1)
+        self.known.add("world-class-engineering")
+        self.assertEqual(self.unresolved(), [])
+
+    def test_no_check_without_a_known_skill_set(self) -> None:
+        text = self.skill.read_text(encoding="utf-8").replace("- `source-evaluation` defines source credibility.", "- `data-quality-assessment` scores datasets.")
+        self.skill.write_text(text, encoding="utf-8")
+        codes = [code for code, _ in MODULE.assess(self.root, self.skill)]
+        self.assertNotIn("unresolved_companion_name", codes)
+
+    def test_names_outside_companion_sections_are_not_checked(self) -> None:
+        with self.skill.open("a", encoding="utf-8") as handle:
+            handle.write("\n## Notes\n\n- `made-up-skill` is mentioned in passing.\n")
+        self.assertEqual(self.unresolved(), [])
+
+    def test_external_registry_is_well_formed(self) -> None:
+        names, findings = MODULE.load_external_skills(ROOT)
+        self.assertEqual(findings, [])
+        self.assertIn("world-class-engineering", names)
+
+    def test_registry_entry_without_engine_is_reported(self) -> None:
+        directory = self.root / "tests" / "skill-engine"
+        directory.mkdir(parents=True)
+        (directory / "external-skills.json").write_text('{"checked": "2026-10-31", "skills": [{"name": "x-y"}]}', encoding="utf-8")
+        names, findings = MODULE.load_external_skills(self.root)
+        self.assertEqual(names, set())
+        self.assertEqual([code for code, _ in findings], ["external_skill_registry"])
+
+
 if __name__ == "__main__":
     unittest.main()

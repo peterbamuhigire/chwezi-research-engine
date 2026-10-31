@@ -143,7 +143,7 @@ The references and findings are the same. The argument, voice, and structure are
 
 - `dataset-discovery-and-analysis` — for empirical papers / theses, the data-finding layer.
 - `critical-reasoning-and-argument` — mandatory for the argument, gap, method, interpretation, contribution, and countercase logic in every academic artifact.
-- `data-quality-assessment` — score the data behind empirical claims on the four-axis model.
+- `data-quality-pipeline` — score the data behind empirical claims on the four-axis model.
 - `web-scraping-foundations` — when sources include web data.
 - `business-writing` (planned) — for non-academic writing artifacts.
 - `report-and-proposal-craft` (planned) — for business reports.

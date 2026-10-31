@@ -19,6 +19,9 @@ TEMPLATE_ROOTS = (Path("templates"),)
 ALLOWED_FRONTMATTER = {"name", "description", "license", "allowed-tools", "metadata"}
 ALLOWED_METADATA = {"portable", "compatible_with", "priority", "source"}
 COMPATIBILITY = ["claude-code", "codex"]
+EXTERNAL_SKILLS_FILE = Path("tests/skill-engine/external-skills.json")
+COMPANION_HEADINGS = ("companion skills", "companion skill")
+SKILL_NAME_RE = re.compile(r"`([a-z0-9]+(?:-[a-z0-9]+)+)`")
 MANDATORY_RESOURCES = (
     Path("SKILL.md"),
     Path("skills/source-evaluation/references/evidence-discipline.md"),
@@ -149,7 +152,7 @@ def resolve_link(root: Path, skill: Path, target: str) -> bool:
     return any(candidate is not None and candidate.exists() for candidate in candidates)
 
 
-def assess(root: Path, path: Path) -> list[tuple[str, str]]:
+def assess(root: Path, path: Path, known_skills: set[str] | None = None) -> list[tuple[str, str]]:
     frontmatter, body, parse_error = parse_skill(path)
     raw = path.read_text(encoding="utf-8", errors="replace")
     rel = path.relative_to(root).as_posix()
@@ -253,11 +256,39 @@ def assess(root: Path, path: Path) -> list[tuple[str, str]]:
     if line_count > 500:
         add("line_limit", f"{line_count} lines")
 
+    if known_skills is not None:
+        for heading in COMPANION_HEADINGS:
+            for name in dict.fromkeys(SKILL_NAME_RE.findall(parts.get(heading, ""))):
+                if name not in known_skills:
+                    add("unresolved_companion_name", f"`{name}` is neither an active skill nor listed in {EXTERNAL_SKILLS_FILE.as_posix()}")
+
     for target in LINK_RE.findall(body):
         if not resolve_link(root, path, target):
             add("broken_relative_link", target)
 
     return [(code, f"{rel}: {detail}") for code, detail in findings]
+
+
+def load_external_skills(root: Path) -> tuple[set[str], list[tuple[str, str]]]:
+    """Return (names of declared external skills, registry findings)."""
+    path = root / EXTERNAL_SKILLS_FILE
+    if not path.is_file():
+        return set(), []
+    findings: list[tuple[str, str]] = []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return set(), [("external_skill_registry", f"{EXTERNAL_SKILLS_FILE.as_posix()}: unreadable: {exc}")]
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(data.get("checked", ""))):
+        findings.append(("external_skill_registry", f"{EXTERNAL_SKILLS_FILE.as_posix()}: `checked` must be an ISO date"))
+    names: set[str] = set()
+    for entry in data.get("skills", []):
+        name, engine = (entry.get("name"), entry.get("engine")) if isinstance(entry, dict) else (None, None)
+        if not isinstance(name, str) or not name or not isinstance(engine, str) or not engine:
+            findings.append(("external_skill_registry", f"{EXTERNAL_SKILLS_FILE.as_posix()}: every entry needs a name and an engine"))
+            continue
+        names.add(name)
+    return names, findings
 
 
 def run(root: Path) -> dict:
@@ -270,7 +301,12 @@ def run(root: Path) -> dict:
         frontmatter, _, _ = parse_skill(path)
         names[str(frontmatter.get("name"))].append(path.relative_to(root).as_posix())
         descriptions[str(frontmatter.get("description", "")).strip().casefold()].append(path.relative_to(root).as_posix())
-        all_findings.extend(assess(root, path))
+    known_skills = {name for name in names if name != "None"}
+    external, registry_findings = load_external_skills(root)
+    all_findings.extend(registry_findings)
+    known_skills |= external
+    for path in active:
+        all_findings.extend(assess(root, path, known_skills))
     for name, paths in names.items():
         if name != "None" and len(paths) > 1:
             all_findings.append(("duplicate_name", f"{name}: {', '.join(paths)}"))

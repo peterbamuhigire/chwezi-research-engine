@@ -334,7 +334,7 @@ class ExampleSpider(scrapy.Spider):
 | Many appends, search needed | SQLite for single-user, PostgreSQL for multi-user |
 | Page caches keyed by URL | MongoDB with TTL index, or filesystem |
 
-**Engine convention:** scraped artefacts land as Parquet + JSONL alongside a manifest (`source`, `fetched_at`, `headers`, `selector_versions`, `n_rows`, `n_errors`). Pair with `data-quality-assessment` to score each batch.
+**Engine convention:** scraped artefacts land as Parquet + JSONL alongside a manifest (`source`, `fetched_at`, `headers`, `selector_versions`, `n_rows`, `n_errors`). Pair with `data-quality-pipeline` to score each batch.
 
 ## 9. Resumability and checkpointing
 
@@ -378,5 +378,5 @@ For Scrapy: enable `JOBDIR` (`scrapy crawl example -s JOBDIR=jobs/example`) — 
 - `web-scraping-foundations/references/scraper-troubleshooting-and-etiquette.md` — etiquette and debugging
 - `web-scraping-foundations` — HTTP/HTML basics
 - `scraping-politeness-and-ratelimiting` — politeness layer
-- `data-quality-assessment` — score scraped batches
+- `data-quality-pipeline` — score scraped batches
 - `merge-discipline` — joining scraped data with reference data

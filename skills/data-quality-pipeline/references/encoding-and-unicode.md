@@ -72,4 +72,4 @@ df = pd.read_csv("file.csv", encoding="utf-8-sig")  # strips BOM if present
 
 - `tools/data/encoding_repair.py` — implementation
 - `data-cleaning-pandas` — encoding repair is step 1
-- `data-quality-assessment` — encoding issues lower validity score
+- `dataset-quality-four-axes.md` — encoding issues lower validity score

@@ -223,7 +223,7 @@ When a scraper breaks:
 - `web-scraping-foundations` — engine's HTTP/HTML basics
 - `scraping-politeness-and-ratelimiting` — extended politeness layer
 - `scraping-engineering-python` — caching, concurrency, dynamic content, Scrapy
-- `data-quality-assessment` — schema-validate scraped output
+- `data-quality-pipeline` — schema-validate scraped output
 
 Evidence and currentness: RFC 9309 *Robots Exclusion Protocol* (IETF, September 2022),
 rfc-editor.org/rfc/rfc9309 (not re-read on 2026-09-24; RFC status is stable);

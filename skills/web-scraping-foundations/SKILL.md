@@ -244,6 +244,6 @@ form, grounded in ECC's `market-research/SKILL.md` and `deep-research/SKILL.md`:
 
 - `scraping-engineering-python` — caching, concurrency, dynamic content, Scrapy
 - `dataset-discovery-and-analysis` — try this before scraping
-- `data-quality-assessment` — score scraped batches on the four-axis model
+- `data-quality-pipeline` — score scraped batches on the four-axis model
 - `evidence-discipline` — when scraping for OSINT/DD, evidence rules override defaults
 - `source-verification` — the fuller Untrusted Sources contract for verifying claims

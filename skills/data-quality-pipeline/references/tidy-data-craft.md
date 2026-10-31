@@ -91,4 +91,4 @@ Don't blindly melt every dataset. The rule is: tidy for *analysis*, wide for *mo
 
 - `tools/data/tidy_check.py` — Wickham violation linter
 - `data-cleaning-pandas` — broader cleanup
-- `data-quality-assessment` — tidy violations are a usefulness signal
+- `dataset-quality-four-axes.md` — tidy violations are a usefulness signal
