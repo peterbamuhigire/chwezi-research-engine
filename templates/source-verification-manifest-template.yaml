@@ -19,10 +19,11 @@ claims:
       - src-001
     claim_type: fact
     support_review:
-      # This is human review input, not automated semantic certification.
+      # This records review input, not semantic certification or release approval.
       state: supported
       reviewer: named reviewer or test-labelled reviewer
-      basis: brief human review basis
+      reviewer_kind: unknown # human | ai | unknown; do not infer from the name
+      basis: brief review basis
       reviewed_at: 2026-08-11
 
 quotes:

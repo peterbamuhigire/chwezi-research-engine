@@ -8,7 +8,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 from pathlib import Path
 
-from tools.verification.source_verifier import verify_claim, verify_manifest
+from tools.verification.source_verifier import CheckResult, check_archive, verify_claim, verify_manifest
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +16,93 @@ FIXTURE = ROOT / "tests" / "fixtures" / "claim-support-review.json"
 
 
 class SourceVerifierTests(unittest.TestCase):
+    def test_archive_candidate_does_not_prove_snapshot_provenance(self) -> None:
+        source = "https://example.test/source"
+        archive = "https://web.archive.org/web/20260101000000/https://example.test/source"
+        for original, captured, expected in (
+            (source, "20260101000000", "pass"),
+            ("https://example.test/other", "20260101000000", "warn"),
+            (source, "unknown", "warn"),
+            (source, "not-a-date", "warn"),
+            (source, "20261399000000", "warn"),
+            (source, "2026-01-01T00:00:00Z", "pass"),
+        ):
+            with self.subTest(original=original, captured=captured), patch(
+                "tools.verification.source_verifier.all_snapshots",
+                return_value=[SimpleNamespace(original_url=original, captured_at=captured, archive_url=archive)],
+            ):
+                self.assertEqual(check_archive("S", source, archive).status, expected)
+        with patch("tools.verification.source_verifier.all_snapshots", return_value=[]):
+            self.assertEqual(check_archive("S", source, archive).status, "warn")
+        with patch("tools.verification.source_verifier.all_snapshots", side_effect=RuntimeError("offline")):
+            self.assertEqual(check_archive("S", source, None).status, "warn")
+
+    def test_archive_obligation_depends_on_explicit_profile(self) -> None:
+        manifest = {"sources": [{"id": "S", "tier": 1, "url": "https://example.test/source"}]}
+        live = CheckResult("source-url", "S", "pass", "high", "Fixture URL available")
+        missing = CheckResult("source-archive", "S", "warn", "medium", "No snapshot", ["archive missing"])
+        archived = CheckResult("source-archive", "S", "pass", "high", "Fixture snapshot found")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            for profile, archive, expected_status, ready in (
+                ("audit-only", missing, "warn", False),
+                ("release", missing, "fail", False),
+                ("audit-only", archived, "pass", False),
+                ("release", archived, "pass", True),
+            ):
+                with self.subTest(profile=profile, archive=archive.status), patch(
+                    "tools.verification.source_verifier.check_url", return_value=live
+                ), patch("tools.verification.source_verifier.check_archive", return_value=archive):
+                    report = verify_manifest(path, profile=profile)
+                    self.assertEqual(report.release_ready, ready)
+                    self.assertEqual(report.to_dict()["profile"], profile)
+                    result = next(r for r in report.results if r.item_type == "source-archive")
+                    self.assertEqual(result.status, expected_status)
+
+    def test_release_cannot_skip_archive_checks_or_use_empty_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text("{}", encoding="utf-8")
+            self.assertFalse(verify_manifest(path, profile="release").release_ready)
+            report = verify_manifest(path, profile="release", check_archives=False)
+            self.assertFalse(report.release_ready)
+            self.assertTrue(any(r.item_type == "profile" and r.status == "fail" for r in report.results))
+            with self.assertRaises(ValueError):
+                verify_manifest(path, profile="unsupported-profile")
+
+    def test_reviewer_kind_is_explicit_and_never_certifies_support(self) -> None:
+        fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        for kind in ("human", "ai", "unknown", None):
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
+                for claim in fixture["claims"]:
+                    review = claim["support_review"]
+                    if kind is None:
+                        review.pop("reviewer_kind", None)
+                    else:
+                        review["reviewer_kind"] = kind
+                path = Path(directory) / "manifest.json"
+                path.write_text(json.dumps(fixture), encoding="utf-8")
+                report = verify_manifest(path, check_archives=False)
+                self.assertFalse(report.release_ready)
+                for result in report.to_dict()["results"]:
+                    if result["item_type"] != "claim":
+                        continue
+                    self.assertEqual(result["reviewer_kind"], kind or "unknown")
+                    self.assertNotEqual(result["status"], "pass")
+                    self.assertNotIn("Human review", result["evidence"])
+
+    def test_malformed_reviewer_kind_is_rejected_without_inference(self) -> None:
+        fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        claim = fixture["claims"][0]
+        sources = {source["id"]: source for source in fixture["sources"]}
+        for kind in (None, "", "robot", [], True):
+            with self.subTest(kind=kind):
+                claim["support_review"]["reviewer_kind"] = kind
+                result = verify_claim(claim, sources)
+                self.assertEqual(result.status, "fail")
+                self.assertIn("reviewer_kind", result.evidence)
+
     def test_overdue_source_quarantines_claim_and_lists_every_dependent_rule(self) -> None:
         manifest = {
             "sources": [

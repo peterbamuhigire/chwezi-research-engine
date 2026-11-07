@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-07 - Explicit reviewer attribution
+
+- Source verification distinguishes recorded human, AI and unknown reviewer kinds without certifying semantic support. Legacy records retain unknown attribution. A Windows source-register path validation failure found by the unit suite is also repaired. [Evidence and limitations](docs/continuous-improvement/2026-11-07-reviewer-attribution.md).
+
 ## 2026-10-31 - Documentation wave after pass 2
 
 - README: a measured validation table (commands, packages, results), the test status with its package list, a quality and improvement section with the latest score and the date-triggered gate calendar, `bash install.sh`, a project-relative `pack --out` path, `python3` throughout and the repository name `chwezi-research-engine` (`390a80c`).

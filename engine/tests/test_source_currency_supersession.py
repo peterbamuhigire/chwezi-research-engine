@@ -84,7 +84,9 @@ class SupersessionTests(unittest.TestCase):
             self.assertTrue(any("no disposition for: B" in item for item in findings))
 
     def test_unsafe_superseded_by_values_are_rejected(self) -> None:
-        for value in ("../new.json", "/tmp/new.json", "", None, 7):
+        for value in ("../new.json", "/tmp/new.json", "\\new.json", "C:new.json",
+                      "C:/new.json", "\\\\server\\share\\new.json", "..\\new.json",
+                      "new.json:stream", "", None, 7):
             with self.subTest(value=value), tempfile.TemporaryDirectory() as tmp:
                 old = self.write(Path(tmp), "old.json", register(source("A", "2026-10-03"), superseded_by=value))
                 findings = MODULE.validate_manifest(old, AS_OF)

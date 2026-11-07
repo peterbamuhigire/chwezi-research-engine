@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 REQUIRED = {"id", "accessed", "verified_at", "review_after", "freshness_class"}
@@ -143,9 +143,17 @@ def _supersession_findings(
     acceptance for the printed notes.
     """
     target = data.get("superseded_by")
-    if not isinstance(target, str) or not target.strip() or Path(target).is_absolute() or ".." in Path(target).parts:
+    if (
+        not isinstance(target, str)
+        or not target.strip()
+        or PureWindowsPath(target).anchor
+        or ":" in target
+        or ".." in target.replace("\\", "/").split("/")
+    ):
         return False, ["superseded_by must be a relative file name in the same directory tree"]
     successor = (path.parent / target).resolve()
+    if not successor.is_relative_to(path.parent.resolve()):
+        return False, ["superseded_by must be a relative file name in the same directory tree"]
     if successor == path.resolve() or successor in seen:
         return False, ["superseded_by points back to a register already in the chain"]
     if not successor.is_file():

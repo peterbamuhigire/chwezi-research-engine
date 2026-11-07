@@ -28,6 +28,16 @@ tools/
   `extractors/` modules.
 - `verification/`: `archive.py`, `exif.py`, `provenance.py`, and
   `source_verifier.py`.
+  The verifier defaults to `--profile audit-only` and never declares release
+  readiness in that profile. `--profile release` requires archive checks and
+  all structural results to pass; it cannot certify semantic support or approve
+  publication. An unconfirmed supplied archive URL remains a gap.
+  New manifests record `support_review.reviewer_kind` as `human`, `ai` or
+  `unknown`; omitted legacy kinds remain unknown, and explicit malformed kinds
+  fail. Attribution is caller-supplied, not verified human identity. The CLI
+  returns 2 for non-ready reports, including audit-only results. The aggregate
+  repository validator runs tests, not a project's evidence manifest; downstream
+  release workflows must invoke the explicit profile and retain its result.
 - `google/`: `search_api.py`, `stakeholder.py`, and `tld_atlas.py`.
 - `dd/`, `datasets/`, `data/`, `academic/`, `pi/`, `sanctions/`, and
   `reports/`: use the files present in each directory as the module index.
@@ -67,7 +77,7 @@ network, archive, browser, or third-party provider is available.
 - Advertise a module that is not present. Fix: derive this index from the tree
   or update it in the same change as the module.
 - Treat URL liveness as semantic claim support. Fix: use the source verifier's
-  explicit human support-review boundary.
+  explicit reviewer attribution and non-certifying support-review boundary.
 - Store personal data without a lawful basis or retention boundary. Fix: stop
   and obtain the required authority before collection.
 - Bypass robots, CAPTCHA, access controls, or provider terms. Fix: record the

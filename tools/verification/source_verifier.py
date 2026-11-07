@@ -19,7 +19,8 @@ claims:
     support_review:
       state: supported | unsupported | synthesis | inference | no-source
       reviewer: "named reviewer or test-labelled reviewer"
-      basis: "brief human review basis"
+      reviewer_kind: human | ai | unknown
+      basis: "brief review basis"
       reviewed_at: 2026-08-11
 quotes:
   - id: quote-001
@@ -39,7 +40,7 @@ import argparse
 import json
 import re
 import sys
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -63,6 +64,7 @@ except ImportError:  # direct script execution
 
 REQUIRED_SOURCE_FIELDS = {"id", "tier"}
 CLAIM_SUPPORT_STATES = {"supported", "unsupported", "synthesis", "inference", "no-source"}
+REVIEWER_KINDS = {"human", "ai", "unknown"}
 
 
 @dataclass(slots=True)
@@ -74,6 +76,7 @@ class CheckResult:
     evidence: str
     gaps: list[str] = field(default_factory=list)
     support_state: str | None = None
+    reviewer_kind: str | None = None
 
 
 @dataclass(slots=True)
@@ -83,12 +86,14 @@ class VerificationReport:
     release_ready: bool
     summary: dict[str, int]
     results: list[CheckResult]
+    profile: str = "audit-only"
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "generated_utc": self.generated_utc,
             "input_path": self.input_path,
             "release_ready": self.release_ready,
+            "profile": self.profile,
             "summary": self.summary,
             "results": [asdict(r) for r in self.results],
         }
@@ -113,10 +118,19 @@ def verify_manifest(
     check_archives: bool = True,
     timeout: float = 20.0,
     as_of: date | None = None,
+    profile: str = "audit-only",
 ) -> VerificationReport:
+    if profile not in {"audit-only", "release"}:
+        raise ValueError("profile must be audit-only or release")
     manifest = load_manifest(path)
     evaluation_date = as_of or datetime.now(timezone.utc).date()
     results: list[CheckResult] = []
+    if profile == "release" and not check_archives:
+        results.append(CheckResult(
+            "profile", "release", "fail", "low",
+            "Release profile requires archive checks; --no-archive cannot bypass them.",
+            ["run the release profile with archive checks enabled"],
+        ))
     source_entries = manifest_entries(manifest, "sources", results)
     claim_entries = manifest_entries(manifest, "claims", results)
     quote_entries = manifest_entries(manifest, "quotes", results)
@@ -150,6 +164,13 @@ def verify_manifest(
         else:
             results.append(CheckResult("statistic", "unknown", "fail", "low", "Statistic entry is not an object."))
 
+    if profile == "release":
+        results = [
+            replace(r, status="fail", confidence="low",
+                    gaps=[*r.gaps, "archive evidence is mandatory for the release profile"])
+            if r.item_type == "source-archive" and r.status != "pass" else r
+            for r in results
+        ]
     summary = {"pass": 0, "warn": 0, "fail": 0}
     for result in results:
         summary[result.status] = summary.get(result.status, 0) + 1
@@ -158,7 +179,9 @@ def verify_manifest(
     # every labelled claim out of release-ready until an authorised release
     # process supplies evidence beyond this structural verifier.
     release_ready = (
-        summary.get("fail", 0) == 0
+        profile == "release"
+        and bool(results)
+        and all(r.status == "pass" for r in results)
         and all(r.confidence != "low" for r in results)
         and not any(r.item_type == "claim" and r.support_state in CLAIM_SUPPORT_STATES for r in results)
     )
@@ -168,6 +191,7 @@ def verify_manifest(
         release_ready=release_ready,
         summary=summary,
         results=results,
+        profile=profile,
     )
 
 
@@ -269,16 +293,36 @@ def check_url(source_id: str, url: str, *, timeout: float) -> CheckResult:
         return CheckResult("source-url", source_id, "fail", "low", f"URL check failed: {exc}")
 
 
+def valid_capture_date(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        if re.fullmatch(r"\d{14}", value):
+            datetime.strptime(value, "%Y%m%d%H%M%S")
+        else:
+            datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return True
+    except ValueError:
+        return False
+
+
 def check_archive(source_id: str, url: str, archive_url: Any) -> CheckResult:
-    if archive_url:
-        return CheckResult("source-archive", source_id, "pass", "high", f"Archive supplied: {archive_url}")
+    if archive_url is not None and not isinstance(archive_url, str):
+        return CheckResult("source-archive", source_id, "warn", "medium", "Supplied archive URL is malformed.", ["archive unresolved"])
     try:
         snapshots = all_snapshots(url)
     except Exception as exc:
         return CheckResult("source-archive", source_id, "warn", "medium", f"Archive lookup failed: {exc}", ["archive unresolved"])
-    if snapshots:
-        first = snapshots[0]
+    confirmed = [snapshot for snapshot in snapshots
+                 if snapshot.original_url == url and valid_capture_date(snapshot.captured_at)
+                 and (not archive_url or snapshot.archive_url == archive_url)]
+    if confirmed:
+        first = confirmed[0]
         return CheckResult("source-archive", source_id, "pass", "high", f"Archive found: {first.archive_url}")
+    if archive_url or snapshots:
+        return CheckResult("source-archive", source_id, "warn", "medium",
+                           "Archive candidate was not confirmed as a dated snapshot for this source URL.",
+                           ["archive provenance unresolved; retain candidate for manual review"])
     return CheckResult("source-archive", source_id, "warn", "medium", "No archive snapshot found.", ["archive missing"])
 
 
@@ -368,7 +412,7 @@ def verify_claim(
             "warn",
             "low",
             "Source IDs may be known, but semantic claim support was not assessed by this verifier.",
-            ["add support_review with a human review state"],
+            ["add support_review with an explicit reviewer kind and support state"],
         )
 
     raw_state = review.get("state")
@@ -393,6 +437,18 @@ def verify_claim(
             support_state=state or None,
         )
 
+    # Legacy records do not establish who performed a review. Never infer
+    # human involvement from a reviewer name or from the support state.
+    raw_kind = review.get("reviewer_kind", "unknown")
+    if not isinstance(raw_kind, str) or raw_kind.strip().casefold() not in REVIEWER_KINDS:
+        return CheckResult(
+            "claim", claim_id, "fail", "low",
+            "Claim support_review.reviewer_kind must be human, ai, or unknown.",
+            ["record the reviewer kind without inferring human acceptance"],
+            support_state=state,
+        )
+    reviewer_kind = raw_kind.strip().casefold()
+
     missing_review_fields = [
         field
         for field in ("reviewer", "basis", "reviewed_at")
@@ -407,6 +463,7 @@ def verify_claim(
             "Claim support review is incomplete.",
             [f"missing support_review.{field}" for field in missing_review_fields],
             support_state=state,
+            reviewer_kind=reviewer_kind,
         )
 
     try:
@@ -420,6 +477,7 @@ def verify_claim(
             "Claim support_review.reviewed_at must be an ISO-8601 date or datetime.",
             ["record a parseable review date"],
             support_state=state,
+            reviewer_kind=reviewer_kind,
         )
 
     if state == "no-source":
@@ -432,15 +490,17 @@ def verify_claim(
                 "A no-source review state cannot list source IDs.",
                 ["remove source_ids or change the review state"],
                 support_state=state,
+                reviewer_kind=reviewer_kind,
             )
         return CheckResult(
             "claim",
             claim_id,
             "fail",
             "low",
-            "Human review recorded no source for this claim; the verifier does not promote it.",
+            f"Recorded review ({reviewer_kind}) found no source for this claim; the verifier does not promote it.",
             ["no source found", "claim remains unreleasable"],
             support_state=state,
+            reviewer_kind=reviewer_kind,
         )
 
     if not source_ids:
@@ -452,6 +512,7 @@ def verify_claim(
             "Claim has no source_ids for its recorded support state.",
             ["add source_ids or use no-source"],
             support_state=state,
+            reviewer_kind=reviewer_kind,
         )
 
     if state == "unsupported":
@@ -460,22 +521,24 @@ def verify_claim(
             claim_id,
             "fail",
             "low",
-            "Human review recorded the claim as unsupported; automated semantics are not assessed.",
+            f"Recorded review ({reviewer_kind}) marked the claim unsupported; automated semantics are not assessed.",
             ["quarantine or revise claim"],
             support_state=state,
+            reviewer_kind=reviewer_kind,
         )
 
     if len(text) < 10:
-        return CheckResult("claim", claim_id, "warn", "low", "Claim text is too thin to review semantically.", ["thin claim text", "semantic support not assessed"], support_state=state)
+        return CheckResult("claim", claim_id, "warn", "low", "Claim text is too thin to review semantically.", ["thin claim text", "semantic support not assessed"], support_state=state, reviewer_kind=reviewer_kind)
 
     return CheckResult(
         "claim",
         claim_id,
         "warn",
         "low",
-        f"Human review state '{state}' is recorded; automated semantics are not assessed or certified.",
+        f"Recorded review ({reviewer_kind}) state '{state}'; automated semantics are not assessed or certified.",
         ["retain reviewer evidence and complete an authorised semantic review"],
         support_state=state,
+        reviewer_kind=reviewer_kind,
     )
 
 
@@ -541,6 +604,7 @@ def render_markdown(report: VerificationReport) -> str:
         "",
         f"Generated UTC: {report.generated_utc}",
         f"Input: `{report.input_path}`",
+        f"Profile: {report.profile} (structural checks, not semantic certification)",
         f"Release ready: {'yes' if report.release_ready else 'no'}",
         "",
         "## Summary",
@@ -572,6 +636,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, help="Write report to this path")
     parser.add_argument("--format", choices=["json", "md"], default="md")
     parser.add_argument("--no-archive", action="store_true", help="Skip archive lookup")
+    parser.add_argument("--profile", choices=["audit-only", "release"], default="audit-only",
+                        help="Audit-only never grants release readiness; release requires every structural check")
     parser.add_argument("--timeout", type=float, default=20.0)
     parser.add_argument("--as-of", type=date.fromisoformat, help="Evaluation date (YYYY-MM-DD); defaults to current UTC date")
     args = parser.parse_args(argv)
@@ -581,6 +647,7 @@ def main(argv: list[str] | None = None) -> int:
         check_archives=not args.no_archive,
         timeout=args.timeout,
         as_of=args.as_of,
+        profile=args.profile,
     )
     if args.format == "json":
         output = json.dumps(report.to_dict(), indent=2, ensure_ascii=False)
