@@ -6,7 +6,7 @@
   "root_model": "gpt-6-luna",
   "review_model": "gpt-6-luna",
   "execution_model": "gpt-6-luna",
-  "reasoning_effort": "high",
+  "reasoning_effort": "medium",
   "roles": [
     "default",
     "worker",
