@@ -57,7 +57,7 @@ def test_stale_astra_default_reports_drift_without_writing_fixture(tmp_path: Pat
     home = make_codex_home(tmp_path)
     config = home / "config.toml"
     config.write_bytes(
-        config.read_bytes().replace(b'model = "gpt-6-luna"', b'model = "gpt-6-astra"', 1)
+        config.read_bytes().replace(b'model = "gpt-6.1-terra"', b'model = "gpt-6-astra"', 1)
     )
     before = {path: path.read_bytes() for path in home.rglob("*") if path.is_file()}
 
@@ -80,7 +80,7 @@ def test_high_root_reasoning_effort_reports_drift_without_writing(tmp_path: Path
     before = {path: path.read_bytes() for path in home.rglob("*") if path.is_file()}
 
     with pytest.raises(
-        policy_module.PolicyDrift, match="root reasoning effort policy drift"
+        policy_module.PolicyDrift, match="root model policy drift"
     ):
         policy_module.check(home, ROOT)
 
@@ -110,7 +110,7 @@ def test_check_rejects_semantic_model_drift_in_crlf_role(tmp_path: Path) -> None
     home = make_codex_home(tmp_path)
     role = home / "agents" / "default.toml"
     role.write_bytes(
-        role.read_bytes().replace(b'model = "gpt-6-luna"', b'model = "gpt-6-astra"', 1)
+        role.read_bytes().replace(b'model = "gpt-6.1-terra"', b'model = "gpt-6-astra"', 1)
     )
 
     with pytest.raises(policy_module.PolicyDrift, match="role template drift: default"):

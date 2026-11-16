@@ -1,6 +1,6 @@
 # Discovery
 
-Engine root: `C:\Users\Peter\Documents\Claude Projects\digital-research-engine`
+Engine root: owner-local `digital-research-engine` checkout (workstation path withheld).
 Discovery date: 2026-07-07
 
 ## What Was Read
